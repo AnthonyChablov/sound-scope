@@ -11,7 +11,7 @@ interface ISideBar {
   mode ?: string
 }
 
-const iconSize = 40;
+const iconSize = 37.5;
 
 
 
@@ -21,7 +21,7 @@ const Sidebar = ({anchor, mode}:ISideBar) => {
   const windowWidth = useWindowWidth();
   const drawerWidth = 'fit';
 
-  const tabletDisplay = windowWidth >= 770
+  const tabletDisplay = windowWidth >= 770;
 
   return (
     <Drawer
@@ -38,7 +38,7 @@ const Sidebar = ({anchor, mode}:ISideBar) => {
       open={toggleSideBar}
     >
       <div className="flex flex-row justify-between text-white  ">
-        <div className={`py-2 w-full flex flex-row justify-between content-between 
+        <div className={`py-4 w-full flex flex-row justify-between content-between 
           ${ tabletDisplay && 'h-screen flex-col'}`
         }>
           <div className=" flex justify-center">

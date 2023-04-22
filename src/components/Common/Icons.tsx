@@ -6,9 +6,14 @@ import {
     AiFillLinkedin, 
     AiFillTwitterSquare, 
     AiOutlineClose, 
-    AiOutlineMenu
+    AiOutlineMenu,
+    AiOutlineUser,
+    AiOutlineHistory
 } 
 from 'react-icons/ai';
+import { GiMicrophone} from 'react-icons/gi';
+import { BsMusicNoteBeamed} from "react-icons/bs";
+import {RiPlayListFill} from "react-icons/ri";
 
 interface IIcons {
     type : string,
@@ -23,6 +28,11 @@ const Icons = ({type, size}:IIcons) => {
           menu: <AiOutlineMenu size={size}/>,
           close: <AiOutlineClose size={size}/>,
           github: <AiFillGithub size={size}/>,
+          profile: <AiOutlineUser size={size}/>,
+          topArtists:  < GiMicrophone size={size}/>,
+          topTracks: <BsMusicNoteBeamed size={size}/>,
+          recent: <AiOutlineHistory size={size}/>,
+          playlists: <RiPlayListFill size={size}/>
         }[type]
     }</div>
   )

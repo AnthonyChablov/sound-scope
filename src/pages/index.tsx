@@ -4,6 +4,8 @@ import Navbar from '@/components/Home/Navbar/Navbar'
 import HomeLayout from '@/components/Home/HomeLayout'
 
 export default function Home() {
+
+  /*  */
   return (
     <div >
       <HomeLayout/>

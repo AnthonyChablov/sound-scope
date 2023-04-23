@@ -2,26 +2,32 @@ import React from 'react'
 import Icons from '@/components/Common/Icons'
 import NavItem from './NavItem';
 import useWindowWidth from '@/hooks/useWindowWidth';
+import Link from 'next/link';
 
 const data = [
     {
-        icon: "profile",
+        route: "",
+        icon:'profile',
         title: "Profile"
     },
     {
-        icon: "topArtists",
-        title: "Top Artists"
+        route: "artists",
+        icon:'artists',
+        title: "Artists"
     },
     {
-        icon: "topTracks",
-        title: "Top Tracks"
+        route: "tracks",
+        icon:'tracks',
+        title: "Tracks"
     },
     {
-        icon: "recent",
+        route: "recent",
+        icon:'recent',
         title: "Recent"
     },
     {
-        icon: "playlists",
+        route: "playlists",
+        icon:'playlists',
         title: "Playlists"
     }
 ]
@@ -36,7 +42,11 @@ const NavMenu = () => {
         `}>
             {
                 data.map((item)=>{
-                    return (<NavItem icon={item.icon} title={item.title}/>)
+                    return (
+                        <Link href={`/app/${item.route}`}>
+                            <NavItem icon={item.icon} title={item.title}/>
+                        </Link>
+                    )
                 })
             }
         </ul>

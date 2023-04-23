@@ -4,18 +4,11 @@ import Drawer from '@mui/material/Drawer';
 import { useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import NavMenu from "../NavMenu/NavMenu";
-
-
-interface ISideBar {
-  anchor : string,
-  mode ?: string
-}
+import Link from "next/link";
 
 const iconSize = 37.5;
 
-
-
-const Sidebar = ({anchor, mode}:ISideBar) => {
+const Sidebar = () => {
 
   const [toggleSideBar, setToggleSideBar] = useState(true);
   const windowWidth = useWindowWidth();
@@ -43,17 +36,24 @@ const Sidebar = ({anchor, mode}:ISideBar) => {
         }>
           <div className=" flex justify-center">
             { tabletDisplay && (
-              <IconButton>
-                <Icons type="spotify" size={iconSize}/>
-              </IconButton> ) 
+              <Link href={'/app'}>
+                <IconButton>
+                  <Icons type="spotify" size={iconSize}/>
+                </IconButton> 
+              </Link>
+              ) 
             }
           </div>
           <NavMenu />
           <div className=" flex justify-center">
             { tabletDisplay && (
+              <Link href={'https://github.com/AnthonyChablov'}
+                rel="noopener noreferrer" target="_blank"
+              >
                 <IconButton>
                   <Icons type="github" size={iconSize}/>
                 </IconButton> 
+              </Link>
               )
             }
           </div>

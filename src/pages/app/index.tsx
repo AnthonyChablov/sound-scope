@@ -8,7 +8,7 @@ const app = () => {
       <Head>
         <title key={'title'}>App</title>
       </Head>
-      <Sidebar anchor='left' />
+      <Sidebar />
     </section>
   )
 }

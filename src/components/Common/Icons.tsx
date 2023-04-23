@@ -29,8 +29,8 @@ const Icons = ({type, size}:IIcons) => {
           close: <AiOutlineClose size={size}/>,
           github: <AiFillGithub size={size}/>,
           profile: <AiOutlineUser size={size}/>,
-          topArtists:  < GiMicrophone size={size}/>,
-          topTracks: <BsMusicNoteBeamed size={size}/>,
+          artists:  < GiMicrophone size={size}/>,
+          tracks: <BsMusicNoteBeamed size={size}/>,
           recent: <AiOutlineHistory size={size}/>,
           playlists: <RiPlayListFill size={size}/>
         }[type]

@@ -6,7 +6,7 @@ const profile = () => {
   return (
     <section>
       <Head>
-        <title key={'my Profile'}>App</title>
+        <title key={'title'}>Profile</title>
       </Head>
       <Sidebar />
     </section>

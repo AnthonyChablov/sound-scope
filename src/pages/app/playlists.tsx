@@ -6,7 +6,7 @@ const playlists = () => {
   return (
     <section>
       <Head>
-        <title key={'Playlists'}>App</title>
+        <title key={'title'}>Playlists</title>
       </Head>
       <Sidebar />
     </section>

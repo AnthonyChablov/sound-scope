@@ -6,7 +6,7 @@ const recent = () => {
   return (
     <section>
       <Head>
-        <title key={'Recent'}>App</title>
+        <title key={'title'}>Recent</title>
       </Head>
       <Sidebar />
     </section>

@@ -6,7 +6,7 @@ const tracks = () => {
   return (
     <section>
       <Head>
-        <title key={'tracks'}>App</title>
+        <title key={'title'}>Tracks</title>
       </Head>
       <Sidebar />
     </section>

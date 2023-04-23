@@ -25,7 +25,7 @@ const Hero = () => {
                     font-semibold text-md hover:bg-fuchsia-300 w-fit'
                     variant="contained"
                 >
-                    <Link href="/app">Get Started</Link>
+                    <Link href="/login">Get Started</Link>
                 </Button>
             </div>
             <div className="mt-20 flex items-center justify-center md:mt-0 mx-auto md:justify-end">

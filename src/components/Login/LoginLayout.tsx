@@ -27,19 +27,19 @@ const LoginLayout = () => {
                     font-semibold text-md hover:bg-fuchsia-300 w-fit'
                     variant="contained"
                 >
-                    <Link href="/login">Login to Spotify</Link>
+                    <Link href="/app">Login to Spotify</Link>
                 </Button>
             </div>
             <div className="mt-20 flex items-center justify-center md:mt-0 mx-auto md:justify-end relative">
-              <div className="rounded-full overflow-hidden absolute top-0 left-0">
+              <div className="rounded-full overflow-hidden ">
                 <Image
                     src={girlSpotify}
-                    width={275}
+                    width={300}
                     height={100}
                     alt='girl on phone'
                 ></Image>
               </div>
-              <div className="rounded-full overflow-hidden absolute top-20 left-20">
+              {/* <div className="rounded-full overflow-hidden absolute top-20 left-20">
                 <Image
                     src={manSpotify}
                     width={150}
@@ -50,12 +50,11 @@ const LoginLayout = () => {
               <div className="rounded-full overflow-hidden">
                 <Image
                     src={girlComputerSpotify}
-                    width={275}
+                    width={100}
                     height={100}
                     alt='girl on computer'
                 ></Image>
-              </div>
-                
+              </div> */}
             </div>
         </div>
     </div>

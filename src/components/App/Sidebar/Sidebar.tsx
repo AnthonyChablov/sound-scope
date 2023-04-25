@@ -3,7 +3,7 @@ import Icons from "@/components/Common/Icons";
 import Drawer from '@mui/material/Drawer';
 import { useState } from "react";
 import IconButton from "@mui/material/IconButton";
-import NavMenu from "../NavMenu/NavMenu";
+import NavMenu from "./NavMenu/NavMenu";
 import Link from "next/link";
 
 const iconSize = 37.5;
@@ -12,8 +12,8 @@ const Sidebar = () => {
 
   const [toggleSideBar, setToggleSideBar] = useState(true);
   const windowWidth = useWindowWidth();
+  
   const drawerWidth = 'fit';
-
   const tabletDisplay = windowWidth >= 770;
 
   return (
@@ -30,7 +30,7 @@ const Sidebar = () => {
       anchor={ tabletDisplay ? 'left' : 'bottom'}
       open={toggleSideBar}
     >
-      <div className="flex flex-row justify-between text-white  ">
+      <div className="flex flex-row justify-between text-white ">
         <div className={`py-4 w-full flex flex-row justify-between content-between 
           ${ tabletDisplay && 'h-screen flex-col'}`
         }>

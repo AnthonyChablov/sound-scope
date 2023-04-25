@@ -9,7 +9,7 @@ const app = () => {
   const [accessToken, setAccessToken] =useState('');
 
   return (
-    <section>
+    <section className=''>
       <Head>
         <title key={'title'}>App</title>
       </Head>
@@ -19,7 +19,7 @@ const app = () => {
   )
 }
 
-export async function getStaticProps() {
+/* export async function getStaticProps() {
   // make api request 
   let authParameters = {
     method:'POST',
@@ -31,9 +31,9 @@ export async function getStaticProps() {
   }
   /* fetch('https://accounts.spotify.com/api/token', authParameters)
     .then(result => result.json)
-    .then(data => console.log(data?.access_token)); */
+    .then(data => console.log(data?.access_token)); 
 
-}
+}  */
 
 
-export default app
+export default app;

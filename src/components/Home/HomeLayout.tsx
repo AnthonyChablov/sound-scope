@@ -1,5 +1,5 @@
 import Hero from "./Hero/Hero"
-import Button from "../Common/Button"
+import Button from "../Common/OutlinedButton"
 import Navbar from "./Navbar/Navbar"
 
 const HomeLayout = () => {

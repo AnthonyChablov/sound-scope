@@ -16,11 +16,11 @@ const NavItem = ({icon, title, isActive}:INavItem) => {
     const responsiveDisplay = windowWidth>= 770;
 
     return (
-        <li className={`m-1 p-1 border-solid rounded-lg
+        <li className={`m-1 p-1 border-solid
             ${isActive 
                 ? responsiveDisplay 
-                    ? 'border-l-4 ' 
-                    : 'border-b-4  ' 
+                    ? 'border-l-4 bg-zinc-900' 
+                    : 'border-b-4 bg-zinc-900' 
                 : ''
             }
             ${!isActive 

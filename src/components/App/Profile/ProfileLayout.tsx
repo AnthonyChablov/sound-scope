@@ -4,6 +4,7 @@ import SubDisplay from './SubDisplay/SubDisplay';
 import OutlinedButton from '@/components/Common/OutlinedButton';
 import Header from './Header/Header';
 import ArtistCard from '../Cards/ArtistCard';
+import TrackCard from '../Cards/TrackCard';
 
 interface IProfile{
     userName: string,
@@ -63,13 +64,12 @@ const ProfileLayout = ({userName, followers, following, playlists}: IProfile) =>
                   buttonText='See More'
                   buttonLink='/artists'
                 />
-
                 {
                   [{
                     new:2
-                  }].map((artist)=>{
+                  }].map((artist, i)=>{
                     return (
-                      <ArtistCard artistImage='12' artistName='Drake'/>
+                      <ArtistCard key={i} icon='12' title='Drake' route='/'/>
                     )
                   })
                 }
@@ -82,7 +82,19 @@ const ProfileLayout = ({userName, followers, following, playlists}: IProfile) =>
                   buttonLink='/artists'
                 />
                 {
-                  
+                  [{
+                    new:2
+                  }].map((artist, i)=>{
+                    return (
+                      <TrackCard 
+                        key={i} 
+                        icon='12' 
+                        title='Drake' 
+                        subtitle='Frank - Ocean Channel Orange' 
+                        route='/'
+                      />
+                    )
+                  })
                 }
               </section>
             </div>

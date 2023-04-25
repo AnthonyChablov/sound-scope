@@ -9,7 +9,7 @@ interface IHeader{
 
 const Header = ({title, buttonText, buttonLink}:IHeader) => {
   return (
-    <div className="flex items-center space-x-32 mb-5">
+    <div className="flex items-center space-x-32 mb-7">
         <h2 className="text-white font-bold text-lg">{title}</h2>
         <Link href={buttonLink}>
           <OutlinedButton title={buttonText}></OutlinedButton>  

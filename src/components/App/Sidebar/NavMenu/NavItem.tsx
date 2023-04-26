@@ -16,22 +16,22 @@ const NavItem = ({icon, title, isActive}:INavItem) => {
     const responsiveDisplay = windowWidth>= 770;
 
     return (
-        <li className={` border-solid
+        <li className={` border-solid hover:bg-zinc-900 
             ${isActive 
                 ? responsiveDisplay 
-                    ? 'border-l-4 bg-zinc-900' 
-                    : 'border-t-4 bg-zinc-900' 
+                    ? 'border-l-4 bg-zinc-900 ' 
+                    : 'border-t-4 bg-zinc-900 ' 
                 : ''
             }
             ${!isActive 
                 ? responsiveDisplay 
-                    ? 'ml-2' 
-                    : 'mt-2' 
+                    ? 'pl-1' 
+                    : 'pt-1' 
                 : ''
             }
         `}
         >
-            <Button className='flex flex-col items-center p-0 pt-2 w-fit md:mt-4 md:py-2' >
+            <Button className='flex flex-col items-center p-0 pt-2 w-fit  md:py-3 ' disableRipple>
                 <Icons type={icon} size={iconSize} />
                 <p className='text-xs pt-2 capitalize text-white'>{title}</p>
             </Button>

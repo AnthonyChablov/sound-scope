@@ -8,7 +8,7 @@ interface INavItem {
     isActive:boolean,
 }
 
-const iconSize = 17;
+const iconSize = 16;
 
 const NavItem = ({icon, title, isActive}:INavItem) => {
 
@@ -16,22 +16,22 @@ const NavItem = ({icon, title, isActive}:INavItem) => {
     const responsiveDisplay = windowWidth>= 770;
 
     return (
-        <li className={`m-1 p-1 border-solid
+        <li className={` border-solid
             ${isActive 
                 ? responsiveDisplay 
                     ? 'border-l-4 bg-zinc-900' 
-                    : 'border-b-4 bg-zinc-900' 
+                    : 'border-t-4 bg-zinc-900' 
                 : ''
             }
             ${!isActive 
                 ? responsiveDisplay 
                     ? 'ml-2' 
-                    : 'mb-2' 
+                    : 'mt-2' 
                 : ''
             }
         `}
         >
-            <Button className='flex flex-col items-center w-full ' >
+            <Button className='flex flex-col items-center p-0 pt-2 w-fit md:mt-4 md:py-2' >
                 <Icons type={icon} size={iconSize} />
                 <p className='text-xs pt-2 capitalize text-white'>{title}</p>
             </Button>

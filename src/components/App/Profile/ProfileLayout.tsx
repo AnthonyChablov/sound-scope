@@ -5,6 +5,7 @@ import OutlinedButton from '@/components/Common/OutlinedButton';
 import Header from './Header/Header';
 import ArtistCard from '../Cards/ArtistCard';
 import TrackCard from '../Cards/TrackCard';
+import useWindowWidth from '@/hooks/useWindowWidth';
 
 interface IProfile{
     userName: string,
@@ -14,8 +15,12 @@ interface IProfile{
 }
 
 const ProfileLayout = ({userName, followers, following, playlists}: IProfile) => {
+
+  const windowWidth = useWindowWidth();
+  const responsiveDisplay = windowWidth >= 770;
+
   return (
-    <div>
+    <div className={` w-10/12 md:w-7/12 lg:w-full mx-auto mb-32 `}>
         {/* Image Placeholder */}
         <div className="mt-14 ">
               {/* <Image height={50} width={100} src={placeholder} alt="placeholder"></Image> */}
@@ -25,7 +30,7 @@ const ProfileLayout = ({userName, followers, following, playlists}: IProfile) =>
             </div>
             {/* Header */}
             <Link href={'/app'}>
-              <div className="text-white hover:text-[#1db954] text-5xl font-semibold text-center">
+              <div className="text-white hover:text-[#1db954] text-3xl lg:text-5xl font-semibold text-center">
                 <h1>{userName}</h1>
               </div>
             </Link>
@@ -47,8 +52,14 @@ const ProfileLayout = ({userName, followers, following, playlists}: IProfile) =>
                           amount: playlists
                       }
               
-                  ].map((elem)=>{
-                      return <SubDisplay title={elem.title} amount={elem.amount   }/>
+                  ].map((elem, i)=>{
+                      return (
+                        <SubDisplay 
+                          key={i} 
+                          title={elem.title} 
+                          amount={elem.amount   }
+                        />
+                      )
                   })
               }
             </div>
@@ -56,9 +67,9 @@ const ProfileLayout = ({userName, followers, following, playlists}: IProfile) =>
               <OutlinedButton title='logout'/>
             </div>
 
-            <div className='flex space-x-20 mt-20'>
+            <div className='flex flex-col lg:flex-row lg:space-x-20 mt-20 justify-center'>
               {/* Top Artists */}
-              <section className="">
+              <section className="mb-20">
                 <Header
                   title='Top Artists of All Time'
                   buttonText='See More'

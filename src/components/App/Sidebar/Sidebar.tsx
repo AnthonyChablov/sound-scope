@@ -31,8 +31,8 @@ const Sidebar = () => {
       open={toggleSideBar}
     >
       <div className="flex flex-row justify-between text-white ">
-        <div className={`py-4 w-full flex flex-row justify-between content-between 
-          ${ tabletDisplay && 'h-screen flex-col'}`
+        <div className={`w-full flex flex-row justify-between content-between 
+          ${ tabletDisplay && 'py-4 h-screen flex-col'}`
         }>
           <div className=" flex justify-center">
             { tabletDisplay && (

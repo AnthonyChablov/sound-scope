@@ -38,8 +38,8 @@ const NavMenu = () => {
     const router = useRouter();
 
     return (
-        <ul className={`h-fit w-fit flex flex-row max-w-lg
-            ${windowWidth > 770 && 'flex-col items-center justify-between w-full'}
+        <ul className={`h-fit w-full flex flex-row max-w-lg justify-between
+            ${windowWidth > 770 && 'flex-col items-center justify-between w-full '}
         `}>
             {
                 data.map((item)=>{

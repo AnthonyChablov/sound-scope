@@ -1,17 +1,48 @@
 import React , {useEffect} from 'react';
+import { useStateStore } from '@/store/useAppStore';
 import Card from './Card/Card';
+import { useRouter } from 'next/router'
 import { Button } from '@mui/material';
 import Link from 'next/link';
 import Image from 'next/image';
 import girlSpotify from '../../assets/girl-spotify-img.jpg';
 import manSpotify from '../../assets/man-spotify-img.jpg';
 import girlComputerSpotify from '../../assets/girl-computer-spotify-img.jpg';
+import { setAccessToken } from '@/spotifyApi/spotifyToken';
 
 const LoginLayout = () => {
 
+  /* State */
+  const spotifyToken = useStateStore(state => state.spotifyToken);
+  const setSpotifyToken = useStateStore(state => state.setSpotifyToken);
+
+  /* Constants */
+  const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID;
+  const REDIRECT_URI = process.env.NEXT_PUBLIC_REDIRECT_URI;
+  const RESPONSE_TYPE = process.env.NEXT_PUBLIC_RESPONSE_TYPE;
+  const AUTH_ENDPOINT = process.env.NEXT_PUBLIC_AUTH_ENDPOINT;
+  
+  /* Create end point needed for retrieving spotify token */
+  const spotifyEndPoint = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`;
+  /* Route */
+  const router = useRouter()
+
+  function onClickHandeller(){
+
+  }
+
   useEffect(() => {
-    console.log(process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID);
-  }, [])
+    
+    let access_token = setAccessToken();
+    
+    if(spotifyToken){
+      router.push('/app');
+    }
+
+    console.log(access_token);
+    
+  }, [spotifyToken]);
+
 
   return (
     <div className=' h-screen opacity-100 bg-fuchsia-700'>
@@ -22,7 +53,7 @@ const LoginLayout = () => {
             <div className="w-full sm:w-7/12  md:flex md:flex-col md:pt-[10%]">
                 {/* header */}
                 <h1 className='text-yellow-300 text-6xl font-bold mb-5'>
-                    View
+                    Login
                 </h1>
                 {/* text */}
                 <p className='text-bold text-yellow-300 text-lg font-semibold mb-7'>
@@ -34,7 +65,7 @@ const LoginLayout = () => {
                     font-semibold text-md hover:bg-fuchsia-300 w-fit'
                     variant="contained"
                 >
-                    <Link href="/app">Login to Spotify</Link>
+                    <Link href={spotifyEndPoint}>Login to Spotify</Link>
                 </Button>
             </div>
             <div className="mt-20 flex items-center justify-center md:mt-0 mx-auto md:justify-end relative">

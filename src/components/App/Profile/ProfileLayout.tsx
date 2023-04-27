@@ -6,6 +6,9 @@ import Header from './Header/Header';
 import ArtistCard from '../Cards/ArtistCard';
 import TrackCard from '../Cards/TrackCard';
 import useWindowWidth from '@/hooks/useWindowWidth';
+import { logout } from '@/spotifyApi/spotifyToken';
+import { useStateStore } from '@/store/useAppStore';
+import { useRouter } from 'next/router';
 
 interface IProfile{
     userName: string,
@@ -16,8 +19,19 @@ interface IProfile{
 
 const ProfileLayout = ({userName, followers, following, playlists}: IProfile) => {
 
+  /* state */
+  const spotifyToken = useStateStore(state => state.spotifyToken);
+  const setSpotifyToken = useStateStore(state => state.setSpotifyToken);
+  /* hooks */
   const windowWidth = useWindowWidth();
-  const responsiveDisplay = windowWidth >= 770;
+  const router = useRouter()
+
+
+  function onClickHandeller(){
+    setSpotifyToken('');
+    logout();
+    router.push('/');
+  }
 
   return (
     <div className={` w-10/12 md:w-7/12 lg:w-full mx-auto mb-32 `}>
@@ -68,7 +82,12 @@ const ProfileLayout = ({userName, followers, following, playlists}: IProfile) =>
               }
             </div>
             <div className="mt-10 text-center">
-              <OutlinedButton title='logout'/>
+              <div className="" 
+                onClick={()=>onClickHandeller()}
+              >
+                <OutlinedButton title='logout'/>
+              </div>
+              
             </div>
 
             <div className='flex flex-col lg:flex-row lg:space-x-20 mt-20 justify-center'>

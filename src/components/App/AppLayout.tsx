@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import useSWR from 'swr';
 import Sidebar from "./Sidebar/Sidebar";
 import Card from "./Cards/ArtistCard";
@@ -5,6 +6,7 @@ import Image from "next/image";
 import placeholder from '../../assets/webimage-CFCF5ECC-63CC-421D-AA5A1806A936CC97.png';
 import Link from "next/link";
 import ProfileLayout from "./Profile/ProfileLayout";
+import { useStateStore } from '@/store/useAppStore';
 
 
 interface IAppLayout{
@@ -12,6 +14,13 @@ interface IAppLayout{
 } 
 
 const AppLayout = ({mode}:IAppLayout) => {
+
+  
+
+  useEffect(()=>{
+    
+  },[]);
+
   return (
     <div className=" bg-zinc-900 h-full">
       {

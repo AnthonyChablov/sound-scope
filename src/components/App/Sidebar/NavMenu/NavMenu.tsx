@@ -42,9 +42,12 @@ const NavMenu = () => {
             ${windowWidth > 770 && 'flex-col items-center justify-between w-full '}
         `}>
             {
-                data.map((item)=>{
+                data.map((item, i)=>{
                     return (
-                        <Link href={`${item.route}`}>
+                        <Link 
+                            key={i} 
+                            href={`${item.route}`}
+                        >
                             <NavItem 
                                 icon={item.icon} 
                                 title={item.title} 

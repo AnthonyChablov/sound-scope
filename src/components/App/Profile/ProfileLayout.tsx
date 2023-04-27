@@ -29,11 +29,15 @@ const ProfileLayout = ({userName, followers, following, playlists}: IProfile) =>
               </div>
             </div>
             {/* Header */}
-            <Link href={'/app'}>
-              <div className="text-white hover:text-[#1db954] text-3xl lg:text-5xl font-semibold text-center">
-                <h1>{userName}</h1>
-              </div>
-            </Link>
+            <div className="w-fit mx-auto">
+              <Link href={'/app'}>
+                <div className="text-white hover:text-[#1db954] text-3xl 
+                  lg:text-5xl font-semibold text-center "
+                >
+                  <h1>{userName}</h1>
+                </div>
+              </Link>
+            </div>
             {/* display */}
             <div className="mt-10 flex flex-row space-x-8 items-center justify-center">
               {   

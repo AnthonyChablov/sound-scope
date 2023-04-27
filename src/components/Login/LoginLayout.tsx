@@ -1,4 +1,4 @@
-import React from 'react';
+import React , {useEffect} from 'react';
 import Card from './Card/Card';
 import { Button } from '@mui/material';
 import Link from 'next/link';
@@ -8,11 +8,18 @@ import manSpotify from '../../assets/man-spotify-img.jpg';
 import girlComputerSpotify from '../../assets/girl-computer-spotify-img.jpg';
 
 const LoginLayout = () => {
+
+  useEffect(() => {
+    console.log(process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID);
+  }, [])
+
   return (
-    <div className='h-screen bg-fuchsia-700 opacity-100'>
+    <div className=' h-screen opacity-100 bg-fuchsia-700'>
         {/* container */}
-        <div className="pt-32 max-w-5xl mx-auto w-screen px-9 md:flex md:justify-between ">
-            <div className="w-7/12 md:flex md:flex-col md:pt-[10%]">
+        <div className="bg-fuchsia-700 h-full pt-32 max-w-5xl mx-auto w-screen px-9 
+          md:flex md:justify-between "
+        >
+            <div className="w-full sm:w-7/12  md:flex md:flex-col md:pt-[10%]">
                 {/* header */}
                 <h1 className='text-yellow-300 text-6xl font-bold mb-5'>
                     View

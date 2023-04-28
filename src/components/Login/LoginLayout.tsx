@@ -23,24 +23,20 @@ const LoginLayout = () => {
   const AUTH_ENDPOINT = process.env.NEXT_PUBLIC_AUTH_ENDPOINT;
   
   /* Create end point needed for retrieving spotify token */
-  const spotifyEndPoint = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`;
+  const spotifyEndPoint = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${
+        RESPONSE_TYPE}`;
+
   /* Route */
   const router = useRouter()
 
-  function onClickHandeller(){
-
-  }
-
   useEffect(() => {
-    
-    let access_token = setAccessToken();
-    
     if(spotifyToken){
+      window.location.reload();
       router.push('/app');
     }
-
-    console.log(access_token);
     
+    let access_token = setAccessToken();
+    setSpotifyToken(access_token);
   }, [spotifyToken]);
 
 

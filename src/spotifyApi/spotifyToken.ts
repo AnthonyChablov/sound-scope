@@ -2,11 +2,11 @@ import { getHashParams } from "@/utils/utils";
 
 /* Helper Functions */
 export function setSpotifyAccessToken(token:string){
-    window.localStorage.setItem('spotify_token', token);
+    window.localStorage.setItem('spotify_api_token', token);
 }
 
 export function getSpotifyAccessToken(){
-    window.localStorage.getItem('spotify_token');
+    window.localStorage.getItem('spotify_api_token');
 }
 
 
@@ -20,7 +20,8 @@ export function setAccessToken(){
 
 export function logout(){
     setSpotifyAccessToken('');
-    window.localStorage.removeItem('spotify_token');
+    window.localStorage.removeItem('spotify_api_token');
+    window.location.reload();
 
 } 
 

@@ -1,9 +1,8 @@
 import axios from "axios";
 import { getHashParams } from "@/utils/utils";
 
-
 /* Token */
-export const token = (typeof window === 'undefined') ? getSpotifyAccessToken() : '';
+export const token = (typeof window !== 'undefined') ? getSpotifyAccessToken() : '';
 
 /* Headers */
 const headers = {
@@ -32,15 +31,105 @@ export function logout(){
     window.location.reload();
 } 
 
-/* Api Request Helpers */
-export function getUser(){
-    axios.get('https://api.spotify.com/v1/me', { headers });
+/* Api Calls */
+export async function getUser(){
+    try{
+        const res = await axios.get(
+            'https://api.spotify.com/v1/me', 
+            { headers }
+        );
+        return res.data;
+    }catch(err){
+        console.log(err);
+    }
 }
 
-export function getPlaylists(){
-    axios.get('https://api.spotify.com/v1/me/playlists', { headers });
+export async function getPlaylists(){
+    try{
+        const res = await axios.get(
+            'https://api.spotify.com/v1/me/playlists', 
+            { headers }
+        );
+        return res.data;
+    }catch(err){
+        console.log(err);
+    }
 }
+
+export async function getFollowing(){
+    try{
+        const res = await axios.get(
+            'https://api.spotify.com/v1/me/following?type=artists', 
+            { headers }
+        );
+        return res.data;
+    }catch(err){
+        console.log(err);
+    }
+}
+
+/* Get A Users Top Tracks */
+export async function getTopArtistsShortTerm() {
+    try{
+        const res = await axios.get(
+            'https://api.spotify.com/v1/me/top/artists?limit=10', 
+            { headers }
+        );
+        return res.data;
+    }catch(err){
+        console.log(err);
+    }
+}
+
+export async function getTopArtistsLongTerm() {
+    try{
+        const res = await axios.get(
+            'https://api.spotify.com/v1/me/top/artists?limit=10&time_range=long_term', 
+            { headers }
+        );
+        return res.data;
+    }catch(err){
+        console.log(err);
+    }
+}
+
+
+/* Get A Users Top Tracks */
+export async function getTopTracksShortTerm() {
+    try{
+        const res = await axios.get(
+            'https://api.spotify.com/v1/me/top/tracks?limit=10&time_range=long_term', 
+            { headers }
+        );
+        return res.data;
+    }catch(err){
+        console.log(err);
+    }
+}
+
+export async function getTopTracksLongTerm() {
+    try{
+        const res = await axios.get(
+            'https://api.spotify.com/v1/me/top/tracks?limit=10&time_range=long_term', 
+            { headers }
+        );
+        return res.data;
+    }catch(err){
+        console.log(err);
+    }
+}
+
+
+
+
 
 export function getPlaylistTracks(playlistId:string){
     axios.get(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, { headers });
 }
+
+
+export const getTopTracksShort = () =>
+  axios.get('https://api.spotify.com/v1/me/top/tracks?limit=50&time_range=short_term', { headers });
+
+
+

@@ -8,7 +8,7 @@ import Image from 'next/image';
 import girlSpotify from '../../assets/girl-spotify-img.jpg';
 import manSpotify from '../../assets/man-spotify-img.jpg';
 import girlComputerSpotify from '../../assets/girl-computer-spotify-img.jpg';
-import { setAccessToken } from '@/spotifyApi/spotifyToken';
+import { setAccessToken } from '@/spotifyApi/spotifyApi';
 
 const LoginLayout = () => {
 
@@ -24,10 +24,10 @@ const LoginLayout = () => {
   
   /* Create end point needed for retrieving spotify token */
   const spotifyEndPoint = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${
-        RESPONSE_TYPE}`;
+        RESPONSE_TYPE}&scope=playlist-read-private%20user-top-read`;
 
   /* Route */
-  const router = useRouter()
+  const router = useRouter();
 
   useEffect(() => {
     
@@ -59,13 +59,15 @@ const LoginLayout = () => {
                     Get Started Now, Login to Spotify to view your listening history, favourite artists, playlists and top tracks. 
                 </p>
                 {/* Login */}
-                <Button 
-                    className='bg-yellow-400 rounded-full text-fuchsia-700 
-                    font-semibold text-md hover:bg-fuchsia-300 w-fit'
-                    variant="contained"
-                >
-                    <Link href={spotifyEndPoint}>Login to Spotify</Link>
-                </Button>
+                <Link href={spotifyEndPoint}>
+                  <Button 
+                      className='bg-yellow-400 rounded-full text-fuchsia-700 
+                      font-semibold text-md hover:bg-fuchsia-300 w-fit'
+                      variant="contained"
+                  >
+                    Login to Spotify
+                  </Button>
+                </Link>
             </div>
             <div className="mt-20 flex items-center justify-center md:mt-0 mx-auto md:justify-end relative">
               <div className="rounded-full overflow-hidden ">

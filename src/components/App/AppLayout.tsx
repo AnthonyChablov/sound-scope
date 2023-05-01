@@ -7,8 +7,8 @@ import placeholder from '../../assets/webimage-CFCF5ECC-63CC-421D-AA5A1806A936CC
 import Link from "next/link";
 import ProfileLayout from "./Profile/ProfileLayout";
 import { useStateStore } from '@/store/useAppStore';
-import axios from 'axios';
-import { getSpotifyAccessToken } from '@/spotifyApi/spotifyApi';
+import { getUser, getSpotifyAccessToken, getPlaylists, getFollowing } from '@/spotifyApi/spotifyApi';
+
 
 interface IAppLayout{
   mode:string
@@ -19,67 +19,43 @@ const AppLayout = ({mode}:IAppLayout) => {
   /* state */
   const spotifyToken = useStateStore(state => state.spotifyToken);
   const setSpotifyToken = useStateStore(state => state.setSpotifyToken);
-  const [user , setUser] = useState({});
-  const [following , setFollowing] = useState({});
-  const [playlists , setPlaylists] = useState({});
+ 
+  /* Fetch Data */
+  const { 
+    data : user, 
+    error : isErrorUser, 
+    isLoading : isLoadingUser 
+  } = useSWR('/api/user', getUser);
 
-  /* variables */
-  const headers= { 
-    'Authorization': `Bearer ${spotifyToken}`, 
-    'Content-Type': 'application/json' 
-  };
+  const {
+    data: playlists, 
+    error : isErrorPlaylists, 
+    isLoading : isLoadingPlaylists
+  } = useSWR('/api/playlists', getPlaylists);
 
-  /* api calls */
-  async function getUser(){
-    try{
-      const {data} = await axios.get('https://api.spotify.com/v1/me', { headers });
-      setUser(data);
-      console.log(data);
-    } catch(err){
-      console.log(err);
-    }
-  }
-
-  async function getFollowing(){ /* err */
-    try{
-      const { data } = await axios.get('https://api.spotify.com/v1/me/following', { headers });
-      setFollowing(data);
-      console.log(data);
-    } catch(err){
-      console.log(err);
-    }
-  }
-
-  async function getPlaylists(){
-    try{
-      const { data } = await axios.get("https://api.spotify.com/v1/me/playlists", { headers });
-      setPlaylists(data);
-      console.log(data);
-    } catch(err){
-      console.log(err);
-    }
-  }
-
-  useEffect(()=>{
-    let accessToken = getSpotifyAccessToken();
-    setSpotifyToken(accessToken);
-    getUser();
-    getFollowing();
-    getPlaylists();
-  },[spotifyToken]);
+  const {
+    data: following, 
+    error : isErrorFollowing, 
+    isLoading : isLoadingFollowing
+  } = useSWR('/api/playlists', getFollowing);
 
   return (
     <div className=" bg-zinc-900 h-full">
       {
         mode ==='app' && (
           <div className="flex items-center justify-center flex-col" >
-              <ProfileLayout 
-                img={''}
-                userName={user?.display_name}
-                followers={user?.followers?.total}
-                following={user?.followers?.total} 
-                playlists={user?.followers?.total} 
-              />
+              {
+                (!isLoadingUser ) && (
+                  <ProfileLayout 
+                    img={user?.images[0]?.url}
+                    userName={user?.display_name}
+                    userLink={user?.external_urls.spotify}
+                    followers={user?.followers.total}
+                    following={following?.items.length}
+                    playlists={playlists?.total} 
+                  />
+                )
+              }
           </div>
         )
       }

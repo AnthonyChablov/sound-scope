@@ -12,6 +12,9 @@ import { logout } from '@/spotifyApi/spotifyApi';
 import { useStateStore } from '@/store/useAppStore';
 import { useRouter } from 'next/router';
 import { getTopArtistsShortTerm, getTopArtistsLongTerm, getTopTracksLongTerm } from '@/spotifyApi/spotifyApi';
+import clearCache from "swr";
+import {IArtistLongTerm} from '../../../models/artists';
+import {ITrackLongTerm} from '../../../models/tracks';
 
 interface IProfile{
     img:string,
@@ -38,6 +41,7 @@ const ProfileLayout = ({
   /* Hooks */
   const windowWidth = useWindowWidth();
   const router = useRouter();
+  clearCache("topTracksLong")
 
   /* Fetch Data */
   const {
@@ -61,6 +65,7 @@ const ProfileLayout = ({
 
   useEffect(() => {
     console.log(topTracksLong);
+    
   }, [topTracksLong]);
 
   return (
@@ -105,7 +110,7 @@ const ProfileLayout = ({
                         amount: playlists
                     }
             
-                ].map((elem, i)=>{
+                ].map((elem , i:number)=>{
                     return (
                       <SubDisplay 
                         key={i} 
@@ -127,7 +132,7 @@ const ProfileLayout = ({
 
           <div className='flex flex-col lg:flex-row lg:space-x-20 mt-20 justify-center'>
             {/* Top Artists */}
-            <section className="mb-20 ">
+            <section className="mb-12">
               <Header
                 title='Top Artists of All Time'
                 buttonText='See More'
@@ -135,11 +140,11 @@ const ProfileLayout = ({
               />
               <div className="space-x-10">
               {
-                topArtistsLong?.items.map((artist, i:number)=>{
+                topArtistsLong?.items.map((artist:IArtistLongTerm, i:number)=>{
                   return (
                     <ArtistCard 
                       key={i} 
-                      icon={artist?.images[2]?.url} 
+                      icon={artist?.images[2]?.url } 
                       title={artist?.name} 
                       route={artist?.external_urls.spotify}
                     />
@@ -157,7 +162,7 @@ const ProfileLayout = ({
               />
               <div className="space-x-10">
               {
-                topTracksLong?.items.map((track, i:number)=>{
+                topTracksLong?.items.map((track:ITrackLongTerm, i:number)=>{
                   return (
                     <TrackCard 
                       key={i} 

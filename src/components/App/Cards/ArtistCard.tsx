@@ -13,7 +13,7 @@ const ArtistCard = ({icon, title, route}: IArtistCard) => {
     <Link href={ route } rel="noopener noreferrer" target="_blank">
         <div className='flex flex-row space-x-8 items-center'>
             {/* Artists Image */}
-            <div className="rounded-full overflow-hidden ">
+            <div className="rounded-full overflow-hidden my-2">
                 <Image 
                   height={50} 
                   width={50} 

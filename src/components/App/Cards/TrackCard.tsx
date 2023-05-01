@@ -14,8 +14,8 @@ const TrackCard = ({ icon, title, subtitle,album, route }:ITrackCard) => {
   return (
     <>
         <Link href={route}>
-            <div className="flex space-x-5">    
-                <div className=" py-2">
+            <div className="flex space-x-8 items-center">    
+                <div className=" my-2">
                     <Image 
                         height={50} 
                         width={50} 
@@ -30,7 +30,6 @@ const TrackCard = ({ icon, title, subtitle,album, route }:ITrackCard) => {
                         <p>{'\xa0-\xa0'}</p>
                         <p >{album}</p>
                     </div>
-                    
                 </div>
             </div>
         </Link>

@@ -110,7 +110,7 @@ export async function getTopTracksShortTerm() {
 export async function getTopTracksLongTerm() {
     try{
         const res = await axios.get(
-            'https://api.spotify.com/v1/me/top/tracks?limit=10&time_range=long_term', 
+            'https://api.spotify.com/v1/me/top/tracks?limit=1&time_range=long_term', 
             { headers }
         );
         return res.data;

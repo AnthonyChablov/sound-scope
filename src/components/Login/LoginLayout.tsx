@@ -30,13 +30,16 @@ const LoginLayout = () => {
   const router = useRouter()
 
   useEffect(() => {
+    
+    let access_token = setAccessToken();
+
     if(spotifyToken){
       window.location.reload();
       router.push('/app');
     }
     
-    let access_token = setAccessToken();
     setSpotifyToken(access_token);
+    
   }, [spotifyToken]);
 
 

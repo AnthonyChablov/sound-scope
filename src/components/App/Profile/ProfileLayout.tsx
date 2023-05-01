@@ -6,18 +6,19 @@ import Header from './Header/Header';
 import ArtistCard from '../Cards/ArtistCard';
 import TrackCard from '../Cards/TrackCard';
 import useWindowWidth from '@/hooks/useWindowWidth';
-import { logout } from '@/spotifyApi/spotifyToken';
+import { logout } from '@/spotifyApi/spotifyApi';
 import { useStateStore } from '@/store/useAppStore';
 import { useRouter } from 'next/router';
 
 interface IProfile{
+    img:string,
     userName: string,
     followers: number,
     following: number,
     playlists: number,
 }
 
-const ProfileLayout = ({userName, followers, following, playlists}: IProfile) => {
+const ProfileLayout = ({img, userName, followers, following, playlists}: IProfile) => {
 
   /* state */
   const spotifyToken = useStateStore(state => state.spotifyToken);

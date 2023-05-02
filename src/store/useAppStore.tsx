@@ -5,6 +5,7 @@ type State={
     windowWidth: number,
     isSelected: boolean,
     spotifyToken: string,
+    
  }
  
  type Action={

@@ -1,6 +1,7 @@
-import React from 'react'
-import Sidebar from '@/components/App/Sidebar/Sidebar'
-import Head from 'next/head'
+import React from 'react';
+import Sidebar from '@/components/App/Sidebar/Sidebar';
+import Head from 'next/head';
+import AppLayout from '@/components/App/AppLayout';
 
 const artists = () => {
   return (
@@ -9,6 +10,7 @@ const artists = () => {
         <title key={'title'}>Artists</title>
       </Head>
       <Sidebar />
+      <AppLayout mode={'artist'}/>
     </section>
   )
 }

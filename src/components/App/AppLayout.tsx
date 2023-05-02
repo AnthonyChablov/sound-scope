@@ -8,7 +8,7 @@ import Link from "next/link";
 import ProfileLayout from "./Profile/ProfileLayout";
 import { useStateStore } from '@/store/useAppStore';
 import { getUser, getSpotifyAccessToken, getPlaylists, getFollowing } from '@/spotifyApi/spotifyApi';
-
+import TopArtistLayout from './TopArtist/TopArtistLayout';
 
 interface IAppLayout{
   mode:string
@@ -45,7 +45,7 @@ const AppLayout = ({mode}:IAppLayout) => {
         mode ==='app' && (
           <div className="flex items-center justify-center flex-col" >
               {
-                (!isLoadingUser ) && (
+                ( !isLoadingUser ) && (
                   <ProfileLayout 
                     img={user?.images[0]?.url}
                     userName={user?.display_name}
@@ -53,6 +53,20 @@ const AppLayout = ({mode}:IAppLayout) => {
                     followers={user?.followers.total}
                     following={following?.items.length}
                     playlists={playlists?.total} 
+                  />
+                )
+              }
+          </div>
+        )
+        
+      }
+      {
+        mode === 'artist' && (
+          <div className="flex items-center justify-center flex-col" >
+              {
+                (!isLoadingUser ) && (
+                  <TopArtistLayout
+
                   />
                 )
               }

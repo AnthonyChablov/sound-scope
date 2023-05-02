@@ -48,7 +48,7 @@ const ProfileLayout = ({
     data: topArtistsLong, 
     error : isErrorTopArtistsShort, 
     isLoading : isLoadingTopArtistsShort
-  } = useSWR('topArtistsLong', getTopArtistsLongTerm);
+  } = useSWR('topArtistsLong', ()=>getTopArtistsLongTerm(10));
   
   /* Fetch Data */
   const {
@@ -136,7 +136,7 @@ const ProfileLayout = ({
               <Header
                 title='Top Artists of All Time'
                 buttonText='See More'
-                buttonLink='/artists'
+                buttonLink='/app/artists'
               />
               <div className="space-x-10">
               {
@@ -158,11 +158,13 @@ const ProfileLayout = ({
               <Header
                 title='Top Tracks of All Time'
                 buttonText='See More'
-                buttonLink='/artists'
+                buttonLink='/app/tracks'
               />
               <div className="space-x-10">
               {
-                topTracksLong?.items.map((track:ITrackLongTerm, i:number)=>{
+                topTracksLong?.items.map((
+                  track:ITrackLongTerm, i:number
+                ) => {
                   return (
                     <TrackCard 
                       key={i} 

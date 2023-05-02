@@ -69,10 +69,10 @@ export async function getFollowing(){
 }
 
 /* Get A Users Top Tracks */
-export async function getTopArtistsShortTerm() {
+export async function getTopArtistsShortTerm(limit:number = 10) {
     try{
         const res = await axios.get(
-            'https://api.spotify.com/v1/me/top/artists?limit=10', 
+            `https://api.spotify.com/v1/me/top/artists?limit=${limit}&time_range=short_term`, 
             { headers }
         );
         return res.data;
@@ -81,10 +81,10 @@ export async function getTopArtistsShortTerm() {
     }
 }
 
-export async function getTopArtistsLongTerm() {
+export async function getTopArtistsLongTerm(limit:number = 10) {
     try{
         const res = await axios.get(
-            'https://api.spotify.com/v1/me/top/artists?limit=10&time_range=long_term', 
+            `https://api.spotify.com/v1/me/top/artists?limit=${limit}&time_range=long_term`, 
             { headers }
         );
         return res.data;
@@ -95,10 +95,10 @@ export async function getTopArtistsLongTerm() {
 
 
 /* Get A Users Top Tracks */
-export async function getTopTracksShortTerm() {
+export async function getTopTracksShortTerm(limit:number = 10) {
     try{
         const res = await axios.get(
-            'https://api.spotify.com/v1/me/top/tracks?limit=10&time_range=long_term', 
+            `https://api.spotify.com/v1/me/top/tracks?limit=${limit}&time_range=short_term`, 
             { headers }
         );
         return res.data;
@@ -110,7 +110,7 @@ export async function getTopTracksShortTerm() {
 export async function getTopTracksLongTerm() {
     try{
         const res = await axios.get(
-            'https://api.spotify.com/v1/me/top/tracks?limit=1&time_range=long_term', 
+            'https://api.spotify.com/v1/me/top/tracks?limit=10&time_range=long_term', 
             { headers }
         );
         return res.data;

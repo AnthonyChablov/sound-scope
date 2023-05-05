@@ -58,7 +58,7 @@ const ProfileLayout = ({
   } = useSWR('topTracksLong', getTopTracksLongTerm);
 
   function onClickHandeller(){
-    setSpotifyToken('');
+    setSpotifyToken(null);
     logout();
     router.push('/');
   }

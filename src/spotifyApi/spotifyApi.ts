@@ -19,6 +19,20 @@ export function getSpotifyAccessToken(){
     return window.localStorage.getItem('spotify_api_token');
 }
 
+export function getRefreshToken(){
+    return window.localStorage.getItem('spotify_api_refresh_token');
+}
+
+export function setSpotifyRefreshToken(token:string){
+    window.localStorage.setItem('spotify_api_refresh_token', token);
+}
+
+export function getSpotifyTokenExpiry(){
+    const { error, access_token, refresh_token } = getHashParams();
+    setSpotifyRefreshToken(refresh_token);
+    return refresh_token;
+}
+
 export function setAccessToken(){
     const { error, access_token, refresh_token } = getHashParams();
     setSpotifyAccessToken(access_token);
@@ -118,10 +132,6 @@ export async function getTopTracksLongTerm() {
         console.log(err);
     }
 }
-
-
-
-
 
 export function getPlaylistTracks(playlistId:string){
     axios.get(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, { headers });

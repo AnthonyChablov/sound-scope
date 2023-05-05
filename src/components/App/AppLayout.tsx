@@ -9,6 +9,10 @@ import ProfileLayout from "./Profile/ProfileLayout";
 import { useStateStore } from '@/store/useAppStore';
 import { getUser, getSpotifyAccessToken, getPlaylists, getFollowing } from '@/spotifyApi/spotifyApi';
 import TopArtistLayout from './TopArtist/TopArtistLayout';
+import TopTrackLayout from './TopTrack/TopTrackLayout';
+import LoadingLayout from '../Loading/LoadingLayout';
+import RecentLayout from './Recent/RecentLayout';
+import PlaylistLayout from './Playlist/PlaylistLayout';
 
 interface IAppLayout{
   mode:string
@@ -16,7 +20,7 @@ interface IAppLayout{
 
 const AppLayout = ({mode}:IAppLayout) => {
 
-  /* state */
+  /* State */
   const spotifyToken = useStateStore(state => state.spotifyToken);
   const setSpotifyToken = useStateStore(state => state.setSpotifyToken);
  
@@ -45,27 +49,75 @@ const AppLayout = ({mode}:IAppLayout) => {
         mode ==='app' && (
           <div className="flex items-center justify-center flex-col" >
               {
-                ( !isLoadingUser ) && (
-                  <ProfileLayout 
-                    img={user?.images[0]?.url}
-                    userName={user?.display_name}
-                    userLink={user?.external_urls.spotify}
-                    followers={user?.followers.total}
-                    following={following?.items.length}
-                    playlists={playlists?.total} 
-                  />
-                )
+                isLoadingUser
+                ? (<LoadingLayout />)
+                : (
+                    <ProfileLayout 
+                      img={user?.images[0]?.url}
+                      userName={user?.display_name}
+                      userLink={user?.external_urls.spotify}
+                      followers={user?.followers.total}
+                      following={following?.items.length}
+                      playlists={playlists?.total} 
+                    />
+                  )
               }
           </div>
         )
-        
       }
       {
         mode === 'artist' && (
           <div className="flex items-center justify-center flex-col" >
               {
-                (!isLoadingUser ) && (
-                  <TopArtistLayout
+                (isLoadingUser ) 
+                ? (<LoadingLayout />)
+                : (
+                    <TopArtistLayout
+
+                    />
+                  )
+              }
+          </div>
+        )
+      }
+      {
+        mode === 'tracks' && (
+          <div className="flex items-center justify-center flex-col" >
+              {
+                ( isLoadingUser ) 
+                ? (<LoadingLayout/>)
+                : (
+                    <TopTrackLayout
+
+                    />
+                )
+              }
+          </div>
+        )
+      }
+      {
+        mode === 'recent' && (
+          <div className="flex items-center justify-center flex-col" >
+              {
+                (isLoadingUser ) 
+                ? (<LoadingLayout />)
+                :(
+                  <RecentLayout
+
+                  />
+                )
+              }
+          </div>
+        )
+      }
+      {
+        mode === 'playlists' && (
+          <div className="flex items-center justify-center flex-col" >
+              {
+                (isLoadingUser ) 
+                ? (<LoadingLayout />)
+                :(
+                  <PlaylistLayout
 
                   />
                 )

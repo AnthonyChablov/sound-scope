@@ -9,6 +9,7 @@ import girlSpotify from '../../assets/girl-spotify-img.jpg';
 import manSpotify from '../../assets/man-spotify-img.jpg';
 import girlComputerSpotify from '../../assets/girl-computer-spotify-img.jpg';
 import { setAccessToken } from '@/spotifyApi/spotifyApi';
+import { spotifyEndPoint } from '@/spotifyApi/spotifyEndPoint';
 
 const LoginLayout = () => {
 
@@ -16,32 +17,24 @@ const LoginLayout = () => {
   const spotifyToken = useStateStore(state => state.spotifyToken);
   const setSpotifyToken = useStateStore(state => state.setSpotifyToken);
 
-  /* Constants */
-  const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID;
-  const REDIRECT_URI = process.env.NEXT_PUBLIC_REDIRECT_URI;
-  const RESPONSE_TYPE = process.env.NEXT_PUBLIC_RESPONSE_TYPE;
-  const AUTH_ENDPOINT = process.env.NEXT_PUBLIC_AUTH_ENDPOINT;
-  
-  /* Create end point needed for retrieving spotify token */
-  const spotifyEndPoint = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${
-        RESPONSE_TYPE}&scope=playlist-read-private%20user-top-read`;
-
   /* Route */
   const router = useRouter();
+/* 
+  function onClickHandeller(){
+    router.push('/redirect');
+  } */
 
   useEffect(() => {
     
     let access_token = setAccessToken();
+    setSpotifyToken(access_token);
 
-    if(spotifyToken){
+    if(access_token){
       window.location.reload();
       router.push('/app');
     }
     
-    setSpotifyToken(access_token);
-    
-  }, [spotifyToken]);
-
+  }, []);
 
   return (
     <div className=' h-screen opacity-100 bg-fuchsia-700'>
@@ -71,12 +64,14 @@ const LoginLayout = () => {
             </div>
             <div className="mt-20 flex items-center justify-center md:mt-0 mx-auto md:justify-end relative">
               <div className="rounded-full overflow-hidden ">
-                <Image
-                    src={girlSpotify}
-                    width={300}
-                    height={100}
-                    alt='girl on phone'
-                ></Image>
+                
+                  <Image
+                      src={girlSpotify}
+                      width={300}
+                      height={100}
+                      alt='girl on phone'
+                  ></Image>
+                
               </div>
               {/* <div className="rounded-full overflow-hidden absolute top-20 left-20">
                 <Image

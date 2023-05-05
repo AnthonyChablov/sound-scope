@@ -6,6 +6,7 @@ type State={
     isSelected: boolean,
     spotifyToken: string | null,
     spotifyRefreshToken: string,
+    toggleHeader: number,
  }
  
  type Action={
@@ -13,6 +14,7 @@ type State={
     setWindowWidth: Function,
     setSpotifyToken: Function,
     setSPotifyRefreshToken: Function,
+    setToggleHeader: Function,
  }
  
  export const useStateStore = create<State & Action>((set)=>({
@@ -21,6 +23,8 @@ type State={
     isSelected: false,
     spotifyToken:'',
     spotifyRefreshToken : '',
+    toggleHeader: 0,
+    setToggleHeader: ( newToggleHeader : number ) => set({ toggleHeader : newToggleHeader }),
     setSPotifyRefreshToken: ( newRefreshToken : string ) => set({ spotifyRefreshToken : newRefreshToken }),
     setSpotifyToken: ( newToken : string | null ) => set({ spotifyToken : newToken }),
     setToggleSideBar: ( newToggleSideBar : boolean ) => set({ toggleSideBar : newToggleSideBar }),

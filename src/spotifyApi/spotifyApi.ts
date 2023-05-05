@@ -1,49 +1,5 @@
 import axios from "axios";
-import { getHashParams } from "@/utils/utils";
-
-/* Token */
-export const token = (typeof window !== 'undefined') ? getSpotifyAccessToken() : '';
-
-/* Headers */
-const headers = {
-    Authorization: `Bearer ${token}`,
-    'Content-Type': 'application/json',
-};
-
-/* Token Helpers */
-export function setSpotifyAccessToken(token:string){
-    window.localStorage.setItem('spotify_api_token', token);
-}
-
-export function getSpotifyAccessToken(){
-    return window.localStorage.getItem('spotify_api_token');
-}
-
-export function getRefreshToken(){
-    return window.localStorage.getItem('spotify_api_refresh_token');
-}
-
-export function setSpotifyRefreshToken(token:string){
-    window.localStorage.setItem('spotify_api_refresh_token', token);
-}
-
-export function getSpotifyTokenExpiry(){
-    const { error, access_token, refresh_token } = getHashParams();
-    setSpotifyRefreshToken(refresh_token);
-    return refresh_token;
-}
-
-export function setAccessToken(){
-    const { error, access_token, refresh_token } = getHashParams();
-    setSpotifyAccessToken(access_token);
-    return access_token;
-}
-
-export function logout(){
-    setSpotifyAccessToken('');
-    window.localStorage.removeItem('spotify_api_token');
-    window.location.reload();
-} 
+import { headers } from "./spotifyToken";
 
 /* Api Calls */
 export async function getUser(){
@@ -83,6 +39,7 @@ export async function getFollowing(){
 }
 
 /* Get A Users Top Tracks */
+/* short term */
 export async function getTopArtistsShortTerm(limit:number = 10) {
     try{
         const res = await axios.get(
@@ -94,7 +51,19 @@ export async function getTopArtistsShortTerm(limit:number = 10) {
         console.log(err);
     }
 }
-
+/* medium term */
+export async function getTopArtistsMediumTerm(limit:number = 10) {
+    try{
+        const res = await axios.get(
+            `https://api.spotify.com/v1/me/top/artists?limit=${limit}&time_range=medium_term`, 
+            { headers }
+        );
+        return res.data;
+    }catch(err){
+        console.log(err);
+    }
+}
+// long term
 export async function getTopArtistsLongTerm(limit:number = 10) {
     try{
         const res = await axios.get(
@@ -107,8 +76,8 @@ export async function getTopArtistsLongTerm(limit:number = 10) {
     }
 }
 
-
 /* Get A Users Top Tracks */
+/* short term */
 export async function getTopTracksShortTerm(limit:number = 10) {
     try{
         const res = await axios.get(
@@ -121,10 +90,23 @@ export async function getTopTracksShortTerm(limit:number = 10) {
     }
 }
 
-export async function getTopTracksLongTerm() {
+/* medium term */
+export async function getTopTracksMediumTerm(limit:number = 10) {
     try{
         const res = await axios.get(
-            'https://api.spotify.com/v1/me/top/tracks?limit=10&time_range=long_term', 
+            `https://api.spotify.com/v1/me/top/tracks?limit=${limit}&time_range=medium_term`,  
+            { headers }
+        );
+        return res.data;
+    }catch(err){
+        console.log(err);
+    }
+}
+/* long term */
+export async function getTopTracksLongTerm(limit : number = 10) {
+    try{
+        const res = await axios.get(
+            `https://api.spotify.com/v1/me/top/tracks?limit=${limit}&time_range=long_term`,  
             { headers }
         );
         return res.data;
@@ -133,13 +115,14 @@ export async function getTopTracksLongTerm() {
     }
 }
 
-export function getPlaylistTracks(playlistId:string){
-    axios.get(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, { headers });
+/* playlists */
+export async function getPlaylistTracks(playlistId:string){
+    try{
+        const res = await axios.get(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, { headers });
+        return res.data;
+    }catch(err){
+        console.log(err);
+    }
 }
-
-
-export const getTopTracksShort = () =>
-  axios.get('https://api.spotify.com/v1/me/top/tracks?limit=50&time_range=short_term', { headers });
-
 
 

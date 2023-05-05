@@ -8,7 +8,7 @@ import Image from 'next/image';
 import girlSpotify from '../../assets/girl-spotify-img.jpg';
 import manSpotify from '../../assets/man-spotify-img.jpg';
 import girlComputerSpotify from '../../assets/girl-computer-spotify-img.jpg';
-import { setAccessToken } from '@/spotifyApi/spotifyApi';
+import { setAccessToken } from '@/spotifyApi/spotifyToken';
 import { spotifyEndPoint } from '@/spotifyApi/spotifyEndPoint';
 
 const LoginLayout = () => {

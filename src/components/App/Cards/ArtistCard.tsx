@@ -17,9 +17,10 @@ const ArtistCard = ({icon, title, route, mode}: IArtistCard) => {
         >
             {/* Artists Image */}
             <div className=" my-2">
-              <div className="w-[125px] h-[120px] 
-                flex items-center overflow-hidden rounded-full"
-              >
+              <div className={`flex items-center overflow-hidden rounded-full
+                ${mode === 'top-artists' ? "w-[125px]" : 'w-[50px]'} 
+                ${mode === 'top-artists' ? "h-[120px]" : 'w-[50px]'} 
+              `}>
                 <Image 
                     height= {mode === 'top-artists' ? 120 : 50 } 
                     width={mode === 'top-artists' ? 125 : 50} 

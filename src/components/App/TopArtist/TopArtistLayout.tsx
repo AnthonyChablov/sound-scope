@@ -1,11 +1,11 @@
 import useSWR from 'swr';
-import {useEffect} from 'react'; 
-import { getTopArtistsLongTerm } from '@/spotifyApi/spotifyApi';
-import ArtistHeader from "./Header/ArtistHeader";
+import { getTopArtistsLongTerm, getTopArtistsShortTerm, getTopArtistsMediumTerm } from '@/spotifyApi/spotifyApi';
 import { useArtistStore } from "@/store/useArtistStore";
 import { IArtistLongTerm } from '@/models/artists';
 import ArtistCard from "../Cards/ArtistCard";
 import useWindowWidth from '@/hooks/useWindowWidth';
+import LoadingLayout from '@/components/Loading/LoadingLayout';
+import ToggleHeader from '../ToggleHeader/ToggleHeader';
 
 const TopArtistLayout = () => {
     
@@ -13,45 +13,97 @@ const TopArtistLayout = () => {
     const toggleArtists = useArtistStore(state => state.toggleArtists); // [0,1,2]
     const setToggleArtists = useArtistStore(state => state.setToggleArtists);
 
+    /* Hooks */
     const windowWidth = useWindowWidth();
 
     /* fetching data */
     const {
         data: artistsLongTerm, 
-        error : isErrorArtistsLongterm, 
-        isLoading : isLoading
+        error : isErrorArtistsLongTerm, 
+        isLoading : isLoadingArtistsLongTerm
     } = useSWR('artistsLongTerm',  () => getTopArtistsLongTerm(30) );
 
-    useEffect(() => {
-        console.log('artistsLongTerm', artistsLongTerm);
-    }, [artistsLongTerm])
+    const {
+        data: artistsMediumTerm, 
+        error : isErrorArtistsMediumTerm, 
+        isLoading : isLoadingArtistsMediumTerm
+    } = useSWR('artistsMediumTerm',  () => getTopArtistsMediumTerm(30) );
+
+    const {
+        data: artistsShortTerm, 
+        error : isErrorArtistsShortTerm, 
+        isLoading : isLoadingArtistsShortTerm
+    } = useSWR('artistsShortTerm',  () => getTopArtistsShortTerm(30) );
 
     return (
         <div className="w-10/12 md:w-9/12 lg:w-full mx-auto mb-32 
             md:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl"
         >
-            <ArtistHeader />
+            <ToggleHeader header='Top Artists'/>
             <div className={`text-white mt-20 flex flex-col items-center 
                 ${windowWidth >= 400 && 'grid grid-cols-2 gap-1'}
                 ${windowWidth >= 600 && 'grid grid-cols-3 gap-3'}    
                 ${windowWidth >= 1000 && 'grid grid-cols-4 gap-10'}
                 ${windowWidth >= 1280 && 'grid grid-cols-5 gap-1'}
-            `}
-                
-            >
-                {/* conditionally render a bunch of components upon  */}
-                {/* long term  */}
-                {!isLoading && (artistsLongTerm?.items.map((artist:IArtistLongTerm, i:number)=>{
-                    return(
-                        <ArtistCard 
-                            key={i} 
-                            icon={artist?.images[2]?.url } 
-                            title={artist?.name} 
-                            route={artist?.external_urls.spotify}
-                            mode='top-artists'
-                        />
+            `}>
+                {/* conditionally render artists upon: */}
+                {/* long term -- 0 */}
+                {
+                    (toggleArtists===0 
+                        && (isLoadingArtistsLongTerm 
+                                ? (<LoadingLayout />)
+                                : (artistsLongTerm?.items.map((artist:IArtistLongTerm, i:number)=>{
+                                    return (
+                                        <ArtistCard 
+                                            key={i} 
+                                            icon={artist?.images[2]?.url } 
+                                            title={artist?.name} 
+                                            route={artist?.external_urls.spotify}
+                                            mode='top-artists'
+                                        />
+                                    )
+                            }))
+                        )
                     )
-                }))}
+                }
+                {/* Medium term -- 1 */}
+                {
+                    (toggleArtists === 1 
+                        && (isLoadingArtistsMediumTerm 
+                                ? (<LoadingLayout />)
+                                : (artistsMediumTerm?.items.map((artist:IArtistLongTerm, i:number)=>{
+                                    return (
+                                        <ArtistCard 
+                                            key={i} 
+                                            icon={artist?.images[2]?.url } 
+                                            title={artist?.name} 
+                                            route={artist?.external_urls.spotify}
+                                            mode='top-artists'
+                                        />
+                                    )
+                            }))
+                        )
+                    )
+                }
+                {/* Short term -- 2 */}
+                {
+                    (toggleArtists === 2
+                        && (isLoadingArtistsMediumTerm 
+                                ? (<LoadingLayout />)
+                                : (artistsShortTerm?.items.map((artist:IArtistLongTerm, i:number)=>{
+                                    return (
+                                        <ArtistCard 
+                                            key={i} 
+                                            icon={artist?.images[2]?.url } 
+                                            title={artist?.name} 
+                                            route={artist?.external_urls.spotify}
+                                            mode='top-artists'
+                                        />
+                                    )
+                            }))
+                        )
+                    )
+                }
                 
             </div>
             

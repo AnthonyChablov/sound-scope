@@ -8,7 +8,7 @@ import Header from './Header/Header';
 import ArtistCard from '../Cards/ArtistCard';
 import TrackCard from '../Cards/TrackCard';
 import useWindowWidth from '@/hooks/useWindowWidth';
-import { logout } from '@/spotifyApi/spotifyApi';
+import { logout } from '@/spotifyApi/spotifyToken';
 import { useStateStore } from '@/store/useAppStore';
 import { useRouter } from 'next/router';
 import { getTopArtistsShortTerm, getTopArtistsLongTerm, getTopTracksLongTerm } from '@/spotifyApi/spotifyApi';
@@ -46,8 +46,8 @@ const ProfileLayout = ({
   /* Fetch Data */
   const {
     data: topArtistsLong, 
-    error : isErrorTopArtistsShort, 
-    isLoading : isLoadingTopArtistsShort
+    error : isErrorTopArtistsLong, 
+    isLoading : isLoadingTopArtistsLong
   } = useSWR('topArtistsLong', ()=>getTopArtistsLongTerm(10));
   
   /* Fetch Data */

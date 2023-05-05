@@ -4,9 +4,10 @@ import useWindowWidth from '@/hooks/useWindowWidth';
 
 interface IToggleHeader{
     header ?: string,
+    mode ?: string
 }
 
-const ToggleHeader = ({header}:IToggleHeader) => {
+const ToggleHeader = ({header, mode}:IToggleHeader) => {
 
     /* state */
     const toggleHeader = useStateStore(state => state.toggleHeader); // [0,1,2]
@@ -23,24 +24,26 @@ const ToggleHeader = ({header}:IToggleHeader) => {
                 ${windowWidth >= 850 && 'mb-0'}`} 
             >{header}</h1>
             {/* button navigation */}
-            <div className = {` flex text-center text-lg text-zinc-400 font-semibold space-y-3 
-                ${windowWidth <= 420 ? ' flex-col ': 'space-y-0 space-x-5 flex-row '}
-            `}
-            >
-                {
-                    ['all time', 'last 6 months', 'last 4 weeks'].map((elem, i)=>{
-                        return (
-                            <p key={i} className={`hover:underline cursor-pointer capitalize 
-                                ${toggleHeader === i && 'underline text-white'}` }
-                                onClick={ ()=> setToggleHeader(i) }
-                            >
-                                {elem}
-                            </p>
-                        )
-                    })
-                }
-                
-            </div>
+            {
+                (!(mode === 'hidden') && (<div className = {` flex text-center text-lg text-zinc-400 font-semibold space-y-3 
+                    ${windowWidth <= 420 ? ' flex-col ': 'space-y-0 space-x-5 flex-row '}
+                `}
+                >
+                    {
+                        ['all time', 'last 6 months', 'last 4 weeks'].map((elem, i)=>{
+                            return (
+                                <p key={i} className={`hover:underline cursor-pointer capitalize 
+                                    ${toggleHeader === i && 'underline text-white'}` }
+                                    onClick={ ()=> setToggleHeader(i) }
+                                >
+                                    {elem}
+                                </p>
+                            )
+                        })
+                    }
+                    
+                </div>))
+            }
             
 
         </div>

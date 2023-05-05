@@ -23,7 +23,7 @@ const ArtistCard = ({icon, title, route, mode}: IArtistCard) => {
               `}>
                 <Image 
                     height= {mode === 'top-artists' ? 120 : 50 } 
-                    width={mode === 'top-artists' ? 125 : 50} 
+                    width={mode === 'top-artists' ? 140 : 50} 
                     src={icon} 
                     alt="artist"
                 ></Image> 

@@ -10,6 +10,7 @@ const tracks = () => {
         <title key={'title'}>Tracks</title>
       </Head>
       <Sidebar />
+      <AppLayout mode='tracks'/>
     </section>
   )
 }

@@ -10,6 +10,7 @@ const recent = () => {
         <title key={'title'}>Recent</title>
       </Head>
       <Sidebar />
+      <AppLayout mode='recent'/>
     </section>
   )
 }

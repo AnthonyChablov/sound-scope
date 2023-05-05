@@ -49,7 +49,7 @@ const TopArtistLayout = () => {
                 {/* conditionally render artists upon: */}
                 {/* long term -- 0 */}
                 {
-                    (toggleArtists===0 
+                    (toggleArtists === 0 
                         && (isLoadingArtistsLongTerm 
                                 ? (<LoadingLayout />)
                                 : (artistsLongTerm?.items.map((artist:IArtistLongTerm, i:number)=>{

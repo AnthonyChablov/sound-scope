@@ -115,6 +115,18 @@ export async function getTopTracksLongTerm(limit : number = 10) {
     }
 }
 
+export async function getRecentlyPlayed(limit : number = 10) {
+    try{
+        const res = await axios.get(
+            `https://api.spotify.com/v1/me/player/recently-played?limit=${limit}`,
+            { headers }
+        );
+        return res.data;
+    }catch(err){
+        console.log(err);
+    }
+}
+
 /* playlists */
 export async function getPlaylistTracks(playlistId:string){
     try{

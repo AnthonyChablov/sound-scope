@@ -55,7 +55,7 @@ const ProfileLayout = ({
     data: topTracksLong, 
     error : isErrorTopTracksLong, 
     isLoading: isLoadingTopTracksLong,
-  } = useSWR('topTracksLong', getTopTracksLongTerm);
+  } = useSWR('topTracksLong', ()=> getTopTracksLongTerm(10));
 
   function onClickHandeller(){
     setSpotifyToken(null);
@@ -172,6 +172,7 @@ const ProfileLayout = ({
                       title={track?.name}
                       subtitle={track?.artists[0]?.name}
                       album={track?.album?.name}
+                      duration={track?.duration_ms}
                       route='/'
                     />
                   )

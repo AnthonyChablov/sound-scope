@@ -20,13 +20,15 @@ const Hero = () => {
                     with your listening habits and stay up-to-date with your favorite artists
                 </p>
                 {/* get started */}
+                <Link href="/login">
                 <Button 
                     className='bg-yellow-400 rounded-full text-fuchsia-700 
                     font-semibold text-md hover:bg-fuchsia-300 w-fit'
                     variant="contained"
                 >
-                    <Link href="/login">Get Started</Link>
+                    Get Started
                 </Button>
+                </Link>
             </div>
             <div className="mt-20 flex items-center justify-center md:mt-0 mx-auto md:justify-end">
                 <Image

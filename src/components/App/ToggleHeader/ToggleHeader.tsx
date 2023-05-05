@@ -20,13 +20,13 @@ const ToggleHeader = ({header, mode}:IToggleHeader) => {
             ${windowWidth <= 850 ? ' flex-col ': ' flex-row '}
         `}>
             {/* Header Text */}
-            <h1 className={`mb-10 text-2xl font-bold text-white 
-                ${windowWidth >= 850 && 'mb-0'}`} 
+            <h1 className={` text-2xl font-bold text-white 
+                ${windowWidth >= 850 ? 'mb-0' : 'mb-10'}`} 
             >{header}</h1>
             {/* button navigation */}
             {
-                (!(mode === 'hidden') && (<div className = {` flex text-center text-lg text-zinc-400 font-semibold space-y-3 
-                    ${windowWidth <= 420 ? ' flex-col ': 'space-y-0 space-x-5 flex-row '}
+                (!(mode === 'hidden') && (<div className = {` flex text-center text-lg text-zinc-400 font-semibold 
+                    ${windowWidth <= 420 ? ' flex-col space-y-3 ': 'space-y-0 space-x-5 flex-row '}
                 `}
                 >
                     {

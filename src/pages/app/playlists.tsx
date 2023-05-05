@@ -10,6 +10,7 @@ const playlists = () => {
         <title key={'title'}>Playlists</title>
       </Head>
       <Sidebar />
+      <AppLayout mode='playlists'/>
     </section>
   )
 }

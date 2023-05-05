@@ -14,18 +14,6 @@ export async function getUser(){
     }
 }
 
-export async function getPlaylists(){
-    try{
-        const res = await axios.get(
-            'https://api.spotify.com/v1/me/playlists', 
-            { headers }
-        );
-        return res.data;
-    }catch(err){
-        console.log(err);
-    }
-}
-
 export async function getFollowing(){
     try{
         const res = await axios.get(
@@ -128,6 +116,18 @@ export async function getRecentlyPlayed(limit : number = 10) {
 }
 
 /* playlists */
+export async function getPlaylists(){
+    try{
+        const res = await axios.get(
+            `https://api.spotify.com/v1/me/playlists`, 
+            { headers }
+        );
+        return res.data;
+    }catch(err){
+        console.log(err);
+    }
+}
+
 export async function getPlaylistTracks(playlistId:string){
     try{
         const res = await axios.get(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, { headers });

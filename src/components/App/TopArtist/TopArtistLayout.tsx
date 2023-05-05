@@ -1,6 +1,6 @@
 import useSWR from 'swr';
 import { getTopArtistsLongTerm, getTopArtistsShortTerm, getTopArtistsMediumTerm } from '@/spotifyApi/spotifyApi';
-import { useArtistStore } from "@/store/useArtistStore";
+import { useStateStore } from '@/store/useAppStore';
 import { IArtistLongTerm } from '@/models/artists';
 import ArtistCard from "../Cards/ArtistCard";
 import useWindowWidth from '@/hooks/useWindowWidth';
@@ -10,8 +10,8 @@ import ToggleHeader from '../ToggleHeader/ToggleHeader';
 const TopArtistLayout = () => {
     
     /* state */
-    const toggleArtists = useArtistStore(state => state.toggleArtists); // [0,1,2]
-    const setToggleArtists = useArtistStore(state => state.setToggleArtists);
+    const toggleHeader = useStateStore(state => state.toggleHeader); // [0,1,2]
+    const setToggleHeader = useStateStore(state => state.setToggleHeader);
 
     /* Hooks */
     const windowWidth = useWindowWidth();
@@ -49,7 +49,7 @@ const TopArtistLayout = () => {
                 {/* conditionally render artists upon: */}
                 {/* long term -- 0 */}
                 {
-                    (toggleArtists === 0 
+                    (toggleHeader === 0 
                         && (isLoadingArtistsLongTerm 
                                 ? (<LoadingLayout />)
                                 : (artistsLongTerm?.items.map((artist:IArtistLongTerm, i:number)=>{
@@ -68,7 +68,7 @@ const TopArtistLayout = () => {
                 }
                 {/* Medium term -- 1 */}
                 {
-                    (toggleArtists === 1 
+                    (toggleHeader === 1 
                         && (isLoadingArtistsMediumTerm 
                                 ? (<LoadingLayout />)
                                 : (artistsMediumTerm?.items.map((artist:IArtistLongTerm, i:number)=>{
@@ -87,7 +87,7 @@ const TopArtistLayout = () => {
                 }
                 {/* Short term -- 2 */}
                 {
-                    (toggleArtists === 2
+                    (toggleHeader === 2
                         && (isLoadingArtistsMediumTerm 
                                 ? (<LoadingLayout />)
                                 : (artistsShortTerm?.items.map((artist:IArtistLongTerm, i:number)=>{

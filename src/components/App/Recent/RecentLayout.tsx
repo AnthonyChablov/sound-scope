@@ -5,6 +5,7 @@ import { getRecentlyPlayed } from '@/spotifyApi/spotifyApi';
 import TrackCard from '../Cards/TrackCard';
 import LoadingLayout from '@/components/Loading/LoadingLayout';
 import { IRecent } from '@/models/recent';
+import { ITrackLongTerm } from '@/models/tracks';
 
 const RecentLayout = () => {
 
@@ -13,10 +14,10 @@ const RecentLayout = () => {
     data: recentlyPlayed, 
     error : isErrorRecentlyPlayed, 
     isLoading : isLoadingRecentlyPlayed
-  } = useSWR('recentlyPlayed',  () => getRecentlyPlayed(30) );
+  } = useSWR('recentlyPlayed',  () => getRecentlyPlayed(2) );
 
   useEffect(()=>{
-    console.log(recentlyPlayed);
+    /* console.log(recentlyPlayed.items[0]?.track?.name); */
   },[recentlyPlayed])
 
   return (
@@ -27,21 +28,21 @@ const RecentLayout = () => {
       <div className="space-x-2 mt-11">
         {
           (isLoadingRecentlyPlayed 
-                ? (<LoadingLayout />)
-                : (recentlyPlayed?.items.map((track:IRecent, i:number)=>{
-                    return (
-                      <TrackCard 
-                        key={i} 
-                        icon={track?.album?.images[2]?.url}
-                        title={track?.name}
-                        subtitle={track?.artists?.name}
-                        album={track?.album?.name}
-                        duration={track?.duration_ms}
-                        route='/'
-                        mode='top-tracks'
-                      />
-                    )
-            }))
+            ? (<LoadingLayout />)
+            : (recentlyPlayed?.items.map((track:ITrackLongTerm, i:number)=>{
+                return (
+                  <TrackCard 
+                    key={i} 
+                    icon={track?.album?.images[2].url}
+                    title={track?.name}
+                    subtitle={track?.artists?.name}
+                    album={track?.album?.name}
+                    duration={ track?.duration_ms}
+                    route='/'
+                    mode='top-tracks'
+                  />
+                )
+              }))
           )
         }
       </div>

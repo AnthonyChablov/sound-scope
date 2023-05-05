@@ -37,10 +37,10 @@ const TrackCard = ({ icon, title, subtitle,album, route, duration, mode }:ITrack
                         </div>
                         <div className="">
                             <p className='text-white hover:underline'>{title}</p>
-                            <div className=" flex text-zinc-400">
-                                <p >{subtitle}</p>
-                                <p>{'\xa0-\xa0'}</p>
-                                <p >{album}</p>
+                            <div className=" flex text-zinc-400 flex-col sm:flex-row ">
+                                <p className=' w-11/12 truncate sm:w-full md:w-fit'>{subtitle}</p>
+                                <p className='hidden sm:block'>{'\xa0-\xa0'}</p>
+                                <p className='w-11/12 truncate md:w-fit'>{album}</p>
                             </div>
                         </div>
                 </div>

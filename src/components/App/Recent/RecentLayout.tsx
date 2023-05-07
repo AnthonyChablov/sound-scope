@@ -14,10 +14,10 @@ const RecentLayout = () => {
     data: recentlyPlayed, 
     error : isErrorRecentlyPlayed, 
     isLoading : isLoadingRecentlyPlayed
-  } = useSWR('recentlyPlayed',  () => getRecentlyPlayed(2) );
+  } = useSWR('recentlyPlayed',  () => getRecentlyPlayed(30) );
 
   useEffect(()=>{
-    /* console.log(recentlyPlayed.items[0]?.track?.name); */
+    console.log(recentlyPlayed);
   },[recentlyPlayed])
 
   return (
@@ -29,17 +29,16 @@ const RecentLayout = () => {
         {
           (isLoadingRecentlyPlayed 
             ? (<LoadingLayout />)
-            : (recentlyPlayed?.items.map((track:ITrackLongTerm, i:number)=>{
+            : (recentlyPlayed?.items?.map((track:ITrackLongTerm, i:number)=>{
                 return (
-                  <TrackCard 
-                    key={i} 
-                    icon={track?.album?.images[2].url}
-                    title={track?.name}
-                    subtitle={track?.artists?.name}
-                    album={track?.album?.name}
-                    duration={ track?.duration_ms}
-                    route='/'
-                    mode='top-tracks'
+                  <TrackCard
+                    key={i}
+                    icon={track.track.album.images[2].url}
+                    title={track.track.name}
+                    subtitle={track.track.artists[0].name}
+                    album={track.track.album.name}
+                    route={`/app/track/${track.track.id}`}
+                    duration={track.track.duration_ms}
                   />
                 )
               }))

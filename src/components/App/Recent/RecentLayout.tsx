@@ -21,15 +21,15 @@ const RecentLayout = () => {
   },[recentlyPlayed])
 
   return (
-    <div className='w-10/12 md:w-9/12 lg:w-full mx-auto mb-32 
+    <div className='w-10/12 md:w-9/12 lg:w-full mx-auto mb-32
       md:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl'
     >
       <ToggleHeader header='Recently Played Tracks' mode='hidden'/>
-      <div className="space-x-2 mt-11">
+      <div className="space-x-2  md:mt-11">
         {
           (isLoadingRecentlyPlayed 
             ? (<LoadingLayout />)
-            : (recentlyPlayed?.items?.map((track:ITrackLongTerm, i:number)=>{
+            : (recentlyPlayed?.items?.map((track:IRecent, i:number)=>{
                 return (
                   <TrackCard
                     key={i}

@@ -25,27 +25,27 @@ const TrackCard = ({ icon, title, subtitle,album, route, duration, mode }:ITrack
   return (
     <>
         <Link href={route}>
-            <div className="flex justify-between">    
-                <div className="flex space-x-8 items-center">
-                    <div className=" my-2">
-                            <Image 
-                                height={50} 
-                                width={50} 
-                                src={icon} 
-                                alt="artist"
-                            ></Image> 
+            <div className="flex justify-between w-full ">    
+                <div className="flex space-x-8 items-center truncate">
+                    <div className=" my-2 w-[50]">
+                        <Image 
+                            height={50} 
+                            width={50} 
+                            src={icon} 
+                            alt="artist"
+                        ></Image> 
+                    </div>
+                    <div className="truncate">
+                        <p className='text-white hover:underline truncate'>{title}</p>
+                        <div className=" text-zinc-400 truncate">
+                            {subtitle}
+                            {'\xa0-\xa0'}
+                            {album}
                         </div>
-                        <div className="">
-                            <p className='text-white hover:underline'>{title}</p>
-                            <div className=" flex text-zinc-400 flex-col sm:flex-row ">
-                                <p className=' w-11/12 truncate sm:w-full md:w-fit'>{subtitle}</p>
-                                <p className='hidden sm:block'>{'\xa0-\xa0'}</p>
-                                <p className='w-11/12 truncate md:w-fit'>{album}</p>
-                            </div>
-                        </div>
+                    </div>
                 </div>
                     
-                <div className="text-zinc-400">{trackDuration}</div>
+                <div className="text-zinc-400 my-2 ml-4">{trackDuration}</div>
                 
             </div>
             

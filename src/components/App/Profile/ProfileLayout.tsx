@@ -71,7 +71,7 @@ const ProfileLayout = ({
   return (
     <div className={` w-10/12 md:w-7/12 lg:w-full mx-auto mb-32 `}>
         {/* Image Placeholder */}
-        <div className="mt-14 ">
+        <div className="mt-14">
           <div className="flex justify-center">
             <div className="rounded-full overflow-hidden mb-10">
               <Image 
@@ -92,7 +92,7 @@ const ProfileLayout = ({
               </div>
             </Link>
           </div>
-          {/* display */}
+          {/* Display */}
           <div className="mt-10 flex flex-row space-x-8 items-center justify-center">
             {   
                 [
@@ -127,10 +127,8 @@ const ProfileLayout = ({
             >
               <OutlinedButton title='logout'/>
             </div>
-            
           </div>
-
-          <div className='flex flex-col lg:flex-row lg:space-x-20 mt-20 justify-center'>
+          <div className='flex flex-col lg:flex-row lg:space-x-8 xl:space-x-20 mt-20 justify-center'>
             {/* Top Artists */}
             <section className="mb-12">
               <Header

@@ -7,6 +7,7 @@ import { getTopTracksLongTerm, getTopTracksMediumTerm, getTopTracksShortTerm } f
 import TrackCard from '@/components/App/Cards/TrackCard';
 import { ITrackLongTerm } from '@/models/tracks';
 import LoadingLayout from '@/components/Loading/LoadingLayout';
+import ErrorLayout from '@/components/Error/ErrorLayout';
 
 const TopTrack = () => {
 
@@ -43,68 +44,73 @@ const TopTrack = () => {
       <ToggleHeader header='Top Tracks' />
       <div className="space-x-2 mt-11 ">
         {
-          (toggleHeader === 0 
-            && (isLoadingTracksLongTerm 
-                    ? (<LoadingLayout />)
-                    : (tracksLongTerm?.items.map((track:ITrackLongTerm, i:number)=>{
-                        return (
-                          <TrackCard 
-                            key={i} 
-                            icon={track?.album?.images[2]?.url}
-                            title={track?.name}
-                            subtitle={track?.artists[0]?.name}
-                            album={track?.album?.name}
-                            duration={track?.duration_ms}
-                            route='/'
-                            mode='top-tracks'
-                          />
-                        )
-                }))
-            )
-          )
-        }
-        {
-          (toggleHeader === 1
-            && (isLoadingTracksMediumTerm 
-                    ? (<LoadingLayout />)
-                    : (tracksMediumTerm?.items.map((track:ITrackLongTerm, i:number)=>{
-                        return (
-                          <TrackCard 
-                            key={i} 
-                            icon={track?.album?.images[2]?.url}
-                            title={track?.name}
-                            subtitle={track?.artists[0]?.name}
-                            album={track?.album?.name}
-                            duration={track?.duration_ms}
-                            route='/'
-                            mode='top-tracks'
-                          />
-                        )
-                }))
-            )
-          )
-        }
-        {
-          (toggleHeader === 2
-            && (isLoadingTracksShortTerm 
-                    ? (<LoadingLayout />)
-                    : (tracksShortTerm?.items.map((track:ITrackLongTerm, i:number)=>{
-                        return (
-                          <TrackCard 
-                            key={i} 
-                            icon={track?.album?.images[2]?.url}
-                            title={track?.name}
-                            subtitle={track?.artists[0]?.name}
-                            album={track?.album?.name}
-                            duration={track?.duration_ms}
-                            route='/'
-                            mode='top-tracks'
-                          />
-                        )
-                }))
-            )
-          )
-        }
+          /* Error */
+          (isErrortracksLongTerm || isErrorTracksMediumTerm || isErrorTracksShortTerm)
+            ? (<ErrorLayout />)
+            /* Loading */
+            : 
+              (toggleHeader === 0 
+                && (isLoadingTracksLongTerm 
+                        ? (<LoadingLayout />)
+                        : (tracksLongTerm?.items.map((track:ITrackLongTerm, i:number)=>{
+                            return (
+                              <TrackCard 
+                                key={i} 
+                                icon={track?.album?.images[2]?.url}
+                                title={track?.name}
+                                subtitle={track?.artists[0]?.name}
+                                album={track?.album?.name}
+                                duration={track?.duration_ms}
+                                route='/'
+                                mode='top-tracks'
+                              />
+                            )
+                    }))
+                )
+              ) 
+            }
+            {
+              (toggleHeader === 1
+                && (isLoadingTracksMediumTerm 
+                        ? (<LoadingLayout />)
+                        : (tracksMediumTerm?.items.map((track:ITrackLongTerm, i:number)=>{
+                            return (
+                              <TrackCard 
+                                key={i} 
+                                icon={track?.album?.images[2]?.url}
+                                title={track?.name}
+                                subtitle={track?.artists[0]?.name}
+                                album={track?.album?.name}
+                                duration={track?.duration_ms}
+                                route='/'
+                                mode='top-tracks'
+                              />
+                            )
+                    }))
+                )
+              )
+            }
+            {
+              (toggleHeader === 2
+                && (isLoadingTracksShortTerm 
+                        ? (<LoadingLayout />)
+                        : (tracksShortTerm?.items.map((track:ITrackLongTerm, i:number)=>{
+                            return (
+                              <TrackCard 
+                                key={i} 
+                                icon={track?.album?.images[2]?.url}
+                                title={track?.name}
+                                subtitle={track?.artists[0]?.name}
+                                album={track?.album?.name}
+                                duration={track?.duration_ms}
+                                route='/'
+                                mode='top-tracks'
+                              />
+                            )
+                    }))
+                )
+              )
+            }
       </div>
     </div>
   )

@@ -20,7 +20,7 @@ const ArtistCard = ({icon, title, route, mode}: IArtistCard) => {
         >
           {/* Artists Image */}
           <div className=" my-2">
-            <div className={`flex items-center overflow-hidden rounded-full 
+            <div className={`flex items-center overflow-hidden rounded-full  
               ${mode === 'top-artists' 
                 ? "w-[125px]" 
                 : 'w-[50px]'} 
@@ -37,7 +37,7 @@ const ArtistCard = ({icon, title, route, mode}: IArtistCard) => {
             </div>
           </div>
           {/* Artists Name */}
-          <p className={`text-white hover:underline cursor-pointer 
+          <p className={`text-white hover:underline cursor-pointer text-center truncate
             ${mode === 'top-artists' ? 'font-semibold mt-2 mb-10' : 'font-bold'}`
           }>{title}</p>
         </div>

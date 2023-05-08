@@ -5,7 +5,7 @@ import { getRecentlyPlayed } from '@/spotifyApi/spotifyApi';
 import TrackCard from '../Cards/TrackCard';
 import LoadingLayout from '@/components/Loading/LoadingLayout';
 import { IRecent } from '@/models/recent';
-import { ITrackLongTerm } from '@/models/tracks';
+import ErrorLayout from '@/components/Error/ErrorLayout';
 
 const RecentLayout = () => {
 
@@ -27,22 +27,27 @@ const RecentLayout = () => {
       <ToggleHeader header='Recently Played Tracks' mode='hidden'/>
       <div className="space-x-2  md:mt-11">
         {
-          (isLoadingRecentlyPlayed 
-            ? (<LoadingLayout />)
-            : (recentlyPlayed?.items?.map((track:IRecent, i:number)=>{
-                return (
-                  <TrackCard
-                    key={i}
-                    icon={track.track.album.images[2].url}
-                    title={track.track.name}
-                    subtitle={track.track.artists[0].name}
-                    album={track.track.album.name}
-                    route={`/app/track/${track.track.id}`}
-                    duration={track.track.duration_ms}
-                  />
-                )
-              }))
-          )
+          /* Error */
+          (isErrorRecentlyPlayed)
+            ? (<ErrorLayout />)
+            /* Loading */
+            : 
+              (isLoadingRecentlyPlayed 
+                ? (<LoadingLayout />)
+                : (recentlyPlayed?.items?.map((track:IRecent, i:number)=>{
+                    return (
+                      <TrackCard
+                        key={i}
+                        icon={track.track.album.images[2].url}
+                        title={track.track.name}
+                        subtitle={track.track.artists[0].name}
+                        album={track.track.album.name}
+                        route={`/app/track/${track.track.id}`}
+                        duration={track.track.duration_ms}
+                      />
+                    )
+                  }))
+              )
         }
       </div>
     </div>

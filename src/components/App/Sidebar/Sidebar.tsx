@@ -18,7 +18,7 @@ const Sidebar = () => {
 
   return (
     <Drawer
-      sx={{
+      sx = {{
           width: drawerWidth,
           flexShrink: 0,
           '& .MuiDrawer-paper': {
@@ -36,11 +36,11 @@ const Sidebar = () => {
         }>
           <div className=" flex justify-center">
             { tabletDisplay && (
-              <Link href={'/app'}>
-                <IconButton>
-                  <Icons type="spotify" size={iconSize}/>
-                </IconButton> 
-              </Link>
+                <Link href={'/app'}>
+                  <IconButton>
+                    <Icons type="spotify" size={iconSize}/>
+                  </IconButton> 
+                </Link>
               ) 
             }
           </div>

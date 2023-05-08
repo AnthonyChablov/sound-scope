@@ -15,6 +15,7 @@ import { GiMicrophone,} from 'react-icons/gi';
 import {GrCircleInformation } from 'react-icons/gr';
 import { BsMusicNoteBeamed} from "react-icons/bs";
 import {RiPlayListFill} from "react-icons/ri";
+import {MdError} from "react-icons/md";
 
 interface IIcons {
     type : string,
@@ -25,6 +26,7 @@ const Icons = ({type, size}:IIcons) => {
   return (
     <div className='text-white'>{
         {
+          error : <MdError size={size}/>,
           spotify:<BsSpotify size={size} color='#1db954'/>,
           menu: <AiOutlineMenu size={size}/>,
           close: <AiOutlineClose size={size}/>,

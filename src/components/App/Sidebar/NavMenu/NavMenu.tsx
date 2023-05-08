@@ -1,5 +1,4 @@
 import React from 'react'
-import Icons from '@/components/Common/Icons'
 import NavItem from './NavItem';
 import useWindowWidth from '@/hooks/useWindowWidth';
 import Link from 'next/link';

@@ -30,9 +30,13 @@ const NavItem = ({icon, title, isActive}:INavItem) => {
                 : ''
             }
         `}>
-            <Button className='flex flex-col items-center p-0 py-2 w-full' disableRipple>
+            <Button className='flex flex-col items-center p-0 py-2 w-full hover:bg-transparent' 
+                disableRipple
+            >
                 <Icons type={icon} size={iconSize} />
-                <p className='text-xs font-bold pt-2 capitalize text-white'>{title}</p>
+                <p className='text-xs font-bold pt-2 capitalize text-white'>
+                    {title}
+                </p>
             </Button>
         </li>
     )

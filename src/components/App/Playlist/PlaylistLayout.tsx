@@ -6,6 +6,7 @@ import PlaylistCard from '../Cards/PlaylistCard';
 import LoadingLayout from '@/components/Loading/LoadingLayout';
 import { IPlaylist } from '@/models/playlist';
 import useWindowWidth from '@/hooks/useWindowWidth';
+import ErrorLayout from '@/components/Error/ErrorLayout';
 
 const PlaylistLayout = () => {
 
@@ -13,7 +14,7 @@ const PlaylistLayout = () => {
   /* Fetch Data */
   const {
     data: playlists, 
-    error : isErrorRecentlyPlayed, 
+    error : isErrorPlaylist, 
     isLoading : isLoadingPlaylist
   } = useSWR('playlists',  () => getPlaylists() );
 
@@ -32,20 +33,24 @@ const PlaylistLayout = () => {
           ${windowWidth >= 1280 && 'grid grid-cols-4 gap-1'}
       `}>
         {
-          (isLoadingPlaylist 
-            ? (<LoadingLayout />)
-            : (playlists?.items.map((playlist:IPlaylist, i:number)=>{
-                return (
-                  <PlaylistCard 
-                    key={i}
-                    icon={playlist?.images[0]?.url}
-                    title={playlist?.name}
-                    subtitle={playlist?.tracks?.total?.toString() + ' TRACKS'}
-                    route='/app/playlists'
-                  />
-                )
-              }))
-            )
+          /* Error */
+          (isErrorPlaylist)
+            ? (<ErrorLayout />)
+            /* Loading */
+            : (isLoadingPlaylist 
+                ? ( <LoadingLayout />)
+                : (playlists?.items.map((playlist:IPlaylist, i:number)=>{
+                    return (
+                      <PlaylistCard 
+                        key={i}
+                        icon={playlist?.images[0]?.url}
+                        title={playlist?.name}
+                        subtitle={playlist?.tracks?.total?.toString() + ' TRACKS'}
+                        route='/app/playlists'
+                      />
+                    )
+                  }))
+              )
         }
       </div>
     </div>

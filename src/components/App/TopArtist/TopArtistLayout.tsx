@@ -6,6 +6,7 @@ import ArtistCard from "../Cards/ArtistCard";
 import useWindowWidth from '@/hooks/useWindowWidth';
 import LoadingLayout from '@/components/Loading/LoadingLayout';
 import ToggleHeader from '../ToggleHeader/ToggleHeader';
+import ErrorLayout from '@/components/Error/ErrorLayout';
 
 const TopArtistLayout = () => {
     
@@ -46,67 +47,55 @@ const TopArtistLayout = () => {
                 ${windowWidth >= 1000 && 'grid grid-cols-4 gap-10'}
                 ${windowWidth >= 1280 && 'grid grid-cols-5 gap-1'}
             `}>
-                {/* conditionally render artists upon: */}
-                {/* long term -- 0 */}
-                {
-                    (toggleHeader === 0 
-                        && (isLoadingArtistsLongTerm 
-                                ? (<LoadingLayout />)
-                                : (artistsLongTerm?.items.map((artist:IArtistLongTerm, i:number)=>{
-                                    return (
-                                        <ArtistCard 
-                                            key={i} 
-                                            icon={artist?.images[2]?.url } 
-                                            title={artist?.name} 
-                                            route={artist?.external_urls.spotify}
-                                            mode='top-artists'
-                                        />
-                                    )
-                            }))
-                        )
-                    )
-                }
-                {/* Medium term -- 1 */}
-                {
-                    (toggleHeader === 1 
-                        && (isLoadingArtistsMediumTerm 
-                                ? (<LoadingLayout />)
-                                : (artistsMediumTerm?.items.map((artist:IArtistLongTerm, i:number)=>{
-                                    return (
-                                        <ArtistCard 
-                                            key={i} 
-                                            icon={artist?.images[2]?.url } 
-                                            title={artist?.name} 
-                                            route={artist?.external_urls.spotify}
-                                            mode='top-artists'
-                                        />
-                                    )
-                            }))
-                        )
-                    )
-                }
-                {/* Short term -- 2 */}
-                {
-                    (toggleHeader === 2
-                        && (isLoadingArtistsMediumTerm 
-                                ? (<LoadingLayout />)
-                                : (artistsShortTerm?.items.map((artist:IArtistLongTerm, i:number)=>{
-                                    return (
-                                        <ArtistCard 
-                                            key={i} 
-                                            icon={artist?.images[2]?.url } 
-                                            title={artist?.name} 
-                                            route={artist?.external_urls.spotify}
-                                            mode='top-artists'
-                                        />
-                                    )
-                            }))
-                        )
-                    )
-                }
-                
+
+                {(isErrorArtistsLongTerm || isErrorArtistsMediumTerm || isErrorArtistsShortTerm)
+                    ? (<ErrorLayout />)
+                    : ( isLoadingArtistsLongTerm || isLoadingArtistsMediumTerm || isLoadingArtistsShortTerm ) 
+                        ? (<LoadingLayout />)
+                        : 
+                            (toggleHeader === 0 
+                                && (artistsLongTerm?.items.map((artist:IArtistLongTerm, i:number)=>{
+                                        return (
+                                            <ArtistCard 
+                                                key={i} 
+                                                icon={artist?.images[2]?.url } 
+                                                title={artist?.name} 
+                                                route={artist?.external_urls.spotify}
+                                                mode='top-artists'
+                                            />
+                                        )
+                                    }))
+                            )}
+                            {(
+                                (toggleHeader === 1 
+                                    && (artistsMediumTerm?.items.map((artist:IArtistLongTerm, i:number)=>{
+                                            return (
+                                                <ArtistCard 
+                                                    key={i} 
+                                                    icon={artist?.images[2]?.url } 
+                                                    title={artist?.name} 
+                                                    route={artist?.external_urls.spotify}
+                                                    mode='top-artists'
+                                                />
+                                            )
+                                    }))
+                                )
+                            )}
+                            {(toggleHeader === 2
+                                && (artistsShortTerm?.items.map((artist:IArtistLongTerm, i:number)=>{
+                                        return (
+                                            <ArtistCard 
+                                                key={i} 
+                                                icon={artist?.images[2]?.url } 
+                                                title={artist?.name} 
+                                                route={artist?.external_urls.spotify}
+                                                mode='top-artists'
+                                            />
+                                        )
+                                    }))
+                                )
+                            }
             </div>
-            
         </div>
     )
 }

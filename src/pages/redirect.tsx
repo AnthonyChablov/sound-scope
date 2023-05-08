@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
-import RedirectLayout from '@/components/Redirect/redirectLayout';
+import ErrorLayout from '@/components/Error/ErrorLayout';
 
 const redirect = () => {
 
@@ -11,7 +11,7 @@ const redirect = () => {
             </Head>
             <div className='bg-zinc-900 h-full'>
                 <div className="flex items-center justify-center ">
-                    <RedirectLayout/>
+                    <ErrorLayout/>
                 </div>
             </div>
         </section>

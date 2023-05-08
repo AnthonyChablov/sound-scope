@@ -43,6 +43,7 @@ const PlaylistLayout = () => {
                     return (
                       <PlaylistCard 
                         key={i}
+                        id={i}
                         icon={playlist?.images[0]?.url}
                         title={playlist?.name}
                         subtitle={playlist?.tracks?.total?.toString() + ' TRACKS'}

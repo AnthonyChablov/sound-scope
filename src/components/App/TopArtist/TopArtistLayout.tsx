@@ -10,31 +10,31 @@ import ErrorLayout from '@/components/Error/ErrorLayout';
 
 const TopArtistLayout = () => {
     
-    /* state */
+    /* State */
     const toggleHeader = useStateStore(state => state.toggleHeader); // [0,1,2]
-    const setToggleHeader = useStateStore(state => state.setToggleHeader);
+    const setToggleHeader = useStateStore(state => state.setToggleHeader); 
 
     /* Hooks */
     const windowWidth = useWindowWidth();
 
-    /* fetching data */
+    /* Fetching Data */
     const {
         data: artistsLongTerm, 
         error : isErrorArtistsLongTerm, 
         isLoading : isLoadingArtistsLongTerm
-    } = useSWR('artistsLongTerm',  () => getTopArtistsLongTerm(30) );
+    } = useSWR('artistsLongTerm',  () => getTopArtistsLongTerm(32) );
 
     const {
         data: artistsMediumTerm, 
         error : isErrorArtistsMediumTerm, 
         isLoading : isLoadingArtistsMediumTerm
-    } = useSWR('artistsMediumTerm',  () => getTopArtistsMediumTerm(30) );
+    } = useSWR('artistsMediumTerm',  () => getTopArtistsMediumTerm(32) );
 
     const {
         data: artistsShortTerm, 
         error : isErrorArtistsShortTerm, 
         isLoading : isLoadingArtistsShortTerm
-    } = useSWR('artistsShortTerm',  () => getTopArtistsShortTerm(34) );
+    } = useSWR('artistsShortTerm',  () => getTopArtistsShortTerm(32) );
 
     return (
         <div className="w-10/12 md:w-9/12 lg:w-full mx-auto mb-32 
@@ -58,6 +58,7 @@ const TopArtistLayout = () => {
                                         return (
                                             <ArtistCard 
                                                 key={i} 
+                                                id={i}
                                                 icon={artist?.images[1]?.url } 
                                                 title={artist?.name} 
                                                 route={artist?.external_urls.spotify}
@@ -72,6 +73,7 @@ const TopArtistLayout = () => {
                                             return (
                                                 <ArtistCard 
                                                     key={i} 
+                                                    id={i}
                                                     icon={artist?.images[1]?.url } 
                                                     title={artist?.name} 
                                                     route={artist?.external_urls.spotify}
@@ -86,6 +88,7 @@ const TopArtistLayout = () => {
                                         return (
                                             <ArtistCard 
                                                 key={i} 
+                                                id={i}
                                                 icon={artist?.images[1]?.url } 
                                                 title={artist?.name} 
                                                 route={artist?.external_urls.spotify}

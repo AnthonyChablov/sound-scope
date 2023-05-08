@@ -1,5 +1,7 @@
 import OutlinedButton from "@/components/Common/OutlinedButton";
 import Link from "next/link";
+import {motion} from 'framer-motion';
+import { subHeaderVariants } from "@/variant";
 
 interface IHeader{
     title : string,
@@ -7,15 +9,19 @@ interface IHeader{
     buttonLink: string,
 }
 
-const Header = ({title, buttonText, buttonLink} : IHeader) => {
+const subHeader = ({title, buttonText, buttonLink} : IHeader) => {
   return (
-    <div className=" flex items-center justify-between mb-10 ">
+    <motion.div className=" flex items-center justify-between mb-10 "
+      variants={subHeaderVariants}
+      initial={'hidden'}
+      animate={'visible'}
+    >
         <h2 className="text-white font-bold text-md md:text-lg mr-12 w-fit">{title}</h2>
         <Link href={buttonLink}>
           <OutlinedButton title={buttonText}></OutlinedButton>  
         </Link>
-    </div>
+    </motion.div>
   )
 }
 
-export default Header;
+export default subHeader;

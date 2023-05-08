@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from 'react';
+import {motion} from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import { msToTime } from '@/utils/utils';
 import InfoIcon from './InfoIcon/InfoIcon';
 
 interface ITrackCard {
+    id: number,
     icon: string,
     title: string,
     subtitle: string,
@@ -14,10 +16,28 @@ interface ITrackCard {
     mode?: string
 }
 
-const TrackCard = ({ icon, title, subtitle,album, route, duration, mode }:ITrackCard) => {
+const TrackCard = ({ id, icon, title, subtitle,album, route, duration, mode }:ITrackCard) => {
 
     const [trackDuration, setTrackDuration] = useState<string>('');
     const [isShown, setIsShown] = useState<boolean>(false);
+
+    const cardVariants={
+        hidden:{
+            opacity: 0,
+            y: id % 2 === 0 ? -10 : -5,
+            x: id % 2 === 0 ? -10 : -5
+        },
+        visible:{
+            opacity: 1,
+            y: 0,
+            x:0,
+            transition: {
+                duration: 0.5,
+                delay: 0.1 * id,
+                ease: 'easeInOut'
+            }
+        }
+    }
 
     useEffect(()=>{
         const time = msToTime(duration);
@@ -25,12 +45,16 @@ const TrackCard = ({ icon, title, subtitle,album, route, duration, mode }:ITrack
     },[duration])
 
   return (
-    <>
+    <motion.div
+        variants={cardVariants}
+        initial={'hidden'}
+        animate ={'visible'}
+        viewport={{ once: true }}
+    >
         <Link href={route}>
             <div className="flex justify-between w-full ">    
                 <div className="flex space-x-8 items-center truncate ">
                     {/* info icon */}
-                    
                     {/* image */}
                     <div className=" my-2 w-[50] hover:opacity-30 transition duration-300 ease-in-out relative"
                         onMouseEnter={() => setIsShown(true)}
@@ -62,7 +86,7 @@ const TrackCard = ({ icon, title, subtitle,album, route, duration, mode }:ITrack
             </div>
             
         </Link>
-    </>
+    </motion.div>
   )
 }
 

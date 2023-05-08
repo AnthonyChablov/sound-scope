@@ -1,10 +1,12 @@
 import React ,{useState} from 'react';
+import {motion} from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import InfoIcon from './InfoIcon/InfoIcon';
 
 
 interface IPlaylistCard {
+    id: number,
     icon: string,
     title: string,
     subtitle: string,
@@ -12,13 +14,36 @@ interface IPlaylistCard {
 }
 
 
-const PlaylistCard = ({ icon, title, subtitle, route }:IPlaylistCard) => {
+const PlaylistCard = ({id, icon, title, subtitle, route }:IPlaylistCard) => {
 
     /* State */
     const [isShown, setIsShown] = useState<boolean>(false);
 
+    const cardVariants={
+        hidden:{
+            opacity: 0,
+            y: id % 2 === 0 ? -10 : -5,
+            x: id % 2 === 0 ? -10 : -5
+        },
+        visible:{
+            opacity: 1,
+            y: 0,
+            x:0,
+            transition: {
+                duration: .5,
+                delay: 0.1 * id,
+                ease: 'easeInOut'
+            }
+        }
+    }
+
     return (
-        <div className=''>
+        <motion.div 
+            variants={cardVariants}
+            initial={'hidden'}
+            animate ={'visible'}
+            viewport={{ once: true }}
+        >
             <Link href={route}>
                 <div className="flex flex-col items-center mb-12 ">
                     
@@ -41,7 +66,7 @@ const PlaylistCard = ({ icon, title, subtitle, route }:IPlaylistCard) => {
                 </div>
                 
             </Link>
-        </div>
+        </motion.div>
   )
 }
 

@@ -25,7 +25,7 @@ const RecentLayout = () => {
       md:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl'
     >
       <ToggleHeader header='Recently Played Tracks' mode='hidden'/>
-      <div className="space-x-2  md:mt-11">
+      <div className="space-y-3  md:mt-11">
         {
           /* Error */
           (isErrorRecentlyPlayed)
@@ -38,6 +38,7 @@ const RecentLayout = () => {
                     return (
                       <TrackCard
                         key={i}
+                        id={i}
                         icon={track.track.album.images[2].url}
                         title={track.track.name}
                         subtitle={track.track.artists[0].name}

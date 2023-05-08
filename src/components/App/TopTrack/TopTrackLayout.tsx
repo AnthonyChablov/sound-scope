@@ -40,9 +40,9 @@ const TopTrack = () => {
 
   return (
     <div className="w-10/12 md:w-9/12 lg:w-full mx-auto mb-32 
-    md:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl">
+    md:max-w-xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl">
       <ToggleHeader header='Top Tracks' />
-      <div className="space-x-2 mt-11 ">
+      <div className="space-y-3 mt-11 ">
         {
           /* Error */
           (isErrortracksLongTerm || isErrorTracksMediumTerm || isErrorTracksShortTerm)
@@ -56,6 +56,7 @@ const TopTrack = () => {
                             return (
                               <TrackCard 
                                 key={i} 
+                                id={i}
                                 icon={track?.album?.images[2]?.url}
                                 title={track?.name}
                                 subtitle={track?.artists[0]?.name}
@@ -77,6 +78,7 @@ const TopTrack = () => {
                             return (
                               <TrackCard 
                                 key={i} 
+                                id={i}
                                 icon={track?.album?.images[2]?.url}
                                 title={track?.name}
                                 subtitle={track?.artists[0]?.name}
@@ -98,6 +100,7 @@ const TopTrack = () => {
                             return (
                               <TrackCard 
                                 key={i} 
+                                id={i}
                                 icon={track?.album?.images[2]?.url}
                                 title={track?.name}
                                 subtitle={track?.artists[0]?.name}

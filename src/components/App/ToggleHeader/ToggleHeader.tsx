@@ -1,6 +1,7 @@
-import {useState } from 'react';
+import {motion} from 'framer-motion';
 import { useStateStore } from '@/store/useAppStore';
 import useWindowWidth from '@/hooks/useWindowWidth';
+import { toggleHeaderVariants } from '@/variant';
 
 interface IToggleHeader{
     header ?: string,
@@ -16,9 +17,13 @@ const ToggleHeader = ({header, mode}:IToggleHeader) => {
     const windowWidth = useWindowWidth();
 
     return (
-        <div className={`mt-20 flex  justify-between items-center 
+        <motion.div className={`mt-20 flex  justify-between items-center 
             ${windowWidth <= 850 ? ' flex-col ': ' flex-row '}
-        `}>
+        `}
+            variants={toggleHeaderVariants}
+            initial={'hidden'}
+            animate={'visible'}
+        >
             {/* Header Text */}
             <h1 className={` text-2xl font-bold text-white 
                 ${windowWidth >= 850 ? 'mb-0' : 'mb-10'}`} 
@@ -43,7 +48,7 @@ const ToggleHeader = ({header, mode}:IToggleHeader) => {
                     }
                 </div>))
             }
-        </div>
+        </motion.div>
     )
 }
 

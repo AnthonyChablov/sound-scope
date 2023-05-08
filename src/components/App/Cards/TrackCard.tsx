@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { msToTime } from '@/utils/utils';
+import InfoIcon from './InfoIcon/InfoIcon';
 
 interface ITrackCard {
     icon: string,
@@ -16,6 +17,7 @@ interface ITrackCard {
 const TrackCard = ({ icon, title, subtitle,album, route, duration, mode }:ITrackCard) => {
 
     const [trackDuration, setTrackDuration] = useState<string>('');
+    const [isShown, setIsShown] = useState<boolean>(false);
 
     useEffect(()=>{
         const time = msToTime(duration);
@@ -26,8 +28,18 @@ const TrackCard = ({ icon, title, subtitle,album, route, duration, mode }:ITrack
     <>
         <Link href={route}>
             <div className="flex justify-between w-full ">    
-                <div className="flex space-x-8 items-center truncate">
-                    <div className=" my-2 w-[50]">
+                <div className="flex space-x-8 items-center truncate ">
+                    {/* info icon */}
+                    
+                    {/* image */}
+                    <div className=" my-2 w-[50] hover:opacity-30 transition duration-300 ease-in-out relative"
+                        onMouseEnter={() => setIsShown(true)}
+                        onMouseLeave={() => setIsShown(false)}
+                    >
+                        <InfoIcon 
+                            isShown={isShown} 
+                            mode={mode}
+                        />
                         <Image 
                             height={50} 
                             width={50} 

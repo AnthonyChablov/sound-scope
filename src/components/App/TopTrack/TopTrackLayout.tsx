@@ -47,7 +47,7 @@ const TopTrack = () => {
           /* Error */
           (isErrortracksLongTerm || isErrorTracksMediumTerm || isErrorTracksShortTerm)
             ? (<ErrorLayout />)
-            /* Loading */
+              /* Loading */
             : 
               (toggleHeader === 0 
                 && (isLoadingTracksLongTerm 

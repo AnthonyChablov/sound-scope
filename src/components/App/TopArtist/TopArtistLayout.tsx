@@ -34,7 +34,7 @@ const TopArtistLayout = () => {
         data: artistsShortTerm, 
         error : isErrorArtistsShortTerm, 
         isLoading : isLoadingArtistsShortTerm
-    } = useSWR('artistsShortTerm',  () => getTopArtistsShortTerm(30) );
+    } = useSWR('artistsShortTerm',  () => getTopArtistsShortTerm(34) );
 
     return (
         <div className="w-10/12 md:w-9/12 lg:w-full mx-auto mb-32 
@@ -42,10 +42,10 @@ const TopArtistLayout = () => {
         >
             <ToggleHeader header='Top Artists'/>
             <div className={`text-white mt-20 flex flex-col items-center 
-                ${windowWidth >= 400 && 'grid grid-cols-2 gap-1'}
-                ${windowWidth >= 600 && 'grid grid-cols-3 gap-3'}    
-                ${windowWidth >= 1000 && 'grid grid-cols-4 gap-10'}
-                ${windowWidth >= 1280 && 'grid grid-cols-5 gap-1'}
+                ${windowWidth >= 525 && 'grid grid-cols-2 gap-1'}
+                ${windowWidth >= 600 && 'grid grid-cols-2 gap-3'}    
+                ${windowWidth >= 1000 && 'grid grid-cols-3 gap-2'}
+                ${windowWidth >= 1280 && 'grid grid-cols-4 gap-2'}
             `}>
 
                 {(isErrorArtistsLongTerm || isErrorArtistsMediumTerm || isErrorArtistsShortTerm)
@@ -58,7 +58,7 @@ const TopArtistLayout = () => {
                                         return (
                                             <ArtistCard 
                                                 key={i} 
-                                                icon={artist?.images[2]?.url } 
+                                                icon={artist?.images[1]?.url } 
                                                 title={artist?.name} 
                                                 route={artist?.external_urls.spotify}
                                                 mode='top-artists'
@@ -72,7 +72,7 @@ const TopArtistLayout = () => {
                                             return (
                                                 <ArtistCard 
                                                     key={i} 
-                                                    icon={artist?.images[2]?.url } 
+                                                    icon={artist?.images[1]?.url } 
                                                     title={artist?.name} 
                                                     route={artist?.external_urls.spotify}
                                                     mode='top-artists'
@@ -86,7 +86,7 @@ const TopArtistLayout = () => {
                                         return (
                                             <ArtistCard 
                                                 key={i} 
-                                                icon={artist?.images[2]?.url } 
+                                                icon={artist?.images[1]?.url } 
                                                 title={artist?.name} 
                                                 route={artist?.external_urls.spotify}
                                                 mode='top-artists'

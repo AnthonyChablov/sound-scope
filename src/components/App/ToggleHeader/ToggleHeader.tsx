@@ -32,7 +32,7 @@ const ToggleHeader = ({header, mode}:IToggleHeader) => {
                     {
                         ['all time', 'last 6 months', 'last 4 weeks'].map((elem, i)=>{
                             return (
-                                <p key={i} className={`hover:underline cursor-pointer capitalize 
+                                <p key={i} className={`hover:underline cursor-pointer capitalize text-[1rem]
                                     ${toggleHeader === i && 'underline text-white'}` }
                                     onClick={ ()=> setToggleHeader(i) }
                                 >
@@ -41,11 +41,8 @@ const ToggleHeader = ({header, mode}:IToggleHeader) => {
                             )
                         })
                     }
-                    
                 </div>))
             }
-            
-
         </div>
     )
 }

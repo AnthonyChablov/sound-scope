@@ -1,6 +1,7 @@
 
 import {BsSpotify} from 'react-icons/bs';
 import {
+    AiFillInfoCircle,
     AiFillHtml5, 
     AiFillGithub, 
     AiFillLinkedin, 
@@ -26,6 +27,7 @@ const Icons = ({type, size}:IIcons) => {
   return (
     <div className='text-white'>{
         {
+          infoCircle: <AiFillInfoCircle size={size} color='white'/>, 
           error : <MdError size={size}/>,
           spotify:<BsSpotify size={size} color='#1db954'/>,
           menu: <AiOutlineMenu size={size}/>,

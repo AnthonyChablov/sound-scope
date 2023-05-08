@@ -84,7 +84,7 @@ const ProfileLayout = ({
 
   useEffect(()=>{
     console.log(isErrorTopTracksAllTime)
-  },[isErrorTopArtistsAllTime])
+  },[isErrorTopArtistsAllTime]);
 
   return (
     <div className={` w-10/12 md:w-7/12 lg:w-full mx-auto mb-32 `}>

@@ -19,11 +19,8 @@ const LoginLayout = () => {
 
   /* Route */
   const router = useRouter();
-/* 
-  function onClickHandeller(){
-    router.push('/redirect');
-  } */
 
+  /* Set Access Token and redirect */
   useEffect(() => {
     
     let access_token = setAccessToken();
@@ -33,7 +30,7 @@ const LoginLayout = () => {
       window.location.reload();
       router.push('/app');
     }
-    
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -64,7 +61,6 @@ const LoginLayout = () => {
             </div>
             <div className="mt-20 flex items-center justify-center md:mt-0 mx-auto md:justify-end relative">
               <div className="rounded-full overflow-hidden ">
-                
                   <Image
                       src={girlSpotify}
                       width={300}

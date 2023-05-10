@@ -1,5 +1,6 @@
 import axios from "axios";
-import { headers } from "./spotifyToken";
+import { headers, refreshHeaders } from "./spotifyToken";
+import { spotifyEndPoint } from "./spotifyEndPoint";
 
 /* Api Calls */
 export async function getUser(){
@@ -11,6 +12,7 @@ export async function getUser(){
         return res.data;
     }catch(err){
         console.log(err);
+        throw err;
     }
 }
 
@@ -23,6 +25,7 @@ export async function getFollowing(){
         return res.data;
     }catch(err){
         console.log(err);
+        throw err;
     }
 }
 
@@ -37,6 +40,7 @@ export async function getTopArtistsShortTerm(limit:number = 10) {
         return res.data;
     }catch(err){
         console.log(err);
+        throw err;
     }
 }
 /* medium term */
@@ -49,6 +53,7 @@ export async function getTopArtistsMediumTerm(limit:number = 10) {
         return res.data;
     }catch(err){
         console.log(err);
+        throw err;
     }
 }
 // long term
@@ -61,6 +66,7 @@ export async function getTopArtistsLongTerm(limit:number = 10) {
         return res.data;
     }catch(err){
         console.log(err);
+        throw err;
     }
 }
 
@@ -75,6 +81,7 @@ export async function getTopTracksShortTerm(limit:number = 10) {
         return res.data;
     }catch(err){
         console.log(err);
+        throw err;
     }
 }
 
@@ -88,6 +95,7 @@ export async function getTopTracksMediumTerm(limit:number = 10) {
         return res.data;
     }catch(err){
         console.log(err);
+        throw err;
     }
 }
 /* long term */
@@ -100,6 +108,7 @@ export async function getTopTracksLongTerm(limit : number = 10) {
         return res.data;
     }catch(err){
         console.log(err);
+        throw err;
     }
 }
 
@@ -112,6 +121,7 @@ export async function getRecentlyPlayed(limit : number = 10) {
         return res.data;
     }catch(err){
         console.log(err);
+        throw err;
     }
 }
 
@@ -125,6 +135,7 @@ export async function getPlaylists(){
         return res.data;
     }catch(err){
         console.log(err);
+        throw err;
     }
 }
 
@@ -134,7 +145,6 @@ export async function getPlaylistTracks(playlistId:string){
         return res.data;
     }catch(err){
         console.log(err);
+        throw err;
     }
 }
-
-

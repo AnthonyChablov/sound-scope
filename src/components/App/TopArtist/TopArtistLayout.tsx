@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import { getTopArtistsLongTerm, getTopArtistsShortTerm, getTopArtistsMediumTerm } from '@/spotifyApi/spotifyApi';
 import { useStateStore } from '@/store/useAppStore';
@@ -16,6 +18,7 @@ const TopArtistLayout = () => {
 
     /* Hooks */
     const windowWidth = useWindowWidth();
+    const router = useRouter();
 
     /* Fetching Data */
     const {
@@ -36,6 +39,14 @@ const TopArtistLayout = () => {
         isLoading : isLoadingArtistsShortTerm
     } = useSWR('artistsShortTerm',  () => getTopArtistsShortTerm(32) );
 
+   
+    /* useEffect(() => {
+        if(isErrorArtistsLongTerm || isErrorArtistsMediumTerm || isErrorArtistsShortTerm){
+          router.push('/login');
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isErrorArtistsLongTerm , isErrorArtistsMediumTerm, isErrorArtistsShortTerm]); */
+
     return (
         <div className="w-10/12 md:w-9/12 lg:w-full mx-auto mb-32 
             md:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl"
@@ -48,8 +59,12 @@ const TopArtistLayout = () => {
                 ${windowWidth >= 1280 && 'grid grid-cols-4 gap-2'}
             `}>
 
-                {(isErrorArtistsLongTerm || isErrorArtistsMediumTerm || isErrorArtistsShortTerm)
-                    ? (<ErrorLayout />)
+                {(isErrorArtistsLongTerm 
+                    || isErrorArtistsMediumTerm 
+                    || isErrorArtistsShortTerm
+                )
+                    ? (<ErrorLayout 
+                        error={isErrorArtistsLongTerm || isErrorArtistsMediumTerm || isErrorArtistsShortTerm}/>)
                     : ( isLoadingArtistsLongTerm || isLoadingArtistsMediumTerm || isLoadingArtistsShortTerm ) 
                         ? (<LoadingLayout />)
                         : 

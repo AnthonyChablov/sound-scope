@@ -1,13 +1,21 @@
 import { getHashParams } from "@/utils/utils";
 
+
 /* Token */
 export const token = (typeof window !== 'undefined') ? getSpotifyAccessToken() : '';
+export const refresh_token = (typeof window !== 'undefined') ? getRefreshToken() : '';
 
 /* Headers */
 export const headers = {
     Authorization: `Bearer ${token}`,
     'Content-Type': 'application/json',
 };
+
+export const refreshHeaders = {
+    grant_type: 'refresh_token',
+    refresh_token: refresh_token,
+    client_id: process.env.NEXT_PUBLIC_CLIENT_ID,
+}
 
 /* Token Helpers */
 

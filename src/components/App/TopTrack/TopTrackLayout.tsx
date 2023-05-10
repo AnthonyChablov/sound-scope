@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import ToggleHeader from '../ToggleHeader/ToggleHeader';
 import { useArtistStore } from "@/store/useArtistStore";
@@ -14,6 +15,9 @@ const TopTrack = () => {
   /* state */
   const toggleHeader = useStateStore(state => state.toggleHeader); // [0,1,2]
   const setToggleHeader = useStateStore(state => state.setToggleHeader);
+
+  /* router */
+  const router = useRouter();
 
   /* fetching data */
   const {
@@ -34,9 +38,14 @@ const TopTrack = () => {
     isLoading : isLoadingTracksShortTerm
   } = useSWR('tracksShortTerm',  () => getTopTracksShortTerm(30) );
 
-  useEffect(()=>{
-    console.log(tracksLongTerm)
-  },[tracksLongTerm])
+
+  // Error handle and redirect if token expires or invalid
+  useEffect(() => {
+    if(isErrorTracksShortTerm || isErrorTracksMediumTerm || isErrortracksLongTerm){
+      router.push('/login');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isErrorTracksShortTerm , isErrorTracksMediumTerm , isErrortracksLongTerm]);
 
   return (
     <div className="w-10/12 md:w-9/12 lg:w-full mx-auto mb-32 

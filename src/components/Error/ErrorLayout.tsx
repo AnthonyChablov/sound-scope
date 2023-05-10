@@ -1,12 +1,25 @@
-import React from 'react' ; 
+import React, {useEffect} from 'react' ; 
 import Icons from '../Common/Icons';
 import Link from 'next/link';
 import OutlinedButton from '../Common/OutlinedButton';
+import { useRouter } from 'next/router';
+
 interface IErrorLayout{
     error?:string
 }
 
 const ErrorLayout = ({error} : IErrorLayout) => {
+
+  /* Route */
+  const router = useRouter();
+
+  useEffect(() => {
+    if(error ){
+      router.push('/login');
+    }
+     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [error]);
+
   return (
     <div className="flex items-center justify-center h-screen" >
       <div className="flex flex-col items-center justify-center">

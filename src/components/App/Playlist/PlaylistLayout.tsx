@@ -35,7 +35,7 @@ const PlaylistLayout = () => {
         {
           /* Error */
           (isErrorPlaylist)
-            ? (<ErrorLayout />)
+            ? (<ErrorLayout error={isErrorPlaylist}/>)
             /* Loading */
             : (isLoadingPlaylist 
                 ? ( <LoadingLayout />)

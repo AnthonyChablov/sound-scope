@@ -11,7 +11,7 @@ const redirect = () => {
             </Head>
             <div className='bg-zinc-900 h-full'>
                 <div className="flex items-center justify-center ">
-                    <ErrorLayout/>
+                    ...
                 </div>
             </div>
         </section>

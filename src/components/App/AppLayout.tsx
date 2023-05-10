@@ -1,4 +1,6 @@
+import { useEffect } from 'react';
 import useSWR from 'swr';
+import { useRouter } from 'next/router';
 import ProfileLayout from "./Profile/ProfileLayout";
 import { useStateStore } from '@/store/useAppStore';
 import { getUser, getPlaylists, getFollowing } from '@/spotifyApi/spotifyApi';
@@ -7,6 +9,7 @@ import TopTrackLayout from './TopTrack/TopTrackLayout';
 import LoadingLayout from '../Loading/LoadingLayout';
 import RecentLayout from './Recent/RecentLayout';
 import PlaylistLayout from './Playlist/PlaylistLayout';
+import ErrorLayout from '../Error/ErrorLayout';
 
 interface IAppLayout{
   mode:string
@@ -17,6 +20,9 @@ const AppLayout = ({mode}:IAppLayout) => {
   /* State */
   const spotifyToken = useStateStore(state => state.spotifyToken);
   const setSpotifyToken = useStateStore(state => state.setSpotifyToken);
+
+  /* Route */
+  const router = useRouter();
  
   /* Fetch Data */
   const { 
@@ -37,25 +43,36 @@ const AppLayout = ({mode}:IAppLayout) => {
     isLoading : isLoadingFollowing
   } = useSWR('/api/playlists', getFollowing);
 
+  /* useEffect(() => {
+    if(isErrorFollowing || isErrorPlaylists || isErrorUser){
+      router.push('/login');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isErrorFollowing, isErrorPlaylists, isErrorUser]); */
+
   return (
     <div className=" bg-zinc-900 h-full">
       {
         mode ==='app' && (
           <div className="flex items-center justify-center flex-col" >
               {
-                isLoadingUser
-                ? (<LoadingLayout />)
-                : (
-                    <ProfileLayout 
-                      img={user?.images[0]?.url}
-                      userName={user?.display_name}
-                      userLink={user?.external_urls.spotify}
-                      followers={user?.followers.total}
-                      following={following?.items.length}
-                      playlists={playlists?.total} 
-                    />
-                  )
-              }
+                /* Error */
+              (isErrorFollowing)
+                ? <ErrorLayout error = {isErrorUser }/>
+                /* Loading */
+                : isLoadingUser || isLoadingFollowing || isLoadingPlaylists
+                  ? (<LoadingLayout />)
+                  : (
+                      <ProfileLayout 
+                        img={user?.images[0]?.url}
+                        userName={user?.display_name}
+                        userLink={user?.external_urls.spotify}
+                        followers={user?.followers.total}
+                        following={following?.items.length}
+                        playlists={playlists?.total} 
+                      />
+                    )
+                }
           </div>
         )
       }
@@ -63,14 +80,14 @@ const AppLayout = ({mode}:IAppLayout) => {
         mode === 'artist' && (
           <div className="flex items-center justify-center flex-col" >
               {
-                (isLoadingUser ) 
-                ? (<LoadingLayout />)
-                : (
-                    <TopArtistLayout
-
-                    />
-                  )
-              }
+              (isErrorFollowing)
+                ? <ErrorLayout error={isErrorFollowing }/>
+                : (isLoadingUser || isLoadingFollowing || isLoadingPlaylists ) 
+                  ? (<LoadingLayout />)
+                  : (
+                      <TopArtistLayout />
+                    )
+                }
           </div>
         )
       }
@@ -78,12 +95,12 @@ const AppLayout = ({mode}:IAppLayout) => {
         mode === 'tracks' && (
           <div className="flex items-center justify-center flex-col" >
               {
-                ( isLoadingUser ) 
+              (isErrorFollowing)
+              ? <ErrorLayout error={isErrorFollowing }/>
+              :( isLoadingUser || isLoadingFollowing || isLoadingPlaylists ) 
                 ? (<LoadingLayout/>)
                 : (
-                    <TopTrackLayout
-
-                    />
+                    <TopTrackLayout/>
                 )
               }
           </div>
@@ -93,7 +110,7 @@ const AppLayout = ({mode}:IAppLayout) => {
         mode === 'recent' && (
           <div className="flex items-center justify-center flex-col" >
               {
-                (isLoadingUser ) 
+                (isLoadingUser || isLoadingFollowing || isLoadingPlaylists ) 
                 ? (<LoadingLayout />)
                 :(
                   <RecentLayout
@@ -108,7 +125,7 @@ const AppLayout = ({mode}:IAppLayout) => {
         mode === 'playlists' && (
           <div className="flex items-center justify-center flex-col" >
               {
-                (isLoadingUser ) 
+                (isLoadingUser  || isLoadingPlaylists ) 
                 ? (<LoadingLayout />)
                 :(
                   <PlaylistLayout

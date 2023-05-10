@@ -84,23 +84,25 @@ const ProfileLayout = ({
     router.push('/');
   }
 
-  useEffect(()=>{
-    console.log('topArtistsAllTime', topArtistsAllTime);
-    
-  },[]) 
-  clearCache("topArtistsAllTime");
-
+  /* useEffect(() => {
+    if(isErrorTopArtistsAllTime || isErrorTopTracksAllTime ){
+      router.push('/login');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isErrorTopArtistsAllTime, isErrorTopTracksAllTime ]);
+  
+ */
   return (
     <div className={` w-10/12 md:w-7/12 lg:w-full mx-auto mb-32 `}>
         { 
         /* Error */
         (isErrorTopArtistsAllTime || isErrorTopTracksAllTime ) 
-          ? (<ErrorLayout />)
+          ? (<ErrorLayout error={isErrorTopArtistsAllTime || isErrorTopTracksAllTime}/>)
+          /* Loading */
           : ( isLoadingTopArtistsAllTime || isLoadingTopTracksAllTime ) 
               ? (<LoadingLayout />)
               : (
                   <div className="mt-14"
-                    
                   >
                     <motion.div className=""
                       initial={'hidden'}

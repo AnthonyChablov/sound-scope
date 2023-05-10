@@ -38,20 +38,20 @@ const ArtistCard = ({id, icon, title, route, mode}: IArtistCard) => {
   }
 
   return (  
-    <motion.div 
+    <motion.div  className='w-fit'
       variants={cardVariants}
       initial={'hidden'}
       animate ={'visible'}
       viewport={{ once: true }}
     >
-      <Link href={ route } rel="noopener noreferrer" target="_blank">
+      <Link href={ route } >
           <div className={`flex items-center 
             ${mode === 'top-artists' 
               ? 'flex-col space-x-0' 
               : 'flex-row space-x-8' 
             }`}
           >
-            {/* Artists Image */}
+            {/* Artist display */}
             <div className=" my-2 relative">
               {/* Info icon popup */}
               <InfoIcon 

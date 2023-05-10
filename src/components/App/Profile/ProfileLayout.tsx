@@ -11,6 +11,7 @@ import TrackCard from '../Cards/TrackCard';
 import useWindowWidth from '@/hooks/useWindowWidth';
 import { logout } from '@/spotifyApi/spotifyToken';
 import { useStateStore } from '@/store/useAppStore';
+import { useArtistStore } from '@/store/useArtistStore';
 import { useRouter } from 'next/router';
 import { getTopArtistsShortTerm, getTopArtistsLongTerm, getTopTracksLongTerm } from '@/spotifyApi/spotifyApi';
 import clearCache from "swr";
@@ -19,6 +20,7 @@ import {ITrackLongTerm} from '../../../models/tracks';
 import LoadingLayout from '@/components/Loading/LoadingLayout';
 import ErrorLayout from '@/components/Error/ErrorLayout';
 import { headerVariants, subHeaderVariants,profileInfoDisplayVariants } from '@/variant';
+
 
 interface IProfile{
     img:string,
@@ -41,10 +43,11 @@ const ProfileLayout = ({
   /* State */
   const spotifyToken = useStateStore(state => state.spotifyToken);
   const setSpotifyToken = useStateStore(state => state.setSpotifyToken);
+  const artistData = useArtistStore(state => state.artistData);
+  const setArtistData = useArtistStore(state => state.setArtistData);
 
   /* Hooks */
   const router = useRouter();
-  
 
   /* Data */
   const subHeaderTitles= [
@@ -81,17 +84,15 @@ const ProfileLayout = ({
   function onClickLogOutHandeller(){
     setSpotifyToken(null);
     logout();
-    router.push('/');
+    router.push('/redirect');
   }
 
-  /* useEffect(() => {
-    if(isErrorTopArtistsAllTime || isErrorTopTracksAllTime ){
-      router.push('/login');
-    }
+  useEffect(() => {
+    setArtistData(topArtistsAllTime);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isErrorTopArtistsAllTime, isErrorTopTracksAllTime ]);
+  }, [artistData]);
   
- */
+ 
   return (
     <div className={` w-10/12 md:w-7/12 lg:w-full mx-auto mb-32 `}>
         { 
@@ -178,7 +179,7 @@ const ProfileLayout = ({
                                     key={i} 
                                     icon={`${artist?.images[2].url}?timestamp=${Date.now()}`} 
                                     title={artist?.name} 
-                                    route={artist?.external_urls.spotify}
+                                    route={`/app/artist/${artist?.id}`}
                                   />
                                 )
                               })  

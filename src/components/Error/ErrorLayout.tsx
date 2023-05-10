@@ -15,9 +15,9 @@ const ErrorLayout = ({error} : IErrorLayout) => {
 
   useEffect(() => {
     if(error ){
-      router.push('/login');
+      router.push('/redirect');
     }
-     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error]);
 
   return (

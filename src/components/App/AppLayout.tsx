@@ -10,6 +10,7 @@ import LoadingLayout from '../Loading/LoadingLayout';
 import RecentLayout from './Recent/RecentLayout';
 import PlaylistLayout from './Playlist/PlaylistLayout';
 import ErrorLayout from '../Error/ErrorLayout';
+import { useArtistStore } from '@/store/useArtistStore';
 
 interface IAppLayout{
   mode:string
@@ -20,6 +21,7 @@ const AppLayout = ({mode}:IAppLayout) => {
   /* State */
   const spotifyToken = useStateStore(state => state.spotifyToken);
   const setSpotifyToken = useStateStore(state => state.setSpotifyToken);
+  const artistData = useArtistStore(state => state.artistData);
 
   /* Route */
   const router = useRouter();

@@ -44,7 +44,7 @@ const ProfileLayout = ({
 
   /* Hooks */
   const router = useRouter();
-  clearCache("topTracksLong");
+  
 
   /* Data */
   const subHeaderTitles= [
@@ -68,7 +68,7 @@ const ProfileLayout = ({
     data: topArtistsAllTime, 
     error : isErrorTopArtistsAllTime, 
     isLoading : isLoadingTopArtistsAllTime
-  } = useSWR('topArtistsLong', ()=>getTopArtistsLongTerm(10));
+  } = useSWR('topArtistsAllTime', ()=>getTopArtistsLongTerm(10));
   
   /* Fetch Data topTracksAllTime*/
   const {
@@ -83,6 +83,12 @@ const ProfileLayout = ({
     logout();
     router.push('/');
   }
+
+  useEffect(()=>{
+    console.log('topArtistsAllTime', topArtistsAllTime);
+    
+  },[]) 
+  clearCache("topArtistsAllTime");
 
   return (
     <div className={` w-10/12 md:w-7/12 lg:w-full mx-auto mb-32 `}>
@@ -105,6 +111,7 @@ const ProfileLayout = ({
                       <div className="flex justify-center">
                         <div className="rounded-full overflow-hidden mb-10">
                           <Image 
+                            className="w-full h-auto" 
                             height={150} 
                             width={150} 
                             src={img} 
@@ -116,7 +123,7 @@ const ProfileLayout = ({
                       <div className="w-fit mx-auto"
                         
                       >
-                        <Link href={userLink || ''} rel="noopener noreferrer" target="_blank">
+                        <Link href={userLink ?? ''} rel="noopener noreferrer" target="_blank">
                           <div className="text-white hover:text-[#1db954] text-3xl 
                             lg:text-5xl font-semibold text-center "
                           >
@@ -132,7 +139,7 @@ const ProfileLayout = ({
                                   <SubDisplay 
                                     key={i} 
                                     title={elem.title} 
-                                    amount={elem.amount   }
+                                    amount={elem.amount}
                                   />
                                 )
                             })
@@ -161,12 +168,13 @@ const ProfileLayout = ({
                           />
                           <div className="space-y-5">
                             {
-                              topArtistsAllTime?.items.map((artist:IArtistLongTerm, i:number)=>{
+                              topArtistsAllTime?.items?.map((artist:IArtistLongTerm, i:number)=>{
+                                console.log(artist?.images[2].url)
                                 return (
                                   <ArtistCard 
                                     id={i}
                                     key={i} 
-                                    icon={artist?.images[2]?.url } 
+                                    icon={`${artist?.images[2].url}?timestamp=${Date.now()}`} 
                                     title={artist?.name} 
                                     route={artist?.external_urls.spotify}
                                   />

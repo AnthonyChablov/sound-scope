@@ -10,18 +10,23 @@ export const headers = {
 };
 
 /* Token Helpers */
+
+/* Access Token */
+/* Get */
+export function getSpotifyAccessToken(){
+    return window.localStorage.getItem('spotify_api_token');
+}
+/* Set */
 export function setSpotifyAccessToken(token:string){
     window.localStorage.setItem('spotify_api_token', token);
 }
 
-export function getSpotifyAccessToken(){
-    return window.localStorage.getItem('spotify_api_token');
-}
-
+/* Refresh Token */
+/* Get */
 export function getRefreshToken(){
     return window.localStorage.getItem('spotify_api_refresh_token');
 }
-
+/* Set */
 export function setSpotifyRefreshToken(token:string){
     window.localStorage.setItem('spotify_api_refresh_token', token);
 }
@@ -38,6 +43,7 @@ export function setAccessToken(){
     return access_token;
 }
 
+/* Logout */
 export function logout(){
     setSpotifyAccessToken('');
     window.localStorage.removeItem('spotify_api_token');

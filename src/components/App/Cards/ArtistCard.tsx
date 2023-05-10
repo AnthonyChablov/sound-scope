@@ -75,8 +75,9 @@ const ArtistCard = ({id, icon, title, route, mode}: IArtistCard) => {
                     className="w-full h-auto" 
                     height= {mode === 'top-artists' ? 200 : 50 } 
                     width={mode === 'top-artists' ? 200 : 50} 
-                    src={icon} 
+                    src={icon } 
                     alt="artist"
+                    loading="lazy"
                 ></Image> 
               </div>
             </div>

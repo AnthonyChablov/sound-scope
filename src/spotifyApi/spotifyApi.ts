@@ -139,6 +139,46 @@ export async function getRecentlyPlayed(limit : number = 10) {
     }
 }
 
+/* Single Track */
+export async function getSingleTrack(trackId : string) {
+    try{
+        const res = await axios.get(
+            `https://api.spotify.com/v1/tracks/${trackId}`,
+            { headers }
+        );
+        return res.data;
+    }catch(err){
+        console.log(err);
+        throw err;
+    }
+}
+/* Get Track Features */
+export async function getTrackFeatures(trackId : string) {
+    try{
+        const res = await axios.get(
+            `https://api.spotify.com/v1/audio-features/${trackId}`,
+            { headers }
+        );
+        return res.data;
+    }catch(err){
+        console.log(err);
+        throw err;
+    }
+}
+/* Get Track Audio Analysis */
+export async function getTrackAnalysis(trackId : string) {
+    try{
+        const res = await axios.get(
+            `https://api.spotify.com/v1/audio-analysis/${trackId}`,
+            { headers }
+        );
+        return res.data;
+    }catch(err){
+        console.log(err);
+        throw err;
+    }
+}
+
 /* playlists */
 export async function getPlaylists(){
     try{

@@ -42,19 +42,9 @@ const TopArtistLayout = () => {
         isLoading : isLoadingArtistsShortTerm
     } = useSWR('artistsShortTerm',  () => getTopArtistsShortTerm(32) );
 
-   
-    useEffect(() => {
-        if(toggleHeader === 0){
-            setArtistData(artistsLongTerm);
-        }else if(toggleHeader === 1){
-            setArtistData(artistsMediumTerm);
-        }else if(toggleHeader === 2){
-            setArtistData(artistsShortTerm);
-        }
-      }, [artistData]);
 
     return (
-        <div className="w-10/12 md:w-9/12 lg:w-full mx-auto mb-32 
+        <div className="w-10/12 md:w-8/12 lg:w-full mx-auto mb-32 
             md:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl"
         >
             <ToggleHeader header='Top Artists'/>

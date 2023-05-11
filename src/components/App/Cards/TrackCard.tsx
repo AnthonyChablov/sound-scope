@@ -82,11 +82,8 @@ const TrackCard = ({ id, icon, title, subtitle,album, route, duration, mode }:IT
                         </div>
                     </div>
                 </div>
-                    
                 <div className="text-zinc-400 my-2 ml-4">{trackDuration}</div>
-                
             </div>
-            
         </Link>
     </motion.div>
   )

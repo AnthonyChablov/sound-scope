@@ -19,7 +19,7 @@ import {IArtistLongTerm} from '../../../models/artists';
 import {ITrackLongTerm} from '../../../models/tracks';
 import LoadingLayout from '@/components/Loading/LoadingLayout';
 import ErrorLayout from '@/components/Error/ErrorLayout';
-import { headerVariants, subHeaderVariants,profileInfoDisplayVariants } from '@/variant';
+import { headerVariants, subHeaderVariants, profileInfoDisplayVariants } from '@/variant';
 
 
 interface IProfile{
@@ -126,7 +126,6 @@ const ProfileLayout = ({
                       </div>
                       {/* Header */}
                       <div className="w-fit mx-auto"
-                        
                       >
                         <Link href={userLink ?? ''} rel="noopener noreferrer" target="_blank">
                           <div className="text-white hover:text-[#1db954] text-3xl 
@@ -208,7 +207,7 @@ const ProfileLayout = ({
                                     subtitle={track?.artists[0]?.name}
                                     album={track?.album?.name}
                                     duration={track?.duration_ms}
-                                    route='/'
+                                    route={`/app/track/${track?.id}`}
                                   />
                                 )
                               })

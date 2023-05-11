@@ -48,7 +48,7 @@ const TopTrack = () => {
   }, [isErrorTracksShortTerm , isErrorTracksMediumTerm , isErrortracksLongTerm]);
 
   return (
-    <div className="w-10/12 md:w-9/12 lg:w-full mx-auto mb-32 
+    <div className="w-10/12  md:w-8/12 lg:w-full mx-auto mb-32 
     md:max-w-xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl">
       <ToggleHeader header='Top Tracks' />
       <div className="space-y-3 mt-11 ">
@@ -71,7 +71,7 @@ const TopTrack = () => {
                                 subtitle={track?.artists[0]?.name}
                                 album={track?.album?.name}
                                 duration={track?.duration_ms}
-                                route='/'
+                                route={`/app/track/${track?.id}`}
                                 mode='top-tracks'
                               />
                             )

@@ -46,14 +46,11 @@ const TopArtistLayout = () => {
     useEffect(() => {
         if(toggleHeader === 0){
             setArtistData(artistsLongTerm);
-        } else if(toggleHeader === 1){
+        }else if(toggleHeader === 1){
             setArtistData(artistsMediumTerm);
-        } else if(toggleHeader === 2){
+        }else if(toggleHeader === 2){
             setArtistData(artistsShortTerm);
         }
-
-        console.log(artistData); 
-        // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [artistData]);
 
     return (
@@ -85,7 +82,7 @@ const TopArtistLayout = () => {
                                                 id={i}
                                                 icon={artist?.images[1]?.url } 
                                                 title={artist?.name} 
-                                                route={artist?.external_urls.spotify}
+                                                route={`/app/artist/${artist?.id}`}
                                                 mode='top-artists'
                                             />
                                         )
@@ -100,7 +97,7 @@ const TopArtistLayout = () => {
                                                     id={i}
                                                     icon={artist?.images[1]?.url } 
                                                     title={artist?.name} 
-                                                    route={artist?.external_urls.spotify}
+                                                    route={`/app/artist/${artist?.id}`}
                                                     mode='top-artists'
                                                 />
                                             )
@@ -115,7 +112,7 @@ const TopArtistLayout = () => {
                                                 id={i}
                                                 icon={artist?.images[1]?.url } 
                                                 title={artist?.name} 
-                                                route={artist?.external_urls.spotify}
+                                                route={`/app/artist/${artist?.id}`}
                                                 mode='top-artists'
                                             />
                                         )

@@ -70,6 +70,7 @@ const TrackCard = ({ id, icon, title, subtitle,album, route, duration, mode }:IT
                             src={icon} 
                             alt="artist"
                             loading="lazy"
+                            unoptimized={true}
                         ></Image> 
                     </div>
                     <div className="truncate">

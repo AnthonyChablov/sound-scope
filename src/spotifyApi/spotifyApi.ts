@@ -112,6 +112,20 @@ export async function getTopTracksLongTerm(limit : number = 10) {
     }
 }
 
+/* Get Single Artist */
+export async function getSingleArtist(artistId : string) {
+    try{
+        const res = await axios.get(
+            `https://api.spotify.com/v1/artists/${artistId}`,
+            { headers }
+        );
+        return res.data;
+    }catch(err){
+        console.log(err);
+        throw err;
+    }
+}
+
 export async function getRecentlyPlayed(limit : number = 10) {
     try{
         const res = await axios.get(

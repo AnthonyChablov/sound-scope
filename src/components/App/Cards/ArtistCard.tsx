@@ -76,8 +76,8 @@ const ArtistCard = ({id, icon, title, route, mode}: IArtistCard) => {
                     height= {mode === 'top-artists' ? 200 : 50 } 
                     width={mode === 'top-artists' ? 200 : 50} 
                     src={icon } 
-                    alt="artist"
-                    loading="lazy"
+                    alt='artist-icon'
+                    unoptimized={true}
                 ></Image> 
               </div>
             </div>

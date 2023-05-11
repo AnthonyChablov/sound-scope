@@ -89,8 +89,9 @@ const ProfileLayout = ({
 
   useEffect(() => {
     setArtistData(topArtistsAllTime);
+    console.log(artistData);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [artistData]);
+  }, []);
   
  
   return (
@@ -119,6 +120,7 @@ const ProfileLayout = ({
                             width={150} 
                             src={img} 
                             alt="user-profile"
+                            loading="lazy"
                           ></Image> 
                         </div>
                       </div>
@@ -160,7 +162,6 @@ const ProfileLayout = ({
                       variants={profileInfoDisplayVariants}
                       initial={'hidden'}
                       animate={'visible'}
-                      
                     >
                         {/* Top Artists */}
                         <section className="mb-12">

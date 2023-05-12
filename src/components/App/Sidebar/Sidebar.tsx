@@ -32,7 +32,7 @@ const Sidebar = () => {
       anchor={ tabletDisplay ? 'left' : 'bottom'}
       open={toggleSideBar}
     >
-      <div className="flex flex-row justify-between text-white shadow-lg " >
+      <div className="flex flex-row justify-between text-white shadow-lg">
         <div className={`w-full flex flex-row justify-between content-between  
           ${ tabletDisplay && 'py-4 h-screen flex-col w-full' }`
         }>

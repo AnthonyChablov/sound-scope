@@ -80,6 +80,22 @@ export const subHeaderVariants: Variants = {
     }
 }
 
+export const contentVariants: Variants = {
+    hidden:{
+        opacity: 0,
+        y: -15
+    },
+    visible:{
+        opacity: 1,
+        y: 0,
+        transition: {
+        duration: 0.5,
+        delay: 1.5,
+        ease: 'easeInOut'
+        }
+    }
+}
+
 export const toggleHeaderVariants: Variants = {
     hidden:{
         opacity: 0,

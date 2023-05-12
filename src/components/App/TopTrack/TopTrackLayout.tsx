@@ -93,7 +93,7 @@ const TopTrack = () => {
                                 subtitle={track?.artists[0]?.name}
                                 album={track?.album?.name}
                                 duration={track?.duration_ms}
-                                route='/'
+                                route={`/app/track/${track?.id}`}
                                 mode='top-tracks'
                               />
                             )
@@ -115,7 +115,7 @@ const TopTrack = () => {
                                 subtitle={track?.artists[0]?.name}
                                 album={track?.album?.name}
                                 duration={track?.duration_ms}
-                                route='/'
+                                route={`/app/track/${track?.id}`}
                                 mode='top-tracks'
                               />
                             )

@@ -57,11 +57,11 @@ const SingleTrackLayout = () => {
             ? (<LoadingLayout /> )
             : (
                 <div className="h-full flex justify-center w-9/12 mx-auto 
-                  md:w-7/12 lg:w-6/12 xl:w-10/12 mb-96"
+                  md:w-8/12 lg:w-8/12 xl:w-10/12 mb-96"
                 >
                   <div className={`mt-10`}>
                     <div className={`flex 
-                      ${ width >= 512 ? 'flex-row items-start ' : 'flex-col'}`
+                      ${ width >= 650 ? 'flex-row items-start ' : 'flex-col'}`
                     }>
                       {/* Album Art */}
                       <motion.div className={`flex flex-row justify-center `}
@@ -80,7 +80,7 @@ const SingleTrackLayout = () => {
                       </motion.div>
                       {/* album info display */}
                       <motion.div className={`w-9/12 
-                        ${ width > 513 ? 'text-left ml-12' : 'text-center mx-auto mt-8'}`}
+                        ${ width >= 650 ? 'text-left ml-12' : 'text-center mx-auto mt-8'}`}
                         variants={subHeaderVariants}
                         initial={'hidden'}
                         animate={'visible'}

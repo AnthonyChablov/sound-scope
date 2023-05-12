@@ -10,7 +10,6 @@ import ErrorLayout from '@/components/Error/ErrorLayout';
 
 const PlaylistLayout = () => {
 
-  
   /* Fetch Data */
   const {
     data: playlists, 
@@ -35,10 +34,10 @@ const PlaylistLayout = () => {
         {
           /* Error */
           (isErrorPlaylist)
-            ? (<ErrorLayout error={isErrorPlaylist}/>)
+            ? ( <ErrorLayout error={isErrorPlaylist}/> )
             /* Loading */
             : (isLoadingPlaylist 
-                ? ( <LoadingLayout />)
+                ? ( <LoadingLayout/> )
                 : (playlists?.items.map((playlist:IPlaylist, i:number)=>{
                     return (
                       <PlaylistCard 
@@ -47,7 +46,7 @@ const PlaylistLayout = () => {
                         icon={playlist?.images[0]?.url}
                         title={playlist?.name}
                         subtitle={playlist?.tracks?.total?.toString() + ' TRACKS'}
-                        route='/app/playlists'
+                        route={`/app/playlist/${playlist?.id}`}
                       />
                     )
                   }))

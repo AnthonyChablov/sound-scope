@@ -181,11 +181,21 @@ export async function getTrackAnalysis(trackId : string) {
 
 /* playlists */
 export async function getPlaylists(){
-    try{
+    try{ 
         const res = await axios.get(
             `https://api.spotify.com/v1/me/playlists`, 
             { headers }
         );
+        return res.data;
+    }catch(err){
+        console.log(err);
+        throw err;
+    }
+}
+
+export async function getPlaylist(playlistId:string){
+    try{
+        const res = await axios.get(`https://api.spotify.com/v1/playlists/${playlistId}`, { headers });
         return res.data;
     }catch(err){
         console.log(err);

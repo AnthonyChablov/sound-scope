@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import useSWR from 'swr';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
@@ -11,7 +11,6 @@ import SubHeader from './SubHeader/SubHeader';
 import ErrorLayout from '@/components/Error/ErrorLayout';
 import LoadingLayout from '@/components/Loading/LoadingLayout';
 import { headerVariants, subHeaderVariants } from '@/variant';
-
 
 const SingleArtistLayout = () => {
 
@@ -26,10 +25,6 @@ const SingleArtistLayout = () => {
     error : isErrorSingleArtist, 
     isLoading: isLoadingSingleArtist,
   } = useSWR('singleArtist', ()=> getSingleArtist(String(artistId)));
-
-  useEffect(() => {
-    console.log(singleArtist)
-  }, [singleArtist])
 
   return (
     <div>

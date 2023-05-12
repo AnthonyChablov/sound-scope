@@ -4,7 +4,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import InfoIcon from './InfoIcon/InfoIcon';
 
-
 interface IPlaylistCard {
     id: number,
     icon: string,
@@ -46,7 +45,6 @@ const PlaylistCard = ({id, icon, title, subtitle, route }:IPlaylistCard) => {
         >
             <Link href={route}>
                 <div className="flex flex-col items-center mb-12 ">
-                    
                     <div className="hover:opacity-40 transition duration-300 ease-in-out relative"
                         onMouseEnter={() => setIsShown(true)}
                         onMouseLeave={() => setIsShown(false)}
@@ -64,10 +62,9 @@ const PlaylistCard = ({id, icon, title, subtitle, route }:IPlaylistCard) => {
                     <p className='text-white font-normal mt-5 mb-2 text-center w-28 truncate hover:underline'>{title}</p>
                     <p className='text-slate-500 text-sm font-semibold'>{subtitle}</p>
                 </div>
-                
             </Link>
         </motion.div>
-  )
+    )
 }
 
 export default PlaylistCard

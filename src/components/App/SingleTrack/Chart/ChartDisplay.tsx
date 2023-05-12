@@ -60,17 +60,57 @@ const ChartDisplay = ({
   }
 
   const options= {
-    
+    maintainAspectRatio : true,
+    scales: {
+      x: {
+        title:{
+            display: true,
+            text: 'Audio Features', 
+            color: '#cbd5e1',
+            font: {
+              size: 16,
+              weight: 'regular',
+              lineHeight: 1.2,
+            },
+            padding: {top: 20, left: 0, right: 10, bottom: 0}
+          },
+        },
+      y: {
+        title:{
+            display: true,
+            text: 'Percentage (%)',
+            color: '#cbd5e1',
+            font: {
+              size: 16,
+              weight: 'regular',
+              lineHeight: 1.2,
+            },
+            padding: {top: 20, left: 0, right: 0, bottom: 0}
+          },
+        ticks: {
+          beginAtZero: true,
+          stepSize: 20,
+          max: 100,
+          min: 0,
+          color: '#cbd5e1',
+          font: {
+            size: 14,
+            weight: 'regular',
+            lineHeight: 1.2,
+          },
+        }
+      }
+    }
   }
 
   return (
-    <div className=''>
-      <Bar
-        data={data}
-        options={options}
-      >
+    <div className=' '>
+        <Bar
+          data={data}
+          options={options}
+        >
 
-      </Bar>
+        </Bar>
     </div>
   )
 }

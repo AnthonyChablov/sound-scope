@@ -15,7 +15,7 @@ import Box from './Grid/Box';
 import { msToTime, parsePitchClass } from '@/utils/utils';
 import ChartDisplay from './Chart/ChartDisplay';
 import { headerVariants, subHeaderVariants, contentVariants } from '@/variant';
-
+import ContainedButton from '@/components/Common/ContainedButton';
 
 const SingleTrackLayout = () => {
 
@@ -91,19 +91,18 @@ const SingleTrackLayout = () => {
                           {singleTrack?.name}
                         </h1>
                         <h2 className='font-bold text-slate-400 text-xl mt-2'>{singleTrack?.artists[0].name}</h2>
-                        <p className='font-regular text-slate-500 mt-2'>
+                        <p className='font-regular text-slate-500 mt-2 mb-4'>
                           {singleTrack?.album.name + ' · ' + singleTrack?.album.release_date.substring(0,4)}
                         </p>
-                        <div className="" >
-                          <Link href={singleTrack?.external_urls.spotify} rel="noopener noreferrer" target="_blank">
-                            <Button 
-                              className='rounded-full mt-6 font-bold px-6 text-slate-200 bg-green-600 hover:bg-green-500'
-                              variant='contained'
-                            > 
-                              Play On Spotify
-                            </Button>
-                          </Link>
-                        </div>
+                        <Link 
+                          href={singleTrack?.external_urls.spotify} 
+                          rel="noopener noreferrer" 
+                          target="_blank"
+                        >
+                          <ContainedButton 
+                            text={`Play On Spotify`}
+                          />
+                        </Link>
                       </motion.div>
                       
                     </div>

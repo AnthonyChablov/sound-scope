@@ -33,7 +33,7 @@ const TrackCard = ({ id, icon, title, subtitle,album, route, duration, mode }:IT
             x:0,
             transition: {
                 duration: 0.5,
-                delay: 0.1 * id,
+                delay: 0.15 * id,
                 ease: 'easeInOut'
             }
         }
@@ -56,7 +56,7 @@ const TrackCard = ({ id, icon, title, subtitle,album, route, duration, mode }:IT
                 <div className="flex space-x-8 items-center truncate ">
                     {/* info icon */}
                     {/* image */}
-                    <div className=" my-2 w-[50] hover:opacity-30 transition duration-300 ease-in-out relative"
+                    <div className=" my-2 w-[50] hover:opacity-30 transition duration-300 ease-in-out relative shadow-lg"
                         onMouseEnter={() => setIsShown(true)}
                         onMouseLeave={() => setIsShown(false)}
                     >

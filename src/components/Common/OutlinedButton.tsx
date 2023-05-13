@@ -1,5 +1,6 @@
 import Button from '@mui/material/Button';
 
+
 interface IOutlinedButton{
   title: string
 }

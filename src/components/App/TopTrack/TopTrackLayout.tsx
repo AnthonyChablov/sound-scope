@@ -50,7 +50,7 @@ const TopTrack = () => {
   return (
     <div className="w-10/12  md:w-8/12 lg:w-full mx-auto mb-32 
     md:max-w-xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl">
-      <ToggleHeader header='Top Tracks' />
+      <ToggleHeader header='Top Tracks' mode='toggle'/>
       <div className="space-y-3 mt-11 ">
         {
           /* Error */

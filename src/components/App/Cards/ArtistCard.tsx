@@ -72,7 +72,7 @@ const ArtistCard = ({id, icon, title, route, mode}: IArtistCard) => {
                 onMouseLeave={() => setIsShown(false)}
               >  
                 <Image
-                    className="w-full h-auto" 
+                    className="w-full h-auto shadow-lg" 
                     height= {mode === 'top-artists' ? 200 : 50 } 
                     width={mode === 'top-artists' ? 200 : 50} 
                     src={icon } 

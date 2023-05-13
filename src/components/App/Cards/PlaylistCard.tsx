@@ -55,8 +55,12 @@ const PlaylistCard = ({id, icon, title, subtitle, route }:IPlaylistCard) => {
                         />
                         { /* info icon */
                             icon 
-                                ? <Image src={icon} height={50} width={200} alt='playlist' unoptimized={true}></Image>
-                                : <div className='h-[200px] w-[200px] bg-slate-700 '></div>
+                                ? (
+                                    <div className="h-[200px] w-[200px] overflow-hidden flex items-center shadow-lg">
+                                        <Image src={icon} height={50} width={200} alt='playlist' unoptimized={true}></Image>
+                                    </div>
+                                )
+                                : <div className='h-[200px] w-[200px] bg-slate-700 shadow-lg'></div>
                         }
                     </div>
                     <p className='text-white font-normal mt-5 mb-2 text-center w-28 truncate hover:underline'>{title}</p>

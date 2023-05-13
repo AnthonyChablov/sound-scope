@@ -16,6 +16,8 @@ export const ArtistCardVariants: Variants = {
     }
 };
 
+
+
 export const PlaylistCardVariants: Variants = {
     hidden:{
         opacity: 0,
@@ -59,6 +61,22 @@ export const headerVariants: Variants = {
         transition: {
         duration: 0.5,
         delay: 0.5,
+        ease: 'easeInOut'
+        }
+    }
+}
+
+export const displayVariants: Variants = {
+    hidden:{
+        opacity: 0,
+        y: -15
+    },
+    visible:{
+        opacity: 1,
+        y: 0,
+        transition: {
+        duration: 0.5,
+        delay: 0.1,
         ease: 'easeInOut'
         }
     }

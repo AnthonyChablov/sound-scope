@@ -47,7 +47,7 @@ const TopArtistLayout = () => {
         <div className="w-10/12 md:w-8/12 lg:w-full mx-auto mb-32 
             md:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl"
         >
-            <ToggleHeader header='Top Artists'/>
+            <ToggleHeader header='Top Artists' mode='toggle'/>
             <div className={`text-white mt-20 flex flex-col items-center justify-items-center
                 ${windowWidth >= 525 && 'grid grid-cols-2 gap-1'}
                 ${windowWidth >= 600 && 'grid grid-cols-2 gap-3'}    

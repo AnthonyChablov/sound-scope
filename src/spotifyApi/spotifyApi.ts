@@ -1,6 +1,6 @@
 import axios from "axios";
 import { headers, refreshHeaders } from "./spotifyToken";
-import { spotifyEndPoint } from "./spotifyEndPoint";
+import { ITrack } from "@/models/track";
 
 /* Api Calls */
 export async function getUser(){
@@ -206,6 +206,39 @@ export async function getPlaylist(playlistId:string){
 export async function getPlaylistTracks(playlistId:string){
     try{
         const res = await axios.get(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, { headers });
+        return res.data;
+    }catch(err){
+        console.log(err);
+        throw err;
+    }
+}
+
+/* ToDO */
+export async function createPlaylist(userId:string , name){
+    try{
+        const data = JSON.stringify({name})
+        const res = await axios.post(`https://api.spotify.com/v1/users/${userId}/playlists`, { headers }, data);
+        return res.data;
+    }catch(err){
+        console.log(err);
+        throw err;
+    }
+}
+
+
+/* Recomendations */
+export async function getRecomendations(tracks : string){
+    try{
+        
+        const seed_tracks = tracks;
+        const seed_artists = '';
+        const seed_genres = '';
+        const res = await axios.get(
+            `https://api.spotify.com/v1/recommendations?seed_tracks=${
+                seed_tracks}&seed_artists=${
+                seed_artists}&seed_genres=${
+                seed_genres}`, 
+            { headers });
         return res.data;
     }catch(err){
         console.log(err);

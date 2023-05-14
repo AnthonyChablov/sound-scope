@@ -17,7 +17,7 @@ const InfoDisplay = ({img, title, subTitle, caption, buttonText, route}: IInfoDi
     const width = useWindowWidth();
 
     return (
-        <div className={`text-center  mt-2  w-fit `}>
+        <div className={`text-center mt-2 w-fit `}>
             <div className={`mx-auto mb-4 overflow-hidden flex items-center shadow-lg
                 ${width > 900 ? 'w-[300px] h-[300px] ' : 'w-fit h-[300px]'}`
             }>

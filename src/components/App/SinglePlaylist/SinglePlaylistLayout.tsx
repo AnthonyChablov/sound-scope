@@ -15,7 +15,7 @@ import useLoading from '@/hooks/useLoading';
 const SinglePlaylistLayout = () => {
 
     /* Hooks */
-    const loading = useLoading();
+    const {loading} = useLoading();
     const router = useRouter();
     const playlistId = router.query.playlistId;
     const width = useWindowWidth();

@@ -10,16 +10,14 @@ import LoadingLayout from '@/components/Loading/LoadingLayout';
 import { ITrack } from '@/models/track';
 import TrackCard from '../Cards/TrackCard';
 import { ITrackLongTerm } from '@/models/tracks';
+import useLoading from '@/hooks/useLoading';
 
 const RecommendationsLayout = () => {
-
-    /* State */
-    const [loading, setLoading] = useState<boolean>(true);
 
     /* Hooks */
     const router = useRouter();
     const playlistId = router.query.playlistId;
-
+    const {loading} = useLoading();
 
     /* Fetch Data */
     const {
@@ -55,22 +53,11 @@ const RecommendationsLayout = () => {
         }
     );
     
-    useEffect(()=>{
-        if (loading) {
-            let timer = setTimeout(() => {
-                setLoading(false);
-            }, 2000);
-            return () => {
-                clearTimeout(timer);
-            };
-        }
-    }, []);
-
     return (
         <div className='w-10/12  md:w-8/12 lg:w-full mx-auto mb-32 
             md:max-w-xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl'
         >
-            <ToggleHeader header={`Recommended Tracks Based On: ${playlist?.name}`} mode={`recommendations`}/>
+            
             <div className="space-y-3 mt-11 ">
                 {
                     /* Error */
@@ -79,20 +66,26 @@ const RecommendationsLayout = () => {
                             /* Loading */
                         : (isLoadingRecommendations || loading || isLoadingPlaylist)
                             ? (<LoadingLayout/>)
-                            : (recommendations?.tracks?.map((track:ITrackLongTerm, i:number)=>{
-                                return (
-                                  <TrackCard
-                                    key={i}
-                                    id={i}
-                                    icon={track.album.images[2].url}
-                                    title={track.name}
-                                    subtitle={track.artists[0].name}
-                                    album={track.album.name}
-                                    route={`/app/track/${track.id}`}
-                                    duration={track.duration_ms}
-                                  />
-                                )
-                              }))
+                            : ( 
+                                <>
+                                    <ToggleHeader header={`Recommended Tracks Based On: ${playlist?.name}`} mode={`recommendations`}/>
+                                    {
+                                        recommendations?.tracks?.map((track:ITrackLongTerm, i:number)=>{
+                                            return (
+                                            <TrackCard
+                                                key={i}
+                                                id={i}
+                                                icon={track.album.images[2].url}
+                                                title={track.name}
+                                                subtitle={track.artists[0].name}
+                                                album={track.album.name}
+                                                route={`/app/track/${track.id}`}
+                                                duration={track.duration_ms}
+                                            />
+                                            )
+                                    })}
+                                </>
+                            )
                 }
             </div>
         </div>

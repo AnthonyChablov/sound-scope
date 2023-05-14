@@ -24,7 +24,7 @@ const SingleTrackLayout = () => {
   const router = useRouter();
   const trackId = router.query.trackId;
   const width = useWindowWidth();
-  const loading = useLoading();
+  const {loading} = useLoading();
 
   /* Fetch Data */
   const {

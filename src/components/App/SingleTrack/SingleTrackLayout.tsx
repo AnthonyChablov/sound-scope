@@ -16,6 +16,7 @@ import { msToTime, parsePitchClass } from '@/utils/utils';
 import ChartDisplay from './Chart/ChartDisplay';
 import { headerVariants, subHeaderVariants, contentVariants } from '@/variant';
 import ContainedButton from '@/components/Common/ContainedButton';
+import useLoading from '@/hooks/useLoading';
 
 const SingleTrackLayout = () => {
 
@@ -23,6 +24,7 @@ const SingleTrackLayout = () => {
   const router = useRouter();
   const trackId = router.query.trackId;
   const width = useWindowWidth();
+  const loading = useLoading();
 
   /* Fetch Data */
   const {
@@ -52,8 +54,8 @@ const SingleTrackLayout = () => {
       <Sidebar />
       {
         (isErrorSingleTrack || isErrorTrackFeatures || isErrorTrackAnalysis) 
-          ? <ErrorLayout /> 
-          : (isLoadingSingleTrack || isLoadingTrackFeatures || isLoadingTrackAnalysis)
+          ? <ErrorLayout error={isErrorSingleTrack || isErrorTrackFeatures || isErrorTrackAnalysis}/> 
+          : (isLoadingSingleTrack || isLoadingTrackFeatures || isLoadingTrackAnalysis || loading)
             ? (<LoadingLayout /> )
             : (
                 <div className="h-full flex justify-center w-9/12 mx-auto 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import useSWR from 'swr';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
@@ -11,6 +11,7 @@ import SubHeader from './SubHeader/SubHeader';
 import ErrorLayout from '@/components/Error/ErrorLayout';
 import LoadingLayout from '@/components/Loading/LoadingLayout';
 import { headerVariants, subHeaderVariants } from '@/variant';
+import useLoading from '@/hooks/useLoading';
 
 const SingleArtistLayout = () => {
 
@@ -18,6 +19,7 @@ const SingleArtistLayout = () => {
   const router = useRouter();
   const artistId = router.query.artistId;
   const width = useWindowWidth();
+  const { loading } =useLoading();
 
   /* Fetch Data */
   const {
@@ -31,8 +33,8 @@ const SingleArtistLayout = () => {
       <Sidebar />
       {
         (isErrorSingleArtist) 
-          ? <ErrorLayout /> 
-          : isLoadingSingleArtist 
+          ? <ErrorLayout error={isErrorSingleArtist}/> 
+          : (isLoadingSingleArtist || loading)
             ? (<LoadingLayout /> )
             : (<div className="h-screen flex items-center justify-center w-7/12 
                 md:w-7/12 lg:w-6/12 xl:w-5/12 mx-auto">

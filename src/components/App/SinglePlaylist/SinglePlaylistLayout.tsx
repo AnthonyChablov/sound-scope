@@ -1,4 +1,4 @@
-import React ,{useEffect} from 'react';
+import React ,{useEffect, useState} from 'react';
 import useSWR from 'swr';
 import { getPlaylist } from '@/spotifyApi/spotifyApi';
 import { motion } from 'framer-motion';
@@ -10,10 +10,12 @@ import LoadingLayout from '@/components/Loading/LoadingLayout';
 import TrackCard from '../Cards/TrackCard';
 import InfoDisplay from './InfoDisplay/InfoDisplay';
 import { headerVariants, subHeaderVariants, displayVariants } from '@/variant';
+import useLoading from '@/hooks/useLoading';
 
 const SinglePlaylistLayout = () => {
 
     /* Hooks */
+    const loading = useLoading();
     const router = useRouter();
     const playlistId = router.query.playlistId;
     const width = useWindowWidth();
@@ -25,17 +27,13 @@ const SinglePlaylistLayout = () => {
         isLoading : isLoadingPlaylist
     } = useSWR('singlePlaylist',  () => getPlaylist(String(playlistId)));
 
-    useEffect(() => {
-        console.log(playlist)
-    }, [playlist]);
-
     return (
         <>
             <Sidebar />
             {
                 (isErrorPlaylist) 
-                    ? <ErrorLayout /> 
-                    : (isLoadingPlaylist) 
+                    ? <ErrorLayout error={isErrorPlaylist}/> 
+                    : (isLoadingPlaylist || loading) 
                         ? (<LoadingLayout /> )
                         : (
                             <div className={`h-fit flex justify-center w-10/12 

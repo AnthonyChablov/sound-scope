@@ -27,8 +27,8 @@ const ToggleHeader = ({header, mode }:IToggleHeader) => {
 
 
     return (
-        <motion.div className={`mt-20 flex  justify-between items-center 
-            ${windowWidth <= 850 ? ' flex-col ': ' flex-row '}
+        <motion.div className={`mt-20 flex  justify-between items-center ${mode==='hidden' ? `mb-10` : 'mb-16'}
+            ${windowWidth <= 1024 ? ' flex-col ': ' flex-row '}
         `}
             variants={toggleHeaderVariants}
             initial={'hidden'}
@@ -36,7 +36,8 @@ const ToggleHeader = ({header, mode }:IToggleHeader) => {
         >
             {/* Header Text */}
             <h1 className={` text-2xl font-bold text-white 
-                ${windowWidth >= 850 ? 'mb-0' : 'mb-10'}`} 
+                ${windowWidth >= 1024 ? 'mb-0' : 'mb-10 text-center'}`
+            } 
             >{header}</h1>
             {/* button navigation */}
             {

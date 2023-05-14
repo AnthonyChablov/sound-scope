@@ -13,6 +13,7 @@ import { ITrackLongTerm } from '@/models/tracks';
 
 const RecommendationsLayout = () => {
 
+    /* State */
     const [loading, setLoading] = useState<boolean>(true);
 
     /* Hooks */
@@ -69,14 +70,14 @@ const RecommendationsLayout = () => {
         <div className='w-10/12  md:w-8/12 lg:w-full mx-auto mb-32 
             md:max-w-xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl'
         >
-            <ToggleHeader header={`Recommended Tracks Based On ${playlist?.name}`} mode={`recommendations`}/>
+            <ToggleHeader header={`Recommended Tracks Based On: ${playlist?.name}`} mode={`recommendations`}/>
             <div className="space-y-3 mt-11 ">
                 {
                     /* Error */
                     (isErrorRecommendations || isErrorPlaylist)
-                        ? (<ErrorLayout />)
+                        ? (<ErrorLayout error={isErrorRecommendations || isErrorPlaylist}/>)
                             /* Loading */
-                        : (isLoadingRecommendations || loading )
+                        : (isLoadingRecommendations || loading || isLoadingPlaylist)
                             ? (<LoadingLayout/>)
                             : (recommendations?.tracks?.map((track:ITrackLongTerm, i:number)=>{
                                 return (

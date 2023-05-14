@@ -9,6 +9,7 @@ import TrackCard from '@/components/App/Cards/TrackCard';
 import { ITrackLongTerm } from '@/models/tracks';
 import LoadingLayout from '@/components/Loading/LoadingLayout';
 import ErrorLayout from '@/components/Error/ErrorLayout';
+import useLoading from '@/hooks/useLoading';
 
 const TopTrack = () => {
 
@@ -18,6 +19,7 @@ const TopTrack = () => {
 
   /* router */
   const router = useRouter();
+  const {loading} = useLoading();
 
   /* fetching data */
   const {
@@ -38,30 +40,21 @@ const TopTrack = () => {
     isLoading : isLoadingTracksShortTerm
   } = useSWR('tracksShortTerm',  () => getTopTracksShortTerm(30) );
 
-
-  // Error handle and redirect if token expires or invalid
-  useEffect(() => {
-    if(isErrorTracksShortTerm || isErrorTracksMediumTerm || isErrortracksLongTerm){
-      router.push('/login');
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isErrorTracksShortTerm , isErrorTracksMediumTerm , isErrortracksLongTerm]);
-
   return (
     <div className="w-10/12  md:w-8/12 lg:w-full mx-auto mb-32 
-    md:max-w-xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl">
-      <ToggleHeader header='Top Tracks' mode='toggle'/>
+      md:max-w-xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl">
       <div className="space-y-3 mt-11 ">
-        {
-          /* Error */
-          (isErrortracksLongTerm || isErrorTracksMediumTerm || isErrorTracksShortTerm)
-            ? (<ErrorLayout />)
-              /* Loading */
-            : 
-              (toggleHeader === 0 
-                && (isLoadingTracksLongTerm 
-                        ? (<LoadingLayout />)
-                        : (tracksLongTerm?.items.map((track:ITrackLongTerm, i:number)=>{
+        {/* Error */}
+          {(isErrortracksLongTerm || isErrorTracksMediumTerm || isErrorTracksShortTerm)
+            ? (<ErrorLayout error={isErrortracksLongTerm || isErrorTracksMediumTerm || isErrorTracksShortTerm}/>)
+            /* Loading */
+            : (isLoadingTracksShortTerm || isLoadingTracksMediumTerm || isLoadingTracksLongTerm || loading)
+              ? (<LoadingLayout/>)
+              : 
+                <>
+                  <ToggleHeader header='Top Tracks' mode='toggle'/>
+                  {(toggleHeader === 0
+                      && (tracksLongTerm?.items.map((track:ITrackLongTerm, i:number)=>{
                             return (
                               <TrackCard 
                                 key={i} 
@@ -76,14 +69,10 @@ const TopTrack = () => {
                               />
                             )
                     }))
-                )
-              ) 
-            }
-            {
-              (toggleHeader === 1
-                && (isLoadingTracksMediumTerm 
-                        ? (<LoadingLayout />)
-                        : (tracksMediumTerm?.items.map((track:ITrackLongTerm, i:number)=>{
+                    )
+                  }
+                  {(toggleHeader === 1
+                      && (tracksMediumTerm?.items.map((track:ITrackLongTerm, i:number)=>{
                             return (
                               <TrackCard 
                                 key={i} 
@@ -98,14 +87,10 @@ const TopTrack = () => {
                               />
                             )
                     }))
-                )
-              )
-            }
-            {
-              (toggleHeader === 2
-                && (isLoadingTracksShortTerm 
-                        ? (<LoadingLayout />)
-                        : (tracksShortTerm?.items.map((track:ITrackLongTerm, i:number)=>{
+                    )
+                  }
+                  {(toggleHeader == 2
+                      && (tracksShortTerm?.items.map((track:ITrackLongTerm, i:number)=>{
                             return (
                               <TrackCard 
                                 key={i} 
@@ -120,12 +105,13 @@ const TopTrack = () => {
                               />
                             )
                     }))
-                )
-              )
-            }
+                    )
+                  }
+                </>
+          }     
       </div>
     </div>
   )
 }
 
-export default TopTrack
+export default TopTrack;

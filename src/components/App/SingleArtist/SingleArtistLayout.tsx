@@ -26,7 +26,7 @@ const SingleArtistLayout = () => {
     data: singleArtist, 
     error : isErrorSingleArtist, 
     isLoading: isLoadingSingleArtist,
-  } = useSWR('singleArtist', ()=> getSingleArtist(String(artistId)));
+  } = useSWR(artistId ? 'singleArtist' : null, ()=> getSingleArtist(String(artistId)));
 
   return (
     <div>

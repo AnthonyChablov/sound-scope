@@ -13,7 +13,7 @@ const RedirectLayout = () => {
     useEffect(() => {
         const timer = setTimeout(() => {
             router.push('/login');
-        }, 2000);
+        }, 1500);
         return () => clearTimeout(timer);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -25,7 +25,7 @@ const RedirectLayout = () => {
                     type="spotify" 
                     size={50} 
                 />
-                <h1 className='text-slate-100 text-bold text-2xl ml-4'>Spotify Profile Viewer</h1>
+                <h1 className='text-slate-100 text-bold text-2xl ml-6'>Spotify Profile Viewer</h1>
             </div>
             <ScaleLoader color="#1db954" />
             <p className='text-slate-100 text-semibold text-lg mt-14'>Please wait while we redirect you.</p>

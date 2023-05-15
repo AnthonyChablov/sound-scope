@@ -31,19 +31,19 @@ const SingleTrackLayout = () => {
     data: singleTrack, 
     error : isErrorSingleTrack, 
     isLoading: isLoadingSingleTrack,
-  } = useSWR('singleTrack', ()=> getSingleTrack(String(trackId)));
+  } = useSWR(trackId ? 'singleTrack' : null, ()=> getSingleTrack(String(trackId)));
 
   const {
     data: trackFeatures, 
     error : isErrorTrackFeatures, 
     isLoading: isLoadingTrackFeatures,
-  } = useSWR('trackFeatures', ()=> getTrackFeatures(String(trackId)));
+  } = useSWR(trackId ? 'trackFeatures' : null, ()=> getTrackFeatures(String(trackId)));
 
   const {
     data: trackAnalysis, 
     error : isErrorTrackAnalysis, 
     isLoading: isLoadingTrackAnalysis,
-  } = useSWR('trackAnalysis', ()=> getTrackAnalysis(String(trackId)));
+  } = useSWR( trackId ? 'trackAnalysis' : null, ()=> getTrackAnalysis(String(trackId)));
 
   useEffect(() => {
     console.log(singleTrack);

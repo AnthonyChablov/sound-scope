@@ -25,7 +25,7 @@ const SinglePlaylistLayout = () => {
         data: playlist,
         error : isErrorPlaylist,
         isLoading : isLoadingPlaylist
-    } = useSWR('singlePlaylist',  () => getPlaylist(String(playlistId)));
+    } = useSWR(playlistId ? 'singlePlaylist' : null,  () => getPlaylist(String(playlistId)));
 
     return (
         <>
@@ -88,6 +88,12 @@ const SinglePlaylistLayout = () => {
                                                     />
                                                 )
                                             })
+                                        }
+                                        {
+                                            playlist?.tracks.items.length === 0 && 
+                                                <div className='flex justify-center text-xl font-bold text-slate-200'>
+                                                    No Tracks in Playlist
+                                                </div> 
                                         }
                                     </div>
                                 </div>   

@@ -1,4 +1,4 @@
-import React , {useEffect} from 'react';
+import React , {useState, useEffect} from 'react';
 import { useStateStore } from '@/store/useAppStore';
 import Card from './Card/Card';
 import { useRouter } from 'next/router'
@@ -10,12 +10,14 @@ import manSpotify from '../../assets/man-spotify-img.jpg';
 import girlComputerSpotify from '../../assets/girl-computer-spotify-img.jpg';
 import { setAccessToken } from '@/spotifyApi/spotifyToken';
 import { spotifyEndPoint } from '@/spotifyApi/spotifyEndPoint';
+import useLoading from '@/hooks/useLoading';
+import LoadingLayout from '../Loading/LoadingLayout';
 
 const LoginLayout = () => {
 
   /* State */
-  const spotifyToken = useStateStore(state => state.spotifyToken);
   const setSpotifyToken = useStateStore(state => state.setSpotifyToken);
+  const [loading, setLoading] = useState<boolean>(false)
 
   /* Route */
   const router = useRouter();
@@ -28,17 +30,24 @@ const LoginLayout = () => {
 
     if(access_token){
       window.location.reload();
+      /* If loading go to app */
+      setLoading(true);
       router.push('/app');
+    } else{
+      setLoading(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [loading]);
+  
 
   return (
     <div className=' h-screen opacity-100 bg-fuchsia-700'>
-        {/* container */}
+        {loading && <LoadingLayout color='white'/>}
+        
         <div className="bg-fuchsia-700 h-full pt-32 max-w-5xl mx-auto w-screen px-9 
           md:flex md:justify-between "
         >
+            
             <div className="w-full sm:w-7/12  md:flex md:flex-col md:pt-[10%]">
                 {/* header */}
                 <h1 className='text-yellow-300 text-6xl font-bold mb-5'>
@@ -67,7 +76,6 @@ const LoginLayout = () => {
                       height={100}
                       alt='girl on phone'
                   ></Image>
-                
               </div>
               {/* <div className="rounded-full overflow-hidden absolute top-20 left-20">
                 <Image

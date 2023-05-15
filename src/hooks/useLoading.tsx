@@ -1,13 +1,13 @@
 import {useState, useEffect} from 'react'; 
 
-const useLoading = () => {
+const useLoading = (duration: number = 750) => {
     const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(()=>{
         if (loading) {
           let timer = setTimeout(() => {
               setLoading(false);
-          }, 750);
+          }, duration);
           return () => {
               clearTimeout(timer);
           };

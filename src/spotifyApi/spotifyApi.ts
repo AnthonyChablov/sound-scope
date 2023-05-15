@@ -213,23 +213,9 @@ export async function getPlaylistTracks(playlistId:string){
     }
 }
 
-/* ToDO */
-export async function createPlaylist(userId:string , name){
-    try{
-        const data = JSON.stringify({name})
-        const res = await axios.post(`https://api.spotify.com/v1/users/${userId}/playlists`, { headers }, data);
-        return res.data;
-    }catch(err){
-        console.log(err);
-        throw err;
-    }
-}
-
-
 /* Recomendations */
 export async function getRecomendations(tracks : string){
     try{
-        
         const seed_tracks = tracks;
         const seed_artists = '';
         const seed_genres = '';
@@ -245,3 +231,35 @@ export async function getRecomendations(tracks : string){
         throw err;
     }
 }
+
+/* Create */
+// * Create a Playlist (The playlist will be empty until you add tracks)
+export async function createPlaylist(userId:string | undefined, name:string | undefined ){
+    try{
+        const url = `https://api.spotify.com/v1/users/${userId}/playlists`;
+        const data = JSON.stringify({ name });
+        const res = await axios({ method: 'post', url, headers, data });
+        return res.data;
+    }catch(err){
+        console.log(err);
+        throw err;
+    }
+}
+
+export async function addTracksToPlaylist(playlistId:string, uris:string){
+    try{
+        const res = await axios.get(
+            `https://api.spotify.com/v1/playlists/${playlistId}/tracks?uris=${uris}`, 
+            { headers });
+        return res.data;
+    }catch(err){
+        console.log(err);
+        throw err;
+    }
+}
+
+/* export const createPlaylist = (userId, name) => {
+    const url = `https://api.spotify.com/v1/users/${userId}/playlists`;
+    const data = JSON.stringify({ name });
+    return axios({ method: 'post', url, headers, data });
+  }; */

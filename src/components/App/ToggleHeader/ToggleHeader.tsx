@@ -5,26 +5,40 @@ import useWindowWidth from '@/hooks/useWindowWidth';
 import { toggleHeaderVariants } from '@/variant';
 import OutlinedButton from '@/components/Common/OutlinedButton';
 import ContainedButton from '@/components/Common/ContainedButton';
+import { createPlaylist, addTracksToPlaylist } from '@/spotifyApi/spotifyApi';
+import Link from 'next/link';
 
 interface IToggleHeader{
     header ?: string,
     mode ?: string,
     route ?: string,
+    userId?: string,
+    playlistName?:string
+    recommendedTracks?: string
 }
 
-const ToggleHeader = ({header, mode }:IToggleHeader) => {
+const ToggleHeader = ({header, mode, userId, playlistName, recommendedTracks }:IToggleHeader) => {
 
     /* state */
     const toggleHeader = useStateStore(state => state.toggleHeader); // [0,1,2]
     const setToggleHeader = useStateStore(state => state.setToggleHeader);// [0,1,2]
-    const [displayOutlinedButton, setDisplayOutlinedButton] = useState<boolean>(false);
+    const setCreatedPlaylist = useStateStore(state => state.setCreatedPlaylist);
+    const createdPlaylist = useStateStore(state => state.createdPlaylist);
 
+    const [displayOutlinedButton, setDisplayOutlinedButton] = useState<boolean>(false);
+    /* upon play list creation save link here */
+    
     const windowWidth = useWindowWidth();
+
+    async function createPlaylistOnSave(){
+        let res = await createPlaylist(userId, header);
+        setCreatedPlaylist(res);
+        console.log(res);
+    }
 
     useEffect(()=>{
         ()=>setDisplayOutlinedButton(false)
     },[]);
-
 
     return (
         <motion.div className={`mt-20 flex  justify-between items-center ${mode==='hidden' ? `mb-10` : 'mb-16'}
@@ -35,30 +49,31 @@ const ToggleHeader = ({header, mode }:IToggleHeader) => {
             animate={'visible'}
         >
             {/* Header Text */}
-            <h1 className={` text-2xl font-bold text-white 
-                ${windowWidth >= 1024 ? 'mb-0' : 'mb-10 text-center'}`
+            <h1 className={` text-2xl font-bold text-white ${mode=== 'recommendations' && 'w-9/12 '}
+                ${windowWidth >= 1024 ? 'mb-0 truncate' : 'mb-10 text-center'}`
             } 
             >{header}</h1>
             {/* button navigation */}
             {
                 ((mode === 'toggle') && (
-                    <div className = {` flex text-center text-lg text-zinc-400 font-semibold 
-                        ${windowWidth <= 420 ? ' flex-col space-y-3 ': 'space-y-0 space-x-5 flex-row '}
-                    `}
-                    >
-                        {
-                            ['all time', 'last 6 months', 'last 4 weeks'].map((elem, i)=>{
-                                return (
-                                    <p key={i} className={`hover:underline cursor-pointer capitalize text-[1rem]
-                                        ${toggleHeader === i && 'underline text-white'}` }
-                                        onClick={ ()=> setToggleHeader(i) }
-                                    >
-                                        {elem}
-                                    </p>
-                                )
-                            })
-                        }
-                    </div>)
+                        <div className = {` flex text-center text-lg text-zinc-400 font-semibold 
+                            ${windowWidth <= 420 ? ' flex-col space-y-3 ': 'space-y-0 space-x-5 flex-row '}
+                        `}
+                        >
+                            {
+                                ['all time', 'last 6 months', 'last 4 weeks'].map((elem, i)=>{
+                                    return (
+                                        <p key={i} className={`hover:underline cursor-pointer capitalize text-[1rem]
+                                            ${toggleHeader === i && 'underline text-white'}` }
+                                            onClick={ ()=> setToggleHeader(i) }
+                                        >
+                                            {elem}
+                                        </p>
+                                    )
+                                })
+                            }
+                        </div>
+                    )
                 )
                 
             }
@@ -69,18 +84,25 @@ const ToggleHeader = ({header, mode }:IToggleHeader) => {
                         {
                             (!displayOutlinedButton) 
                                 ?
-                                    <div className="" 
+                                    <div 
                                         onClick={()=>{
                                             setDisplayOutlinedButton(!displayOutlinedButton)
-                                        }}
+                                        }} 
                                     >
-                                        <ContainedButton 
-                                            
-                                            text='Save to Spotify' 
-                                            
-                                        />
+                                        <div className="" onClick={()=>{
+                                            createPlaylistOnSave()
+                                            // need to find way to get the newly created play list id 
+                                            /* addTracksToPlaylist(recommendations?.tracks.join(',')) */
+                                        }}>
+                                            <ContainedButton 
+                                                text='Save to Spotify' 
+                                            />
+                                        </div>
                                     </div>
-                                :   <OutlinedButton title='Open In Spotify' />
+                                :   <Link href={ ''}>{/* createdPlaylist?.external_urls.spotify ?? */}
+                                        <OutlinedButton title='Open In Spotify' />
+                                    </Link>   
+                                
                         }
                     </>
                 ))

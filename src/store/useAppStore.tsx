@@ -7,6 +7,8 @@ type State={
     spotifyToken: string | null,
     spotifyRefreshToken: string,
     toggleHeader: number,
+    userId: string ,
+    createdPlaylist : {}
  }
  
  type Action={
@@ -15,6 +17,8 @@ type State={
     setSpotifyToken: Function,
     setSPotifyRefreshToken: Function,
     setToggleHeader: Function,
+    setUserId: Function,
+    setCreatedPlaylist : Function
  }
  
  export const useStateStore = create<State & Action>((set)=>({
@@ -24,9 +28,13 @@ type State={
     spotifyToken:'',
     spotifyRefreshToken : '',
     toggleHeader: 0,
+    userId:'',
+    createdPlaylist:{},
+    setUserId: ( newUserId : string ) => set({ userId : newUserId }),
     setToggleHeader: ( newToggleHeader : number ) => set({ toggleHeader : newToggleHeader }),
     setSPotifyRefreshToken: ( newRefreshToken : string ) => set({ spotifyRefreshToken : newRefreshToken }),
     setSpotifyToken: ( newToken : string | null ) => set({ spotifyToken : newToken }),
     setToggleSideBar: ( newToggleSideBar : boolean ) => set({ toggleSideBar : newToggleSideBar }),
-    setWindowWidth: ( newWindowWidth : number ) => set({ windowWidth : newWindowWidth})
+    setWindowWidth: ( newWindowWidth : number ) => set({ windowWidth : newWindowWidth}),
+    setCreatedPlaylist: ( newCreatedPlaylist : number ) => set({ createdPlaylist : newCreatedPlaylist}),
  }))

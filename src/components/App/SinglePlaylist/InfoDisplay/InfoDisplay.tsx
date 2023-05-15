@@ -18,19 +18,29 @@ const InfoDisplay = ({img, title, subTitle, caption, buttonText, route}: IInfoDi
 
     return (
         <div className={`text-center mt-2 w-fit `}>
-            <div className={`mx-auto mb-4 overflow-hidden flex items-center shadow-lg
-                ${width > 900 ? 'w-[300px] h-[300px] ' : 'w-fit h-[300px]'}`
-            }>
-                <Image 
-                    src={img} 
-                    alt="playlist-cover" 
-                    width={300}
-                    height={300}
-                    loading="lazy"
-                    unoptimized={true}
-                />
-            </div>
-            <h1 className="text-3xl text-slate-100 font-bold mb-4">{title}</h1>
+
+            {
+                img 
+                    ? 
+                        (<div className={`mx-auto mb-4 overflow-hidden flex items-center shadow-lg 
+                            ${width > 900 ? 'w-[300px] h-[300px]' : 'w-fit h-[300px]'}`
+                        }> 
+                            <Image 
+                                src={img} 
+                                alt="playlist-cover" 
+                                width={300}
+                                height={300}
+                                loading="lazy"
+                                unoptimized={true}
+                            />
+                        </div> )
+                    :
+                        <div className={`mx-auto mb-4 overflow-hidden flex items-center shadow-lg bg-slate-600 w-[300px] h-[300px]
+                        `}> </div>
+            
+            }
+            
+            <h1 className="text-3xl text-slate-100 font-bold mt-10 mb-4">{title}</h1>
             <h2 className="text-md text-slate-400 font-normal mb-4">{subTitle}</h2>
             <p className="text-sm text-slate-200 font-normal mb-6 capitalize">{caption}</p>
             <Link href={route} >

@@ -47,6 +47,7 @@ const SingleTrackLayout = () => {
 
   useEffect(() => {
     console.log(singleTrack);
+    /* eslint-disable-next-line padded-blocks */
   }, [singleTrack, trackFeatures, trackAnalysis]);
 
   return (

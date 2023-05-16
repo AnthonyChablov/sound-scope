@@ -1,6 +1,6 @@
 export interface IPlaylist {
     collaborative: boolean;
-    description: string;
+    description: string | null;
     external_urls: {
       spotify: string;
     };

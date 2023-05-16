@@ -14,31 +14,40 @@ interface IToggleHeader{
     route ?: string,
     userId?: string,
     playlistName?:string
-    recommendedTracks?: string
+    recommendedTrackUris?: string | null
 }
 
-const ToggleHeader = ({header, mode, userId, playlistName, recommendedTracks }:IToggleHeader) => {
+const ToggleHeader = ({header, mode, userId, playlistName, recommendedTrackUris }:IToggleHeader) => {
 
     /* state */
     const toggleHeader = useStateStore(state => state.toggleHeader); // [0,1,2]
     const setToggleHeader = useStateStore(state => state.setToggleHeader);// [0,1,2]
     const setCreatedPlaylist = useStateStore(state => state.setCreatedPlaylist);
     const createdPlaylist = useStateStore(state => state.createdPlaylist);
-
+    const [playlistId , setPlaylistId] = useState<string|null>(null);
     const [displayOutlinedButton, setDisplayOutlinedButton] = useState<boolean>(false);
     /* upon play list creation save link here */
-    
+    const [playlistLink, setPlaylistLink] = useState<string>('');
+
+    /* Hooks */
     const windowWidth = useWindowWidth();
 
     async function createPlaylistOnSave(){
-        let res = await createPlaylist(userId, header);
-        setCreatedPlaylist(res);
-        console.log(res);
+        const res = await createPlaylist(userId, header);
+        if (res){
+            setCreatedPlaylist(res);
+            setPlaylistLink(res?.external_urls?.spotify);
+            setPlaylistId(res?.id);
+            if (res.id && createdPlaylist && recommendedTrackUris){
+                await addTracksToPlaylist(playlistId , recommendedTrackUris );
+            }
+        }
     }
 
     useEffect(()=>{
-        ()=>setDisplayOutlinedButton(false)
-    },[]);
+        () => setDisplayOutlinedButton(false);
+    /* eslint-disable-next-line  */
+    },[playlistId]);
 
     return (
         <motion.div className={`mt-20 flex  justify-between items-center ${mode==='hidden' ? `mb-10` : 'mb-16'}
@@ -82,27 +91,19 @@ const ToggleHeader = ({header, mode, userId, playlistName, recommendedTracks }:I
                     <>
                     {/* This button saves the new playlist to spotify */}
                         {
-                            (!displayOutlinedButton) 
-                                ?
-                                    <div 
-                                        onClick={()=>{
-                                            setDisplayOutlinedButton(!displayOutlinedButton)
-                                        }} 
-                                    >
-                                        <div className="" onClick={()=>{
-                                            createPlaylistOnSave()
-                                            // need to find way to get the newly created play list id 
-                                            /* addTracksToPlaylist(recommendations?.tracks.join(',')) */
-                                        }}>
-                                            <ContainedButton 
-                                                text='Save to Spotify' 
-                                            />
-                                        </div>
-                                    </div>
-                                :   <Link href={ ''}>{/* createdPlaylist?.external_urls.spotify ?? */}
-                                        <OutlinedButton title='Open In Spotify' />
-                                    </Link>   
-                                
+                            <div 
+                                onClick={()=>{
+                                    setDisplayOutlinedButton(!displayOutlinedButton)
+                                }} 
+                            >
+                            <div className="" 
+                                onClick={()=>createPlaylistOnSave()}
+                            >
+                                <ContainedButton 
+                                    text='Save to Spotify' 
+                                />
+                                </div>
+                            </div>
                         }
                     </>
                 ))

@@ -45,13 +45,6 @@ const AppLayout = ({mode}:IAppLayout) => {
     isLoading : isLoadingFollowing
   } = useSWR('/api/playlists', getFollowing);
 
-  /* useEffect(() => {
-    if(isErrorFollowing || isErrorPlaylists || isErrorUser){
-      router.push('/login');
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isErrorFollowing, isErrorPlaylists, isErrorUser]); */
-
   return (
     <div className=" bg-zinc-900 h-full">
       {
@@ -59,8 +52,8 @@ const AppLayout = ({mode}:IAppLayout) => {
           <div className="flex items-center justify-center flex-col" >
               {
                 /* Error */
-              (isErrorFollowing)
-                ? <ErrorLayout error = {isErrorUser }/>
+              (isErrorUser || isErrorPlaylists || isErrorFollowing)
+                ? <ErrorLayout error = {isErrorUser || isErrorPlaylists || isErrorFollowing}/>
                 /* Loading */
                 : isLoadingUser || isLoadingFollowing || isLoadingPlaylists
                   ? (<LoadingLayout />)

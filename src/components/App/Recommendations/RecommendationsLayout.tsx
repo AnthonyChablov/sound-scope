@@ -1,25 +1,36 @@
-import React , {useEffect, useCallback} from 'react';
+import React , {useEffect, useState} from 'react';
 import { getRecomendations, getPlaylist, getUser } from '@/spotifyApi/spotifyApi';
 import useSWR from 'swr';
 import { useRouter } from 'next/router';
-import useWindowWidth from '@/hooks/useWindowWidth';
 import ToggleHeader from '../ToggleHeader/ToggleHeader';
-import ArtistCard from '../Cards/ArtistCard';
 import ErrorLayout from '@/components/Error/ErrorLayout';
 import LoadingLayout from '@/components/Loading/LoadingLayout';
 import { ITrack } from '@/models/track';
 import TrackCard from '../Cards/TrackCard';
 import { ITrackLongTerm } from '@/models/tracks';
 import useLoading from '@/hooks/useLoading';
+import OutlinedButton from '@/components/Common/OutlinedButton'; 
+import ContainedButton from '@/components/Common/ContainedButton';
+import { createPlaylist, addTracksToPlaylist } from '@/spotifyApi/spotifyApi';
+import { useStateStore } from '@/store/useAppStore';
 
 const RecommendationsLayout = () => {
 
+    /* State  */
+    const [trackUris, setTrackUris] = useState<string|null>(null);
+    const [displayOutlinedButton, setDisplayOutlinedButton] = useState<boolean>(false);
+    const setToggleHeader = useStateStore(state => state.setToggleHeader);// [0,1,2]
+    const setCreatedPlaylist = useStateStore(state => state.setCreatedPlaylist);
+    const createdPlaylist = useStateStore(state => state.createdPlaylist);
+    const [recommendedPlaylistId , setRecommendedPlaylistId] = useState<string|null>(null);
+    const [playlistLink, setPlaylistLink] = useState<string>('');
+    
     /* Hooks */
     const router = useRouter();
     const playlistId = router.query.playlistId;
-    const {loading} = useLoading();
+    const { loading } = useLoading();
 
-    /* Fetch Data */
+    /* Fetch / Extract Data */
     const { 
         data : user, 
         error : isErrorUser, 
@@ -30,35 +41,27 @@ const RecommendationsLayout = () => {
         data: playlist,
         error : isErrorPlaylist,
         isLoading : isLoadingPlaylist
-    } = useSWR(
-            playlistId 
-                ? 'singlePlaylist' 
-                : null , () => getPlaylist(String(playlistId))
-        );
+    } = useSWR(playlistId ? 'singlePlaylist' : null , () => getPlaylist(String(playlistId)));
 
-    /* Seeds of our Tracks From The Playlist */
-    const playListTrackSeeds = ( playlist?.tracks?.items.length === 0 )
-            ? '1c9z7I2Hucpg2gak6ZAV9Y,32GHYtVVAsYNQGafHrrRxv,2HBAu9VCJHhmHuzCSJc11z,45RrA2phIbwYaDLpxK2qn5,5gVWOGojTG0RKnZpSz5Hf8' 
-            : playlist?.tracks?.items
-                .sort(() => Math.random() - 0.5)
-                .slice(0,5)
-                .map((track : ITrack)=>{
-                    return track?.track.id
-                })
-                .join(',');
-
+    /* Extract Seeds from Data */
+    const seeds = ( playlist?.tracks?.items.length === 0 )
+        ? '1c9z7I2Hucpg2gak6ZAV9Y,32GHYtVVAsYNQGafHrrRxv,2HBAu9VCJHhmHuzCSJc11z,45RrA2phIbwYaDLpxK2qn5,5gVWOGojTG0RKnZpSz5Hf8' 
+        : (playlist?.tracks?.items)?.sort(() => Math.random() - 0.5).slice(0,5).map((track : ITrack)=>{return track?.track.id}).join(',');
+    
     const {
         data: recommendations,
         error : isErrorRecommendations,
         isLoading : isLoadingRecommendations
-    } = useSWR(playListTrackSeeds ? 'recommendations' : null,   () => getRecomendations(playListTrackSeeds));
+    } = useSWR(seeds ? 'recommendations' : null , () => getRecomendations(seeds));
+
+    /* Extracting URIS from Data */
+    const recommendedTrackUris = recommendations?.tracks
+        .map((track:ITrackLongTerm)=>{return track.uri})
+        .join(',');
 
     useEffect(()=>{
-        console.log(recommendations);
-        if (router.query.categoryId) {
-            
-        }
-    },[])
+        setTrackUris(recommendedTrackUris);
+    },[trackUris]);
 
     return (
         <div className='w-10/12  md:w-8/12 lg:w-full mx-auto mb-32 
@@ -69,17 +72,18 @@ const RecommendationsLayout = () => {
                     /* Error */
                     (isErrorRecommendations || isErrorPlaylist || isErrorUser)
                         ? (<ErrorLayout error={isErrorRecommendations || isErrorPlaylist}/>)
-                            /* Loading */
+                        /* Loading */
                         : (isLoadingRecommendations || loading || isLoadingPlaylist || isLoadingUser)
                             ? (<LoadingLayout/>)
                             : ( 
                                 <>
-                                    <ToggleHeader 
+                                    {(<ToggleHeader 
                                         header={`Recommended Tracks Based On: ${playlist?.name}`} 
                                         mode={`recommendations`}
                                         userId={user?.id}
                                         playlistName={`Recommendations base on ${playlist?.name}`}
-                                    />
+                                        recommendedTrackUris={trackUris}
+                                    /> )}
                                     {
                                         recommendations?.tracks?.map((track:ITrackLongTerm, i:number)=>{
                                             return (

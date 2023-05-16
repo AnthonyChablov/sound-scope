@@ -246,11 +246,10 @@ export async function createPlaylist(userId:string | undefined, name:string | un
     }
 }
 
-export async function addTracksToPlaylist(playlistId:string, uris:string){
+export async function addTracksToPlaylist(playlistId : string | null, uris : string | undefined){
     try{
-        const res = await axios.get(
-            `https://api.spotify.com/v1/playlists/${playlistId}/tracks?uris=${uris}`, 
-            { headers });
+        const url = `https://api.spotify.com/v1/playlists/${playlistId}/tracks?uris=${uris ? uris : ''}`;
+        const res = await axios({ method: 'post', url, headers });
         return res.data;
     }catch(err){
         console.log(err);

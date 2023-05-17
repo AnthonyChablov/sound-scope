@@ -157,7 +157,7 @@ const ProfileLayout = ({
                         </div>
                       </div>
                     </motion.div>
-                    <motion.div className='flex flex-col lg:flex-row lg:space-x-8 xl:space-x-20 mt-20 justify-center'
+                    <motion.div className='flex flex-col lg:flex-row lg:space-x-12 xl:space-x-40 mt-20 justify-center'
                       variants={profileInfoDisplayVariants}
                       initial={'hidden'}
                       animate={'visible'}

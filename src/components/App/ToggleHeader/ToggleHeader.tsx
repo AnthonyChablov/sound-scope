@@ -32,8 +32,8 @@ const ToggleHeader = ({header, mode, userId, playlistName, recommendedTrackUris 
 
     async function createPlaylistOnSave(){
         const res = await createPlaylist(userId, header);
-        
         if(res){
+            setDisplayOutlinedButton(true);
             setPlaylistLink(res?.external_urls?.spotify);
         }
         if(res){

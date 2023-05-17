@@ -19,7 +19,18 @@ const NavItem = ({icon, title, isActive , route}:INavItem) => {
 
     return (
         <li className={` border-solid hover:bg-zinc-900 h-full w-full py-2 shadow-md sm:px-2
-            
+            ${isActive 
+                ? responsiveDisplay 
+                    ? 'border-l-4 bg-zinc-900 ' 
+                    : 'border-t-4 bg-zinc-900 ' 
+                : ''
+            }
+            ${!isActive 
+                ? responsiveDisplay 
+                    ? 'pl-3' 
+                    : 'pt-3' 
+                : ''
+            }
         `}>
             <Link 
                 href={route}

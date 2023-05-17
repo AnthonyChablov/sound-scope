@@ -34,7 +34,7 @@ const Sidebar = () => {
     >
       <div className="flex flex-row justify-between text-white shadow-lg">
         <div className={`w-full flex flex-row justify-between content-between  
-          ${ tabletDisplay && 'py-4 h-screen flex-col w-full' }`
+          md:py-4 md:h-screen md:flex-col md:w-full`
         }>
           <div className=" flex justify-center">
             { tabletDisplay && (

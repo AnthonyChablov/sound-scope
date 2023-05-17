@@ -33,16 +33,12 @@ const LoginLayout = () => {
       /* If loading go to app */
       setLoading(true);
       router.push('/app');
-    } else{
-      setLoading(false);
-    }
+    } 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loading]);
+  }, []);
 
   return (
     <div className=' h-screen opacity-100 bg-fuchsia-700'>
-        {loading && <LoadingLayout color='white'/>}
-        
         <div className="bg-fuchsia-700 h-full pt-32 max-w-5xl mx-auto w-screen px-9 
           md:flex md:justify-between "
         >

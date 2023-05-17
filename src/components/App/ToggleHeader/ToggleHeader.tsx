@@ -7,6 +7,7 @@ import OutlinedButton from '@/components/Common/OutlinedButton';
 import ContainedButton from '@/components/Common/ContainedButton';
 import { createPlaylist, addTracksToPlaylist, getPlaylist } from '@/spotifyApi/spotifyApi';
 import Link from 'next/link';
+import { debounce } from "lodash"
 
 interface IToggleHeader{
     header ?: string,
@@ -19,32 +20,30 @@ interface IToggleHeader{
 
 const ToggleHeader = ({header, mode, userId, playlistName, recommendedTrackUris }:IToggleHeader) => {
 
-    /* state */
+    /* State */
     const toggleHeader = useStateStore(state => state.toggleHeader); // [0,1,2]
     const setToggleHeader = useStateStore(state => state.setToggleHeader);// [0,1,2]
-    const setCreatedPlaylist = useStateStore(state => state.setCreatedPlaylist);
     const createdPlaylist = useStateStore(state => state.createdPlaylist);
-    const [playlistId , setPlaylistId] = useState<string|null>(null);
     const [displayOutlinedButton, setDisplayOutlinedButton] = useState<boolean>(false);
-
-    /* upon playlist creation save link here */
-    const [playlistLink, setPlaylistLink] = useState<string>('');
+    const [playlistLink, setPlaylistLink] = useState<string>(''); /* upon playlist creation save link here */
 
     /* Hooks */
     const windowWidth = useWindowWidth();
 
     async function createPlaylistOnSave(){
         const res = await createPlaylist(userId, header);
-        if (res) {
-            setCreatedPlaylist(res);
+        
+        if(res){
             setPlaylistLink(res?.external_urls?.spotify);
-            setPlaylistId(res?.id);
-
-            if (recommendedTrackUris && playlistId) {
-                await addTracksToPlaylist(playlistId, recommendedTrackUris);
-            }
+        }
+        if(res){
+            await addTracksToPlaylist(res?.id, recommendedTrackUris);
         }
     }
+
+    const debouncedCreatePlaylistOnSave = debounce(async () => {
+        await createPlaylistOnSave()
+    }, 500);
 
     useEffect(()=>{
         () => setDisplayOutlinedButton(false);
@@ -92,20 +91,23 @@ const ToggleHeader = ({header, mode, userId, playlistName, recommendedTrackUris 
                 ((mode === 'recommendations') && (
                     <>
                     {/* This button saves the new playlist to spotify */}
-                        {
-                            <div 
-                                onClick={()=>{
-                                    setDisplayOutlinedButton(!displayOutlinedButton)
-                                }} 
-                            >
-                            <div className="" 
-                                onClick={()=>createPlaylistOnSave()}
-                            >
-                                <ContainedButton 
-                                    text='Save to Spotify' 
-                                />
+                        {displayOutlinedButton 
+                            ? (
+                                <Link 
+                                    href={playlistLink}
+                                    rel="noopener noreferrer" 
+                                    target="_blank"
+                                >
+                                    <div>
+                                        <OutlinedButton title='View In Spotify'/>
+                                    </div> 
+                                </Link>
+                            )
+                            :(
+                                <div className="" onClick={()=> debouncedCreatePlaylistOnSave()}>
+                                    <ContainedButton text='Save to Spotify' />
                                 </div>
-                            </div>
+                            )
                         }
                     </>
                 ))

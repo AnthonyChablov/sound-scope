@@ -52,16 +52,14 @@ const RecommendationsLayout = () => {
         data: recommendations,
         error : isErrorRecommendations,
         isLoading : isLoadingRecommendations
-    } = useSWR(seeds ? 'recommendations' : null , () => getRecomendations(seeds));
+    } = useSWR(seeds ? 'recommendations' : null , () => getRecomendations(seeds),{
+        revalidateOnFocus:false
+    });
 
     /* Extracting URIS from Data */
     const recommendedTrackUris = recommendations?.tracks
         .map((track:ITrackLongTerm)=>{return track.uri})
         .join(',');
-
-    useEffect(()=>{
-        setTrackUris(recommendedTrackUris);
-    },[trackUris]);
 
     return (
         <div className='w-10/12  md:w-8/12 lg:w-full mx-auto mb-32 
@@ -82,7 +80,7 @@ const RecommendationsLayout = () => {
                                         mode={`recommendations`}
                                         userId={user?.id}
                                         playlistName={`Recommendations base on ${playlist?.name}`}
-                                        recommendedTrackUris={trackUris}
+                                        recommendedTrackUris={recommendedTrackUris}
                                     /> )}
                                     {
                                         recommendations?.tracks?.map((track:ITrackLongTerm, i:number)=>{

@@ -73,7 +73,7 @@ const ToggleHeader = ({header, mode, userId, playlistName, recommendedTrackUris 
                             {
                                 ['all time', 'last 6 months', 'last 4 weeks'].map((elem, i)=>{
                                     return (
-                                        <div key={i} className={`hover:underline cursor-pointer capitalize text-[1rem]
+                                        <div key={i} className={` cursor-pointer capitalize text-[1rem]
                                             ${toggleHeader === i && 'underline text-white'}` }
                                             onClick={ ()=> setToggleHeader(i) }
                                         >

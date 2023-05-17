@@ -38,7 +38,6 @@ const LoginLayout = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading]);
-  
 
   return (
     <div className=' h-screen opacity-100 bg-fuchsia-700'>

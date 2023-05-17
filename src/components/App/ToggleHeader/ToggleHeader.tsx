@@ -5,7 +5,7 @@ import useWindowWidth from '@/hooks/useWindowWidth';
 import { toggleHeaderVariants } from '@/variant';
 import OutlinedButton from '@/components/Common/OutlinedButton';
 import ContainedButton from '@/components/Common/ContainedButton';
-import { createPlaylist, addTracksToPlaylist, getPlaylist } from '@/spotifyApi/spotifyApi';
+import { createPlaylist, addTracksToPlaylist } from '@/spotifyApi/spotifyApi';
 import Link from 'next/link';
 import { debounce } from "lodash"
 
@@ -92,21 +92,30 @@ const ToggleHeader = ({header, mode, userId, playlistName, recommendedTrackUris 
                     <>
                     {/* This button saves the new playlist to spotify */}
                         {displayOutlinedButton 
-                            ? (
+                            ? (<motion.div
+                                variants={toggleHeaderVariants}
+                                initial={'hidden'}
+                                whileInView={'visible'}
+                            > 
                                 <Link 
                                     href={playlistLink}
                                     rel="noopener noreferrer" 
                                     target="_blank"
                                 >
-                                    <div>
-                                        <OutlinedButton title='View In Spotify'/>
-                                    </div> 
+                                    
+                                    <OutlinedButton title='View In Spotify'/>
+                                    
                                 </Link>
+                            </motion.div> 
                             )
                             :(
-                                <div className="" onClick={()=> debouncedCreatePlaylistOnSave()}>
+                                <motion.div
+                                    onClick={()=> debouncedCreatePlaylistOnSave()}
+                                    initial={'hidden'}
+                                    whileInView={'visible'}
+                                >
                                     <ContainedButton text='Save to Spotify' />
-                                </div>
+                                </motion.div>
                             )
                         }
                     </>

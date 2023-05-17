@@ -7,7 +7,7 @@ const SCOPES = process.env.NEXT_PUBLIC_SPOTIFY_SCOPES;
 const STATE = process.env.NEXT_PUBLIC_STATE;
 const CODE_CHALLENGE_METHOD = process.env.NEXT_PUBLIC_CODE_CHALLENGE_METHOD;
 
-function generateRandomString(length) {
+function generateRandomString(length:number) {
     let text = '';
     let possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   

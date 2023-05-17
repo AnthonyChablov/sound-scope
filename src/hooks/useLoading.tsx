@@ -12,6 +12,7 @@ const useLoading = (duration: number = 750) => {
               clearTimeout(timer);
           };
         } 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [] );
 
     return (

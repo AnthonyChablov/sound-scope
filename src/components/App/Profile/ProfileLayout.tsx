@@ -89,7 +89,6 @@ const ProfileLayout = ({
 
   useEffect(() => {
     setArtistData(topArtistsAllTime);
-    console.log(artistData);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   

@@ -42,6 +42,7 @@ const TrackCard = ({ id, icon, title, subtitle,album, route, duration, mode }:IT
     useEffect(()=>{
         const time = msToTime(duration);
         setTrackDuration(time);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[duration])
 
   return (
@@ -73,7 +74,7 @@ const TrackCard = ({ id, icon, title, subtitle,album, route, duration, mode }:IT
                             unoptimized={true}
                         ></Image> 
                     </div>
-                    <div className="truncate">
+                    <div className="truncate w-52 sm:w-80 md:w-96 lg:w-full">
                         <p className='text-white hover:underline truncate'>{title}</p>
                         <div className=" text-zinc-400 truncate">
                             {subtitle}

@@ -5,7 +5,7 @@ import useWindowWidth from '@/hooks/useWindowWidth';
 import { toggleHeaderVariants } from '@/variant';
 import OutlinedButton from '@/components/Common/OutlinedButton';
 import ContainedButton from '@/components/Common/ContainedButton';
-import { createPlaylist, addTracksToPlaylist } from '@/spotifyApi/spotifyApi';
+import { createPlaylist, addTracksToPlaylist, getPlaylist } from '@/spotifyApi/spotifyApi';
 import Link from 'next/link';
 
 interface IToggleHeader{
@@ -14,7 +14,7 @@ interface IToggleHeader{
     route ?: string,
     userId?: string,
     playlistName?:string
-    recommendedTrackUris?: string | null
+    recommendedTrackUris?: string | undefined
 }
 
 const ToggleHeader = ({header, mode, userId, playlistName, recommendedTrackUris }:IToggleHeader) => {
@@ -26,7 +26,8 @@ const ToggleHeader = ({header, mode, userId, playlistName, recommendedTrackUris 
     const createdPlaylist = useStateStore(state => state.createdPlaylist);
     const [playlistId , setPlaylistId] = useState<string|null>(null);
     const [displayOutlinedButton, setDisplayOutlinedButton] = useState<boolean>(false);
-    /* upon play list creation save link here */
+
+    /* upon playlist creation save link here */
     const [playlistLink, setPlaylistLink] = useState<string>('');
 
     /* Hooks */
@@ -34,12 +35,13 @@ const ToggleHeader = ({header, mode, userId, playlistName, recommendedTrackUris 
 
     async function createPlaylistOnSave(){
         const res = await createPlaylist(userId, header);
-        if (res){
+        if (res) {
             setCreatedPlaylist(res);
             setPlaylistLink(res?.external_urls?.spotify);
             setPlaylistId(res?.id);
-            if (res.id && createdPlaylist && recommendedTrackUris){
-                await addTracksToPlaylist(playlistId , recommendedTrackUris );
+
+            if (recommendedTrackUris && playlistId) {
+                await addTracksToPlaylist(playlistId, recommendedTrackUris);
             }
         }
     }
@@ -47,7 +49,7 @@ const ToggleHeader = ({header, mode, userId, playlistName, recommendedTrackUris 
     useEffect(()=>{
         () => setDisplayOutlinedButton(false);
     /* eslint-disable-next-line  */
-    },[playlistId]);
+    },[createdPlaylist]);
 
     return (
         <motion.div className={`mt-20 flex  justify-between items-center ${mode==='hidden' ? `mb-10` : 'mb-16'}

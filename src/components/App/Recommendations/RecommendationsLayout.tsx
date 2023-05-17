@@ -17,7 +17,7 @@ import { useStateStore } from '@/store/useAppStore';
 const RecommendationsLayout = () => {
 
     /* State  */
-    const [trackUris, setTrackUris] = useState<string|null>(null);
+    const [trackUris, setTrackUris] = useState<string|undefined>(undefined);
     const [displayOutlinedButton, setDisplayOutlinedButton] = useState<boolean>(false);
     const setToggleHeader = useStateStore(state => state.setToggleHeader);// [0,1,2]
     const setCreatedPlaylist = useStateStore(state => state.setCreatedPlaylist);

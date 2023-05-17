@@ -74,7 +74,7 @@ const TrackCard = ({ id, icon, title, subtitle,album, route, duration, mode }:IT
                             unoptimized={true}
                         ></Image> 
                     </div>
-                    <div className="truncate w-52 sm:w-80 md:w-96 lg:w-full">
+                    <div className="truncate w-52 "> {/* sm:w-80 md:w-96 lg:w-full */}
                         <p className='text-white hover:underline truncate'>{title}</p>
                         <div className=" text-zinc-400 truncate">
                             {subtitle}

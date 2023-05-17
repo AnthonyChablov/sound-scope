@@ -67,18 +67,18 @@ const ToggleHeader = ({header, mode, userId, playlistName, recommendedTrackUris 
             {
                 ((mode === 'toggle') && (
                         <div className = {` flex text-center text-lg text-zinc-400 font-semibold 
-                            ${windowWidth <= 420 ? ' flex-col space-y-3 ': 'space-y-0 space-x-5 flex-row '}
+                            flex-col space-y-3 xs:space-y-0 xs:space-x-5 xs:flex-row
                         `}
                         >
                             {
                                 ['all time', 'last 6 months', 'last 4 weeks'].map((elem, i)=>{
                                     return (
-                                        <p key={i} className={`hover:underline cursor-pointer capitalize text-[1rem]
+                                        <div key={i} className={`hover:underline cursor-pointer capitalize text-[1rem]
                                             ${toggleHeader === i && 'underline text-white'}` }
                                             onClick={ ()=> setToggleHeader(i) }
                                         >
                                             {elem}
-                                        </p>
+                                        </div>
                                     )
                                 })
                             }

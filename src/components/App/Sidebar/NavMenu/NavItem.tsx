@@ -18,7 +18,7 @@ const NavItem = ({icon, title, isActive , route}:INavItem) => {
     const responsiveDisplay = windowWidth>= 770;
 
     return (
-        <li className={` border-solid hover:bg-zinc-900 h-full w-full py-2 shadow-md sm:px-2
+        <li className={` border-solid  h-full w-full py-2 shadow-md sm:px-2
             ${isActive 
                 ? responsiveDisplay 
                     ? 'border-l-4 bg-zinc-900 ' 

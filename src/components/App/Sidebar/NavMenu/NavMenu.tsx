@@ -46,16 +46,13 @@ const NavMenu = () => {
             {
                 data.map((item, i)=>{
                     return (
-                        <Link className={`${windowWidth > 770 ? 'w-full' : 'h-full'}`}
-                            key={i} 
-                            href={`${item.route}`}
-                        >
                             <NavItem 
+                                key={i}
                                 icon={item.icon} 
                                 title={item.title} 
                                 isActive = {router.pathname === `${item.route}`}
+                                route={item?.route}
                             />
-                        </Link>
                     )
                 })
             }

@@ -29,14 +29,16 @@ const LoginLayout = () => {
     let access_token = setAccessToken();
     setSpotifyToken(access_token);
 
-    if(spotifyToken){
+    if(access_token){
       
       /* If loading go to app */
       setLoading(true);
       router.push('/app');
-    } 
+    } else{
+      setLoading(false);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [spotifyToken]);
+  }, [loading]);
 
   return (
     <div className=' h-screen opacity-100 bg-fuchsia-700'>

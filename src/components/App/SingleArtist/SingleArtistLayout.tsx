@@ -37,16 +37,16 @@ const SingleArtistLayout = () => {
           : (isLoadingSingleArtist || loading)
             ? (<LoadingLayout /> )
             : (<div className="h-screen flex items-center justify-center w-7/12 
-                md:w-7/12 lg:w-6/12 xl:w-5/12 mx-auto">
+                md:w-7/12 lg:w-6/12 xl:w-5/12 mx-auto mb-28">
                 <div className="flex flex-col items-center ">
-                  <motion.div className={`rounded-full overflow-hidden ${width >= 800 ? 'h-[350px]' : 'h-[250px]'} `}
+                  <motion.div className={`rounded-full overflow-hidden flex items-center ${width >= 800 ? 'w-[350px] h-[350px]' : 'w-[250px] h-[250px]'} `}
                     variants={headerVariants}
                     initial={'hidden'}
                     animate={'visible'}
                   >
                     <Image 
                       src={singleArtist?.images[0].url}
-                      height={50} 
+                      height={width >= 800 ? 350 : 250} 
                       width={width >= 800 ? 350 : 250} 
                       alt='artist'
                       loading="lazy"

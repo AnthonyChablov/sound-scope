@@ -18,7 +18,7 @@ const NavItem = ({icon, title, isActive , route}:INavItem) => {
     const responsiveDisplay = windowWidth >= 770;
 
     return (
-        <li className={` border-solid  h-full w-full py-2 shadow-md sm:px-4 cursor-pointer
+        <li className={` border-solid w-full  shadow-md sm:px-4 cursor-pointer 
             ${isActive 
                 ? responsiveDisplay 
                     ? 'border-l-4 bg-zinc-900 ' 
@@ -27,16 +27,20 @@ const NavItem = ({icon, title, isActive , route}:INavItem) => {
             }
             ${!isActive 
                 ? responsiveDisplay 
-                    ? 'pl-5' 
-                    : 'pt-3' 
+                    ? 'pl-1' 
+                    : 'pt-1' 
                 : ''
             }
         `}>
             <Link 
                 href={route}
             >
-                <Button className='flex flex-col items-center p-0 py-2 w-full ' 
-                    disableRipple
+                <Button className='flex flex-col items-center  py-4 w-full h-full' 
+                   sx={{
+                        '.MuiTouchRipple-child' : {
+                            'background-color': '#a1a1aa'
+                        }
+                   }}
                 >
                     <Icons type={icon} size={iconSize} />
                     <p className='text-xs font-bold pt-2 capitalize text-white'>

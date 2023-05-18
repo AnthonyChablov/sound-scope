@@ -85,7 +85,6 @@ const ToggleHeader = ({header, mode, userId, playlistName, recommendedTrackUris 
                         </div>
                     )
                 )
-                
             }
             {
                 ((mode === 'recommendations') && (

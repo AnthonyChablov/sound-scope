@@ -32,9 +32,7 @@ const NavItem = ({icon, title, isActive , route}:INavItem) => {
                 : ''
             }
         `}>
-            <Link 
-                href={route}
-            >
+            <a href={route}>
                 <Button className='flex flex-col items-center  py-4 w-full h-full' 
                    sx={{
                         '.MuiTouchRipple-child' : {
@@ -47,7 +45,7 @@ const NavItem = ({icon, title, isActive , route}:INavItem) => {
                         {title}
                     </p>
                 </Button>
-            </Link>
+            </a>
         </li>
     )
 }

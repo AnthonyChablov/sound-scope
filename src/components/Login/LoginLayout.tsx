@@ -30,7 +30,7 @@ const LoginLayout = () => {
     setSpotifyToken(access_token);
 
     if(spotifyToken){
-      window.location.reload();
+      
       /* If loading go to app */
       setLoading(true);
       router.push('/app');

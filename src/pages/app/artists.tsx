@@ -9,7 +9,7 @@ const artists = () => {
       <Head>
         <title key={'title'}>Artists</title>
       </Head>
-      <Sidebar />
+      
       <AppLayout mode={'artist'}/>
     </section>
   )

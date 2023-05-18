@@ -15,7 +15,7 @@ const iconSize = 16;
 const NavItem = ({icon, title, isActive , route}:INavItem) => {
 
     const windowWidth = useWindowWidth();
-    const responsiveDisplay = windowWidth>= 770;
+    const responsiveDisplay = windowWidth >= 767;
 
     return (
         <li className={` border-solid  h-full w-full py-2 shadow-md sm:px-2

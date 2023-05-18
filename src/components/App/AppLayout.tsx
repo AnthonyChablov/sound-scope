@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import useSWR from 'swr';
 import { useRouter } from 'next/router';
 import ProfileLayout from "./Profile/ProfileLayout";
@@ -11,6 +11,7 @@ import RecentLayout from './Recent/RecentLayout';
 import PlaylistLayout from './Playlist/PlaylistLayout';
 import ErrorLayout from '../Error/ErrorLayout';
 import { useArtistStore } from '@/store/useArtistStore';
+import Sidebar from './Sidebar/Sidebar';
 
 interface IAppLayout{
   mode:string
@@ -47,6 +48,7 @@ const AppLayout = ({mode}:IAppLayout) => {
 
   return (
     <div className=" bg-zinc-900 h-full">
+      <Sidebar />
       {
         mode ==='app' && (
           <div className="flex items-center justify-center flex-col" >

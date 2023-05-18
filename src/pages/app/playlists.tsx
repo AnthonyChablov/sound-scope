@@ -9,7 +9,7 @@ const playlists = () => {
       <Head>
         <title key={'title'}>Playlists</title>
       </Head>
-      <Sidebar />
+      
       <AppLayout mode='playlists'/>
     </section>
   )

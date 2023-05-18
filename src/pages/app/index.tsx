@@ -11,7 +11,7 @@ const app = () => {
       <Head>
         <title key={'title'}>App</title>
       </Head>
-      <Sidebar />
+      
       <AppLayout mode={'app'}/>
       <p></p>
     </section>

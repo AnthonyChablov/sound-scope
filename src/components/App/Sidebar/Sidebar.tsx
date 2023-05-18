@@ -16,7 +16,7 @@ const Sidebar = () => {
   const windowWidth = useWindowWidth();
   
   const drawerWidth = 'fit';
-  const tabletDisplay = windowWidth > 770;
+  const tabletDisplay = windowWidth > 767;
 
   return (
     <Drawer

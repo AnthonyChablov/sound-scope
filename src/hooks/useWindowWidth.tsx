@@ -16,7 +16,7 @@ export default function useWindowWidth() {
 
       return () => window.removeEventListener('resize', handleResize);
       // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [width]);
 
   return width;
 }

@@ -35,7 +35,7 @@ const NavItem = ({icon, title, isActive , route}:INavItem) => {
             <Link 
                 href={route}
             >
-                <Button className='flex flex-col items-center p-0 py-2 w-full ' 
+                <Button className='flex flex-col items-center p-0 py-2 w-full hover:bg-transparent' 
                     disableRipple
                 >
                     <Icons type={icon} size={iconSize} />

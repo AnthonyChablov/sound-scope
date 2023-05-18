@@ -17,6 +17,7 @@ const LoginLayout = () => {
 
   /* State */
   const setSpotifyToken = useStateStore(state => state.setSpotifyToken);
+  const spotifyToken = useStateStore(state => state.spotifyToken);
   const [loading, setLoading] = useState<boolean>(false)
 
   /* Route */
@@ -28,14 +29,14 @@ const LoginLayout = () => {
     let access_token = setAccessToken();
     setSpotifyToken(access_token);
 
-    if(access_token){
+    if(spotifyToken){
       window.location.reload();
       /* If loading go to app */
       setLoading(true);
       router.push('/app');
     } 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [spotifyToken]);
 
   return (
     <div className=' h-screen opacity-100 bg-fuchsia-700'>

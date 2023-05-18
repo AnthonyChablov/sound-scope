@@ -34,11 +34,13 @@ const NavItem = ({icon, title, isActive , route}:INavItem) => {
         `}>
             <Link 
                 href={route}
-            ><Icons type={icon} size={iconSize} />
-            <p className='text-xs font-bold pt-2 capitalize text-white'>
-                {title}
-            </p>
-                
+            >
+                <div className="flex flex-col items-center p-0 py-2 w-full hover:bg-transparent">
+                    <Icons type={icon} size={iconSize} />
+                    <p className='text-xs font-bold pt-2 capitalize text-white'>
+                        {title}
+                    </p>
+                </div>
             </Link>
         </li>
     )

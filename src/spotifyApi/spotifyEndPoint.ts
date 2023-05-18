@@ -17,9 +17,8 @@ function generateRandomString(length:number) {
     return text;
   }
 
-
-async function generateCodeChallenge(codeVerifier:string) {
-    function base64encode(string:any) {
+async function generateCodeChallenge(codeVerifier) {
+    function base64encode(string) {
         return btoa(String.fromCharCode.apply(null, new Uint8Array(string)))
         .replace(/\+/g, '-')
         .replace(/\//g, '_')

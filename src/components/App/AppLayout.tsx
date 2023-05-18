@@ -43,7 +43,7 @@ const AppLayout = ({mode}:IAppLayout) => {
     data: following, 
     error : isErrorFollowing, 
     isLoading : isLoadingFollowing
-  } = useSWR('following', getFollowing);
+  } = useSWR('/api/playlists', getFollowing);
 
   return (
     <div className=" bg-zinc-900 h-full">

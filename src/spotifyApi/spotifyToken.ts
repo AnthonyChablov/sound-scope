@@ -7,6 +7,7 @@ export const refresh_token = (typeof window !== 'undefined') ? getRefreshToken()
 
 /* Headers */
 export const headers = {
+    
     Authorization: `Bearer ${token}`,
     'Content-Type': 'application/json',
 };
@@ -39,6 +40,11 @@ export function setSpotifyRefreshToken(token:string){
     window.localStorage.setItem('spotify_api_refresh_token', token);
 }
 
+export function extractAccessToken(){
+    const { error, access_token, refresh_token } = getHashParams();
+    return access_token;
+}
+
 export function getSpotifyTokenExpiry(){
     const { error, access_token, refresh_token } = getHashParams();
     setSpotifyRefreshToken(refresh_token);
@@ -53,7 +59,7 @@ export function setAccessToken(){
 
 /* Logout */
 export function logout(){
-    setSpotifyAccessToken('');
-    window.localStorage.removeItem('spotify_api_token');
-    window.location.reload();
+    
+    
+    
 } 

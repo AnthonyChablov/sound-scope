@@ -8,7 +8,7 @@ import Image from 'next/image';
 import girlSpotify from '../../assets/girl-spotify-img.jpg';
 import manSpotify from '../../assets/man-spotify-img.jpg';
 import girlComputerSpotify from '../../assets/girl-computer-spotify-img.jpg';
-import { setAccessToken } from '@/spotifyApi/spotifyToken';
+import { extractAccessToken, setAccessToken,setSpotifyAccessToken } from '@/spotifyApi/spotifyToken';
 import { spotifyEndPoint } from '@/spotifyApi/spotifyEndPoint';
 import useLoading from '@/hooks/useLoading';
 import LoadingLayout from '../Loading/LoadingLayout';
@@ -26,19 +26,19 @@ const LoginLayout = () => {
   /* Set Access Token and redirect */
   useEffect(() => {
     
-    let access_token = setAccessToken();
-    setSpotifyToken(access_token);
+    const access_token = extractAccessToken();
 
-    if(access_token){
-      
-      /* If loading go to app */
+    if(typeof access_token ==='string' ){
+      setSpotifyToken(access_token);
+      setSpotifyAccessToken(spotifyToken);
       setLoading(true);
       router.push('/app');
-    } else{
+    } else {
       setLoading(false);
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loading]);
+  }, [spotifyToken]);
 
   return (
     <div className=' h-screen opacity-100 bg-fuchsia-700'>

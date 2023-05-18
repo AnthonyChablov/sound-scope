@@ -19,7 +19,7 @@ const ErrorLayout = ({text = 'Error something went wrong.', error} : IErrorLayou
       router.push('/redirect');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [error]);
+  }, []);
 
   return (
     <div className="flex items-center justify-center h-screen" >

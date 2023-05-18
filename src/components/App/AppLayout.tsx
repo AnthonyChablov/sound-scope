@@ -48,7 +48,7 @@ const AppLayout = ({mode}:IAppLayout) => {
 
   return (
     <div className=" bg-zinc-900 h-full">
-      <Sidebar />
+      
       {
         mode ==='app' && (
           <div className="flex items-center justify-center flex-col" >

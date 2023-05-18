@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 export default function useWindowWidth() {
 
-  const [width, setWidth] = useState(0);
+  const [width, setWidth] = useState(1000);
   
   useEffect(() => {
 
@@ -16,7 +16,7 @@ export default function useWindowWidth() {
 
       return () => window.removeEventListener('resize', handleResize);
       // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [width]);
+  }, []);
 
   return width;
 }

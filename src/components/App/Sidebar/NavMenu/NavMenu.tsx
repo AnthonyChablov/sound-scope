@@ -37,18 +37,18 @@ const NavMenu = () => {
     const router = useRouter();
 
     return (
-        <ul className={`h-fit w-full flex max-w-lg justify-between flex-row md:flex-col md:items-center md:w-full
+        <ul className={`h-fit w-full flex max-w-lg justify-between ${windowWidth > 768 ? 'flex-col items-center w-full' :'flex-row '} 
         `}>
             {
                 data.map((item, i)=>{
                     return (
-                            <NavItem 
-                                key={i}
-                                icon={item.icon} 
-                                title={item.title} 
-                                isActive = {router.pathname === `${item.route}`}
-                                route={item?.route}
-                            />
+                        <NavItem 
+                            key={i}
+                            icon={item.icon} 
+                            title={item.title} 
+                            isActive = {router.pathname === `${item.route}`}
+                            route={item?.route}
+                        />
                     )
                 })
             }

@@ -4,7 +4,6 @@ import Button from "../Common/OutlinedButton";
 import Navbar from "./Navbar/Navbar";
 import { removeStorageSpotifyAccessToken } from "@/spotifyApi/spotifyToken";
 
-
 const HomeLayout = () => {
 
   useEffect(() => {

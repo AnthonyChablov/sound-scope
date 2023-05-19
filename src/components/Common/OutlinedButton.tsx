@@ -11,6 +11,7 @@ const OutlinedButton = ({title}:IOutlinedButton) => {
       className ="text-white font-bold text-xs border-white
        hover:bg-white hover:text-black px-7 py-3 rounded-full "
       variant={'outlined'}
+      disableTouchRipple
     >
       {title}
     </Button>

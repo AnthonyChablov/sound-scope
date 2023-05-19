@@ -33,6 +33,7 @@ const NavItem = ({icon, title, isActive , route}:INavItem) => {
             }
         `}>
             <Button className={`flex flex-col items-center py-4 px-4 w-full h-full cursor-pointer `}
+                disableTouchRipple
                 sx={{
                     "& .MuiTouchRipple-child" : {
                         'background-color': '#ffffff'

@@ -5,7 +5,7 @@ import { Button } from '@mui/material';
 import Link from 'next/link';
 import Image from 'next/image';
 import girlSpotify from '../../assets/girl-spotify-img.jpg';
-import {setStorageSpotifyAccessToken, getStorageSpotifyAccessToken, removeStorageSpotifyAccessToken} from '@/spotifyApi/spotifyToken';
+import {setStorageSpotifyAccessToken, getStorageSpotifyAccessToken, } from '@/spotifyApi/spotifyToken';
 import { spotifyEndPoint } from '@/spotifyApi/spotifyEndPoint';
 import useLoading from '@/hooks/useLoading';
 import LoadingLayout from '../Loading/LoadingLayout';

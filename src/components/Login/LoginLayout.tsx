@@ -44,12 +44,6 @@ const LoginLayout = () => {
       router.push('/app'); 
     } 
 
-    return () => {
-      // Cleanup: Remove the token from storage if it exists on unmount
-      if (token && token?.length <= 10) {
-        removeStorageSpotifyAccessToken();
-      }
-    };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [spotifyToken]);

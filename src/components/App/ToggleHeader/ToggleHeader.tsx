@@ -64,7 +64,7 @@ const ToggleHeader = ({header, mode, userId, playlistName, recommendedTrackUris 
         >
             {/* Header Text */}
             <h1 className={` text-2xl font-bold text-white ${mode=== 'recommendations' && 'w-9/12 '}
-                ${windowWidth >= 1024 ? 'mb-0 truncate' : 'mb-10 text-center'}`
+                ${ windowWidth >= 1024 ? 'mb-0 truncate' : 'mb-10 text-center'}`
             } 
             >{header}</h1>
             {/* button navigation */}

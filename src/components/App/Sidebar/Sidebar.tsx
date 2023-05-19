@@ -19,7 +19,7 @@ const Sidebar = () => {
   const isLoading = windowWidth === null;
   const tabletDisplay = windowWidth >= 768;
   
-  if (isLoading) {
+ if (isLoading) {
     // Render a fallback layout or a loading indicator
     return <div>Loading...</div>;
   }

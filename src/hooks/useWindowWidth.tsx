@@ -18,5 +18,8 @@ export default function useWindowWidth() {
       // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  
   return width;
+ 
+  
 }

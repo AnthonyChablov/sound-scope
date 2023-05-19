@@ -15,7 +15,7 @@ const iconSize = 16;
 const NavItem = ({icon, title, isActive , route}:INavItem) => {
 
     const windowWidth = useWindowWidth();
-    const responsiveDisplay = windowWidth >= 770;
+    const responsiveDisplay = windowWidth && windowWidth >= 770;
 
     return (
         <li className={` border-solid w-full shadow-md 

@@ -8,6 +8,7 @@ import ContainedButton from '@/components/Common/ContainedButton';
 import { createPlaylist, addTracksToPlaylist } from '@/spotifyApi/spotifyApi';
 import Link from 'next/link';
 import { debounce } from "lodash"
+import { getStorageSpotifyAccessToken } from '@/spotifyApi/spotifyToken';
 
 interface IToggleHeader{
     header ?: string,
@@ -27,17 +28,18 @@ const ToggleHeader = ({header, mode, userId, playlistName, recommendedTrackUris 
     const [displayOutlinedButton, setDisplayOutlinedButton] = useState<boolean>(false);
     const [playlistLink, setPlaylistLink] = useState<string>(''); /* upon playlist creation save link here */
 
+    const spotifyToken = getStorageSpotifyAccessToken();
     /* Hooks */
     const windowWidth = useWindowWidth();
 
     async function createPlaylistOnSave(){
-        const res = await createPlaylist(userId, header);
+        const res = await createPlaylist(userId, header, spotifyToken);
         if(res){
             setDisplayOutlinedButton(true);
             setPlaylistLink(res?.external_urls?.spotify);
         }
         if(res){
-            await addTracksToPlaylist(res?.id, recommendedTrackUris);
+            await addTracksToPlaylist(res?.id, recommendedTrackUris, spotifyToken);
         }
     }
 

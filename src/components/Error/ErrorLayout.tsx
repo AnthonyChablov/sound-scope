@@ -17,7 +17,6 @@ const ErrorLayout = ({text = 'Error something went wrong.', error} : IErrorLayou
 
   useEffect(() => {
     if(error ){
-      
       router.push('/redirect');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -26,12 +26,7 @@ const LoginLayout = () => {
     const hash = window.location.hash;  // get token from hash params of url
     let token = getStorageSpotifyAccessToken(); // get token from local storage
 
-    if (token && token?.length <= 10) { 
-      // Remove the token
-      removeStorageSpotifyAccessToken();
-      token = null;
-    } 
-    else if(!token && hash) {
+    if(!token && hash) {
       token = hash
         ?.substring(1)
         ?.split("&")
@@ -44,9 +39,8 @@ const LoginLayout = () => {
       router.push('/app'); 
     } 
 
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [spotifyToken]);
+  }, []);
 
   return (
     <div className=' h-screen opacity-100 bg-fuchsia-700'>

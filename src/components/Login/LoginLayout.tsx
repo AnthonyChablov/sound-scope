@@ -23,8 +23,11 @@ const LoginLayout = () => {
   /* Set Access Token and redirect */
   useEffect(() => {
     
+    
+
     const hash = window.location.hash;  // get token from hash params of url
     let token = getStorageSpotifyAccessToken(); // get token from local storage
+
 
     if(!token && hash) {
       token = hash
@@ -39,7 +42,7 @@ const LoginLayout = () => {
       router.push('/app'); 
     } 
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [spotifyToken]);
 
   return (

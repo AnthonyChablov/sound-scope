@@ -26,7 +26,7 @@ const LoginLayout = () => {
     const hash = window.location.hash;  // get token from hash params of url
     let token = getStorageSpotifyAccessToken(); // get token from local storage
 
-    if (token?.length <= 2) { 
+    if (token && token?.length <= 10) { 
       // Remove the token
       removeStorageSpotifyAccessToken();
       token = null;
@@ -46,7 +46,7 @@ const LoginLayout = () => {
 
     return () => {
       // Cleanup: Remove the token from storage if it exists on unmount
-      if (token && token?.length <= 2) {
+      if (token && token?.length <= 10) {
         removeStorageSpotifyAccessToken();
       }
     };

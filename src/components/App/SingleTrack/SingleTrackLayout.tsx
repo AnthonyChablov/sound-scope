@@ -17,9 +17,17 @@ import ChartDisplay from './Chart/ChartDisplay';
 import { headerVariants, subHeaderVariants, contentVariants } from '@/variant';
 import ContainedButton from '@/components/Common/ContainedButton';
 import useLoading from '@/hooks/useLoading';
+import { useStateStore } from '@/store/useAppStore';
+import { getStorageSpotifyAccessToken } from '@/spotifyApi/spotifyToken';
 
 const SingleTrackLayout = () => {
 
+  /* State */
+  
+  const setSpotifyToken = useStateStore(state => state.setSpotifyToken);
+
+  const spotifyToken = getStorageSpotifyAccessToken();
+  
   /* Hooks */
   const router = useRouter();
   const trackId = router.query.trackId;
@@ -31,24 +39,24 @@ const SingleTrackLayout = () => {
     data: singleTrack, 
     error : isErrorSingleTrack, 
     isLoading: isLoadingSingleTrack,
-  } = useSWR(trackId ? 'singleTrack' : null, ()=> getSingleTrack(String(trackId)));
+  } = useSWR(trackId ? 'singleTrack' : null, ()=> getSingleTrack(String(trackId),spotifyToken));
 
   const {
     data: trackFeatures, 
     error : isErrorTrackFeatures, 
     isLoading: isLoadingTrackFeatures,
-  } = useSWR(trackId ? 'trackFeatures' : null, ()=> getTrackFeatures(String(trackId)));
+  } = useSWR(trackId ? 'trackFeatures' : null, ()=> getTrackFeatures(String(trackId), spotifyToken));
 
   const {
     data: trackAnalysis, 
     error : isErrorTrackAnalysis, 
     isLoading: isLoadingTrackAnalysis,
-  } = useSWR( trackId ? 'trackAnalysis' : null, ()=> getTrackAnalysis(String(trackId)));
+  } = useSWR( trackId ? 'trackAnalysis' : null, ()=> getTrackAnalysis(String(trackId), spotifyToken));
 
   useEffect(() => {
-    console.log(singleTrack);
-    /* eslint-disable-next-line padded-blocks */
-  }, [singleTrack, trackFeatures, trackAnalysis]);
+      setSpotifyToken(getStorageSpotifyAccessToken());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>

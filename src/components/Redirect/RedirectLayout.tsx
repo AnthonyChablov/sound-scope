@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import ScaleLoader from 'react-spinners/ScaleLoader';
 import ErrorLayout from '@/components/Error/ErrorLayout';
 import Icons from '@/components/Common/Icons';
-
+import { removeStorageSpotifyAccessToken } from '@/spotifyApi/spotifyToken';
 
 const RedirectLayout = () => {
 
@@ -12,6 +12,7 @@ const RedirectLayout = () => {
 
     useEffect(() => {
         const timer = setTimeout(() => {
+            removeStorageSpotifyAccessToken();
             router.push('/login');
         }, 1500);
         return () => clearTimeout(timer);

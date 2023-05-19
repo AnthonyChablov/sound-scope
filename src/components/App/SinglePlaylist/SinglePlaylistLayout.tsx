@@ -11,8 +11,14 @@ import TrackCard from '../Cards/TrackCard';
 import InfoDisplay from './InfoDisplay/InfoDisplay';
 import { headerVariants, subHeaderVariants, displayVariants } from '@/variant';
 import useLoading from '@/hooks/useLoading';
+import { useStateStore } from '@/store/useAppStore';
+import { getStorageSpotifyAccessToken } from '@/spotifyApi/spotifyToken';
 
 const SinglePlaylistLayout = () => {
+
+    /* State */
+    const spotifyToken = getStorageSpotifyAccessToken();
+    const setSpotifyToken = useStateStore(state => state.setSpotifyToken);
 
     /* Hooks */
     const {loading} = useLoading();
@@ -25,7 +31,12 @@ const SinglePlaylistLayout = () => {
         data: playlist,
         error : isErrorPlaylist,
         isLoading : isLoadingPlaylist
-    } = useSWR(playlistId ? 'singlePlaylist' : null,  () => getPlaylist(String(playlistId)));
+    } = useSWR(playlistId ? 'singlePlaylist' : null,  () => getPlaylist(String(playlistId),spotifyToken));
+
+    useEffect(()=>{
+        setSpotifyToken(getStorageSpotifyAccessToken());
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[]);
 
     return (
         <>

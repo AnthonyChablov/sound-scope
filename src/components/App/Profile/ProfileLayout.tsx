@@ -8,19 +8,16 @@ import OutlinedButton from '@/components/Common/OutlinedButton';
 import Header from './Headers/subHeader';
 import ArtistCard from '../Cards/ArtistCard';
 import TrackCard from '../Cards/TrackCard';
-import useWindowWidth from '@/hooks/useWindowWidth';
-import { logout } from '@/spotifyApi/spotifyToken';
+import { logout,getStorageSpotifyAccessToken } from '@/spotifyApi/spotifyToken';
 import { useStateStore } from '@/store/useAppStore';
 import { useArtistStore } from '@/store/useArtistStore';
 import { useRouter } from 'next/router';
-import { getTopArtistsShortTerm, getTopArtistsLongTerm, getTopTracksLongTerm } from '@/spotifyApi/spotifyApi';
-import clearCache from "swr";
+import {  getTopArtistsLongTerm, getTopTracksLongTerm } from '@/spotifyApi/spotifyApi';
 import {IArtistLongTerm} from '../../../models/artists';
 import {ITrackLongTerm} from '../../../models/tracks';
 import LoadingLayout from '@/components/Loading/LoadingLayout';
 import ErrorLayout from '@/components/Error/ErrorLayout';
-import { headerVariants, subHeaderVariants, profileInfoDisplayVariants } from '@/variant';
-
+import { headerVariants,  profileInfoDisplayVariants } from '@/variant';
 
 interface IProfile{
     img:string,
@@ -41,7 +38,7 @@ const ProfileLayout = ({
 }: IProfile) => {
 
   /* State */
-  const spotifyToken = useStateStore(state => state.spotifyToken);
+  const spotifyToken = getStorageSpotifyAccessToken();
   const setSpotifyToken = useStateStore(state => state.setSpotifyToken);
   const artistData = useArtistStore(state => state.artistData);
   const setArtistData = useArtistStore(state => state.setArtistData);
@@ -71,14 +68,14 @@ const ProfileLayout = ({
     data: topArtistsAllTime, 
     error : isErrorTopArtistsAllTime, 
     isLoading : isLoadingTopArtistsAllTime
-  } = useSWR('topArtistsAllTime', ()=>getTopArtistsLongTerm(10));
+  } = useSWR('topArtistsAllTime', ()=>getTopArtistsLongTerm(10, spotifyToken));
   
   /* Fetch Data topTracksAllTime*/
   const {
     data: topTracksAllTime, 
     error : isErrorTopTracksAllTime, 
     isLoading: isLoadingTopTracksAllTime,
-  } = useSWR('topTracksLong', ()=> getTopTracksLongTerm(10));
+  } = useSWR('topTracksLong', ()=> getTopTracksLongTerm(10, spotifyToken));
 
   /* Log Out Handeller*/
   function onClickLogOutHandeller(){
@@ -89,10 +86,10 @@ const ProfileLayout = ({
 
   useEffect(() => {
     setArtistData(topArtistsAllTime);
+    setSpotifyToken(getStorageSpotifyAccessToken());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   
- 
   return (
     <div className={` w-10/12 md:w-7/12 lg:w-full mx-auto mb-32 `}>
         { 

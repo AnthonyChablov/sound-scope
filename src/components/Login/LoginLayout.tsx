@@ -1,14 +1,11 @@
 import React , {useState, useEffect} from 'react';
 import { useStateStore } from '@/store/useAppStore';
-import Card from './Card/Card';
 import { useRouter } from 'next/router'
 import { Button } from '@mui/material';
 import Link from 'next/link';
 import Image from 'next/image';
 import girlSpotify from '../../assets/girl-spotify-img.jpg';
-import manSpotify from '../../assets/man-spotify-img.jpg';
-import girlComputerSpotify from '../../assets/girl-computer-spotify-img.jpg';
-import { extractAccessToken, setAccessToken,setSpotifyAccessToken } from '@/spotifyApi/spotifyToken';
+import {setStorageSpotifyAccessToken, getStorageSpotifyAccessToken, removeStorageSpotifyAccessToken} from '@/spotifyApi/spotifyToken';
 import { spotifyEndPoint } from '@/spotifyApi/spotifyEndPoint';
 import useLoading from '@/hooks/useLoading';
 import LoadingLayout from '../Loading/LoadingLayout';
@@ -26,17 +23,17 @@ const LoginLayout = () => {
   /* Set Access Token and redirect */
   useEffect(() => {
     
-    const access_token = extractAccessToken();
+    const hash = window.location.hash;
+    let token = getStorageSpotifyAccessToken();
 
-    if(typeof access_token ==='string' ){
-      setSpotifyToken(access_token);
-      setSpotifyAccessToken(spotifyToken);
-      setLoading(true);
-      router.push('/app');
-    } else {
-      setLoading(false);
+    if(!token && hash){
+      token = hash?.substring(1)?.split("&")?.find(elem => elem.startsWith('access_token'))?.split('=')[1] ?? null;
+      setSpotifyToken(token);
+      setStorageSpotifyAccessToken(spotifyToken);
+      router.push('/app')
     }
 
+    console.log(spotifyToken);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [spotifyToken]);
 
@@ -45,7 +42,6 @@ const LoginLayout = () => {
         <div className="bg-fuchsia-700 h-full pt-32 max-w-5xl mx-auto w-screen px-9 
           md:flex md:justify-between "
         >
-            
             <div className="w-full sm:w-7/12  md:flex md:flex-col md:pt-[10%]">
                 {/* header */}
                 <h1 className='text-yellow-300 text-6xl font-bold mb-5'>
@@ -75,22 +71,6 @@ const LoginLayout = () => {
                       alt='girl on phone'
                   ></Image>
               </div>
-              {/* <div className="rounded-full overflow-hidden absolute top-20 left-20">
-                <Image
-                    src={manSpotify}
-                    width={150}
-                    height={50}
-                    alt='man excercising'
-                ></Image>
-              </div>
-              <div className="rounded-full overflow-hidden">
-                <Image
-                    src={girlComputerSpotify}
-                    width={100}
-                    height={100}
-                    alt='girl on computer'
-                ></Image>
-              </div> */}
             </div>
         </div>
     </div>

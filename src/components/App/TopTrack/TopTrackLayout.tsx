@@ -10,12 +10,17 @@ import { ITrackLongTerm } from '@/models/tracks';
 import LoadingLayout from '@/components/Loading/LoadingLayout';
 import ErrorLayout from '@/components/Error/ErrorLayout';
 import useLoading from '@/hooks/useLoading';
+import { getStorageSpotifyAccessToken } from '@/spotifyApi/spotifyToken';
 
 const TopTrack = () => {
 
   /* state */
   const toggleHeader = useStateStore(state => state.toggleHeader); // [0,1,2]
   const setToggleHeader = useStateStore(state => state.setToggleHeader);
+  
+  const setSpotifyToken = useStateStore(state => state.setSpotifyToken);
+
+  const spotifyToken = getStorageSpotifyAccessToken()
 
   /* router */
   const router = useRouter();
@@ -26,19 +31,24 @@ const TopTrack = () => {
     data: tracksLongTerm, 
     error : isErrortracksLongTerm, 
     isLoading : isLoadingTracksLongTerm
-  } = useSWR('tracksLongTerm',  () => getTopTracksLongTerm(30) );
+  } = useSWR('tracksLongTerm',  () => getTopTracksLongTerm(30, spotifyToken) );
 
   const {
     data: tracksMediumTerm, 
     error : isErrorTracksMediumTerm, 
     isLoading : isLoadingTracksMediumTerm
-  } = useSWR('tracksMediumTerm',  () => getTopTracksMediumTerm(30) );
+  } = useSWR('tracksMediumTerm',  () => getTopTracksMediumTerm(30, spotifyToken) );
 
   const {
     data: tracksShortTerm, 
     error : isErrorTracksShortTerm, 
     isLoading : isLoadingTracksShortTerm
-  } = useSWR('tracksShortTerm',  () => getTopTracksShortTerm(30) );
+  } = useSWR('tracksShortTerm',  () => getTopTracksShortTerm(30, spotifyToken) );
+
+  useEffect(() => {
+    setSpotifyToken(getStorageSpotifyAccessToken());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="w-10/12  md:w-8/12 lg:w-full mx-auto mb-32 

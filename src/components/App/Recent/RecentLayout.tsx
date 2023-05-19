@@ -7,8 +7,14 @@ import LoadingLayout from '@/components/Loading/LoadingLayout';
 import { IRecent } from '@/models/recent';
 import ErrorLayout from '@/components/Error/ErrorLayout';
 import useLoading from '@/hooks/useLoading';
+import { useStateStore } from '@/store/useAppStore';
+import { getStorageSpotifyAccessToken } from '@/spotifyApi/spotifyToken';
 
 const RecentLayout = () => {
+
+  /*  State */
+  const spotifyToken = getStorageSpotifyAccessToken();
+  const setSpotifyToken = useStateStore(state => state.setSpotifyToken);
 
   /* Hooks */
   const {loading} = useLoading()
@@ -18,7 +24,12 @@ const RecentLayout = () => {
     data: recentlyPlayed, 
     error : isErrorRecentlyPlayed, 
     isLoading : isLoadingRecentlyPlayed
-  } = useSWR('recentlyPlayed',  () => getRecentlyPlayed(30) );
+  } = useSWR('recentlyPlayed',  () => getRecentlyPlayed(30, spotifyToken) );
+
+  useEffect(()=>{
+    setSpotifyToken(getStorageSpotifyAccessToken());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[]);
 
   return (
     <div className='w-10/12 md:w-8/12 lg:w-full mx-auto mb-32

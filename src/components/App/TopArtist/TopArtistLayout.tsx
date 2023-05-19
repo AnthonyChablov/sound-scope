@@ -8,11 +8,14 @@ import LoadingLayout from '@/components/Loading/LoadingLayout';
 import ToggleHeader from '../ToggleHeader/ToggleHeader';
 import ErrorLayout from '@/components/Error/ErrorLayout';
 import useLoading from '@/hooks/useLoading';
+import { getStorageSpotifyAccessToken } from '@/spotifyApi/spotifyToken';
 
 const TopArtistLayout = () => {
     
     /* State */
     const toggleHeader = useStateStore(state => state.toggleHeader); // [0,1,2]
+    const spotifyToken = useStateStore(state => state.spotifyToken);
+    const setSpotifyToken = useStateStore(state => state.setSpotifyToken);
 
     /* Hooks */
     const windowWidth = useWindowWidth();
@@ -23,19 +26,19 @@ const TopArtistLayout = () => {
         data: artistsLongTerm, 
         error : isErrorArtistsLongTerm, 
         isLoading : isLoadingArtistsLongTerm
-    } = useSWR('artistsLongTerm',  () => getTopArtistsLongTerm(32) );
+    } = useSWR('artistsLongTerm',  () => getTopArtistsLongTerm(32, getStorageSpotifyAccessToken()) );
 
     const {
         data: artistsMediumTerm, 
         error : isErrorArtistsMediumTerm, 
         isLoading : isLoadingArtistsMediumTerm
-    } = useSWR('artistsMediumTerm',  () => getTopArtistsMediumTerm(32) );
+    } = useSWR('artistsMediumTerm',  () => getTopArtistsMediumTerm(32, getStorageSpotifyAccessToken()) );
 
     const {
         data: artistsShortTerm, 
         error : isErrorArtistsShortTerm, 
         isLoading : isLoadingArtistsShortTerm
-    } = useSWR('artistsShortTerm',  () => getTopArtistsShortTerm(32) );
+    } = useSWR('artistsShortTerm',  () => getTopArtistsShortTerm(32, getStorageSpotifyAccessToken()) );
 
 
     return (

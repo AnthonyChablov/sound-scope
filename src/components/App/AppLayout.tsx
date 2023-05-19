@@ -12,6 +12,7 @@ import PlaylistLayout from './Playlist/PlaylistLayout';
 import ErrorLayout from '../Error/ErrorLayout';
 import { useArtistStore } from '@/store/useArtistStore';
 import Sidebar from './Sidebar/Sidebar';
+import { getStorageSpotifyAccessToken } from '@/spotifyApi/spotifyToken';
 
 interface IAppLayout{
   mode:string
@@ -20,34 +21,41 @@ interface IAppLayout{
 const AppLayout = ({mode}:IAppLayout) => {
 
   /* State */
-  const spotifyToken = useStateStore(state => state.spotifyToken);
   const setSpotifyToken = useStateStore(state => state.setSpotifyToken);
   const artistData = useArtistStore(state => state.artistData);
+  
+  const spotifyToken = getStorageSpotifyAccessToken()
 
   /* Route */
   const router = useRouter();
+  
+  useEffect(() => {
+    setSpotifyToken(getStorageSpotifyAccessToken());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
  
   /* Fetch Data */
   const { 
     data : user, 
     error : isErrorUser, 
     isLoading : isLoadingUser 
-  } = useSWR('/api/user', getUser);
+  } = useSWR('/api/user', ()=>getUser(spotifyToken));
 
   const {
     data: playlists, 
     error : isErrorPlaylists, 
     isLoading : isLoadingPlaylists
-  } = useSWR('/api/playlists', getPlaylists);
+  } = useSWR('/api/playlists', ()=>getPlaylists(spotifyToken));
 
   const {
     data: following, 
     error : isErrorFollowing, 
     isLoading : isLoadingFollowing
-  } = useSWR('/api/playlists', getFollowing);
+  } = useSWR('/api/playlists', () => getFollowing(spotifyToken));
 
   return (
     <div className=" bg-zinc-900 h-full">
+      <Sidebar/>
       {
         mode ==='app' && (
           <div className="flex items-center justify-center flex-col" >

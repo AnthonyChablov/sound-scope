@@ -3,6 +3,7 @@ import Icons from '../Common/Icons';
 import Link from 'next/link';
 import OutlinedButton from '../Common/OutlinedButton';
 import { useRouter } from 'next/router';
+import { removeStorageSpotifyAccessToken } from '@/spotifyApi/spotifyToken';
 
 interface IErrorLayout{
     text?: string,
@@ -16,6 +17,7 @@ const ErrorLayout = ({text = 'Error something went wrong.', error} : IErrorLayou
 
   useEffect(() => {
     if(error ){
+      
       router.push('/redirect');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

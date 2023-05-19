@@ -1,13 +1,16 @@
 import axios from "axios";
-import { headers, refreshHeaders } from "./spotifyToken";
 import { ITrack } from "@/models/track";
 
 /* Api Calls */
-export async function getUser(){
+export async function getUser(token:string){
     try{
+        const headers = {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        };
         const res = await axios.get(
             'https://api.spotify.com/v1/me', 
-            { headers }
+            { headers:headers }
         );
         return res.data;
     }catch(err){
@@ -16,11 +19,15 @@ export async function getUser(){
     }
 }
 
-export async function getFollowing(){
+export async function getFollowing(token:string){
     try{
+        const headers = {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        };
         const res = await axios.get(
             'https://api.spotify.com/v1/me/following?type=artists', 
-            { headers }
+            { headers:headers }
         );
         return res.data;
     }catch(err){
@@ -31,11 +38,15 @@ export async function getFollowing(){
 
 /* Get A Users Top Tracks */
 /* short term */
-export async function getTopArtistsShortTerm(limit:number = 10) {
+export async function getTopArtistsShortTerm(limit:number = 10, token:string) {
     try{
+        const headers = {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        };
         const res = await axios.get(
             `https://api.spotify.com/v1/me/top/artists?limit=${limit}&time_range=short_term`, 
-            { headers }
+            { headers:headers }
         );
         return res.data;
     }catch(err){
@@ -44,11 +55,15 @@ export async function getTopArtistsShortTerm(limit:number = 10) {
     }
 }
 /* medium term */
-export async function getTopArtistsMediumTerm(limit:number = 10) {
+export async function getTopArtistsMediumTerm(limit:number = 10, token:string) {
     try{
+        const headers = {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        };
         const res = await axios.get(
             `https://api.spotify.com/v1/me/top/artists?limit=${limit}&time_range=medium_term`, 
-            { headers }
+            { headers:headers }
         );
         return res.data;
     }catch(err){
@@ -57,11 +72,15 @@ export async function getTopArtistsMediumTerm(limit:number = 10) {
     }
 }
 // long term
-export async function getTopArtistsLongTerm(limit:number = 10) {
+export async function getTopArtistsLongTerm(limit:number = 10, token:string) {
     try{
+        const headers = {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        };
         const res = await axios.get(
             `https://api.spotify.com/v1/me/top/artists?limit=${limit}&time_range=long_term`, 
-            { headers }
+            { headers:headers }
         );
         return res.data;
     }catch(err){
@@ -72,11 +91,15 @@ export async function getTopArtistsLongTerm(limit:number = 10) {
 
 /* Get A Users Top Tracks */
 /* short term */
-export async function getTopTracksShortTerm(limit:number = 10) {
+export async function getTopTracksShortTerm(limit:number = 10, token:string) {
     try{
+        const headers = {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        };
         const res = await axios.get(
             `https://api.spotify.com/v1/me/top/tracks?limit=${limit}&time_range=short_term`, 
-            { headers }
+            { headers:headers }
         );
         return res.data;
     }catch(err){
@@ -86,11 +109,15 @@ export async function getTopTracksShortTerm(limit:number = 10) {
 }
 
 /* medium term */
-export async function getTopTracksMediumTerm(limit:number = 10) {
+export async function getTopTracksMediumTerm(limit:number = 10, token:string) {
     try{
+        const headers = {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        };
         const res = await axios.get(
             `https://api.spotify.com/v1/me/top/tracks?limit=${limit}&time_range=medium_term`,  
-            { headers }
+            { headers:headers }
         );
         return res.data;
     }catch(err){
@@ -99,11 +126,15 @@ export async function getTopTracksMediumTerm(limit:number = 10) {
     }
 }
 /* long term */
-export async function getTopTracksLongTerm(limit : number = 10) {
+export async function getTopTracksLongTerm(limit : number = 10, token:string) {
     try{
+        const headers = {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        };
         const res = await axios.get(
             `https://api.spotify.com/v1/me/top/tracks?limit=${limit}&time_range=long_term`,  
-            { headers }
+            { headers:headers }
         );
         return res.data;
     }catch(err){
@@ -113,11 +144,15 @@ export async function getTopTracksLongTerm(limit : number = 10) {
 }
 
 /* Get Single Artist */
-export async function getSingleArtist(artistId : string) {
+export async function getSingleArtist(artistId : string, token:string) {
     try{
+        const headers = {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        };
         const res = await axios.get(
             `https://api.spotify.com/v1/artists/${artistId}`,
-            { headers }
+            { headers:headers }
         );
         return res.data;
     }catch(err){
@@ -126,11 +161,15 @@ export async function getSingleArtist(artistId : string) {
     }
 }
 
-export async function getRecentlyPlayed(limit : number = 10) {
+export async function getRecentlyPlayed(limit : number = 10, token:string) {
     try{
+        const headers = {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        };
         const res = await axios.get(
             `https://api.spotify.com/v1/me/player/recently-played?limit=${limit}`,
-            { headers }
+            { headers:headers }
         );
         return res.data;
     }catch(err){
@@ -140,11 +179,15 @@ export async function getRecentlyPlayed(limit : number = 10) {
 }
 
 /* Single Track */
-export async function getSingleTrack(trackId : string) {
+export async function getSingleTrack(trackId : string, token:string) {
     try{
+        const headers = {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        };
         const res = await axios.get(
             `https://api.spotify.com/v1/tracks/${trackId}`,
-            { headers }
+            { headers:headers }
         );
         return res.data;
     }catch(err){
@@ -153,11 +196,15 @@ export async function getSingleTrack(trackId : string) {
     }
 }
 /* Get Track Features */
-export async function getTrackFeatures(trackId : string) {
+export async function getTrackFeatures(trackId : string, token:string) {
     try{
+        const headers = {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        };
         const res = await axios.get(
             `https://api.spotify.com/v1/audio-features/${trackId}`,
-            { headers }
+            { headers:headers }
         );
         return res.data;
     }catch(err){
@@ -166,11 +213,15 @@ export async function getTrackFeatures(trackId : string) {
     }
 }
 /* Get Track Audio Analysis */
-export async function getTrackAnalysis(trackId : string) {
+export async function getTrackAnalysis(trackId : string, token:string) {
     try{
+        const headers = {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        };
         const res = await axios.get(
             `https://api.spotify.com/v1/audio-analysis/${trackId}`,
-            { headers }
+            { headers:headers }
         );
         return res.data;
     }catch(err){
@@ -180,11 +231,15 @@ export async function getTrackAnalysis(trackId : string) {
 }
 
 /* playlists */
-export async function getPlaylists(){
+export async function getPlaylists(token:string){
     try{ 
+        const headers = {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        };
         const res = await axios.get(
             `https://api.spotify.com/v1/me/playlists`, 
-            { headers }
+            { headers:headers }
         );
         return res.data;
     }catch(err){
@@ -193,9 +248,13 @@ export async function getPlaylists(){
     }
 }
 
-export async function getPlaylist(playlistId:string){
+export async function getPlaylist(playlistId:string, token:string){
     try{
-        const res = await axios.get(`https://api.spotify.com/v1/playlists/${playlistId}`, { headers });
+        const headers = {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        };
+        const res = await axios.get(`https://api.spotify.com/v1/playlists/${playlistId}`, { headers:headers });
         return res.data;
     }catch(err){
         console.log(err);
@@ -203,9 +262,13 @@ export async function getPlaylist(playlistId:string){
     }
 }
 
-export async function getPlaylistTracks(playlistId:string){
+export async function getPlaylistTracks(playlistId:string, token:string){
     try{
-        const res = await axios.get(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, { headers });
+        const headers = {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        };
+        const res = await axios.get(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, { headers:headers });
         return res.data;
     }catch(err){
         console.log(err);
@@ -214,8 +277,12 @@ export async function getPlaylistTracks(playlistId:string){
 }
 
 /* Recomendations */
-export async function getRecomendations(tracks : string){
+export async function getRecomendations(tracks : string, token:string){
     try{
+        const headers = {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        };
         const seed_tracks = tracks;
         const seed_artists = '';
         const seed_genres = '';
@@ -224,7 +291,7 @@ export async function getRecomendations(tracks : string){
                 seed_tracks}&seed_artists=${
                 seed_artists}&seed_genres=${
                 seed_genres}`, 
-            { headers });
+            { headers:headers });
         return res.data;
     }catch(err){
         console.log(err);
@@ -234,11 +301,15 @@ export async function getRecomendations(tracks : string){
 
 /* Create */
 // * Create a Playlist (The playlist will be empty until you add tracks)
-export const createPlaylist = async(userId:string | undefined, name:string | undefined )=>{
+export const createPlaylist = async(userId:string | undefined, name:string | undefined, token:string )=>{
     try{
+        const headers = {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        };
         const url = `https://api.spotify.com/v1/users/${userId}/playlists`;
         const data = JSON.stringify({ name });
-        const res = await axios({ method: 'post', url, headers, data });
+        const res = await axios({ method: 'post', url, headers:headers, data });
         return res.data;
     }catch(err){
         console.log(err);
@@ -246,24 +317,17 @@ export const createPlaylist = async(userId:string | undefined, name:string | und
     }
 }
 
-export const addTracksToPlaylist = async (playlistId : string | null, uris : string | undefined)=>{
+export const addTracksToPlaylist = async (playlistId : string | null, uris : string | undefined, token:string)=>{
     try{
+        const headers = {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        };
         const url = `https://api.spotify.com/v1/playlists/${playlistId}/tracks?uris=${uris ? uris : ''}`;
-        const res = await axios({ method: 'post', url, headers });
+        const res = await axios({ method: 'post', url, headers:headers });
         return res.data;
     }catch(err){
         console.log(err);
         throw err;
     }
 }
-
-/*  */
-export async function createPlaylistOnSave(){
-
-}
-
-/* export const createPlaylist = (userId, name) => {
-    const url = `https://api.spotify.com/v1/users/${userId}/playlists`;
-    const data = JSON.stringify({ name });
-    return axios({ method: 'post', url, headers, data });
-  }; */

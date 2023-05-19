@@ -8,15 +8,19 @@ import { IPlaylist } from '@/models/playlist';
 import useWindowWidth from '@/hooks/useWindowWidth';
 import ErrorLayout from '@/components/Error/ErrorLayout';
 import useLoading from '@/hooks/useLoading';
+import { useStateStore } from '@/store/useAppStore';
+import { getStorageSpotifyAccessToken } from '@/spotifyApi/spotifyToken';
 
 const PlaylistLayout = () => {
+
+  const spotifyToken = getStorageSpotifyAccessToken();
 
   /* Fetch Data */
   const {
     data: playlists, 
     error : isErrorPlaylist, 
     isLoading : isLoadingPlaylist
-  } = useSWR('playlists',  () => getPlaylists() );
+  } = useSWR('playlists',  () => getPlaylists(spotifyToken) );
 
   /* Hooks */
   const windowWidth = useWindowWidth();

@@ -12,8 +12,14 @@ import ErrorLayout from '@/components/Error/ErrorLayout';
 import LoadingLayout from '@/components/Loading/LoadingLayout';
 import { headerVariants, subHeaderVariants } from '@/variant';
 import useLoading from '@/hooks/useLoading';
+import { useStateStore } from '@/store/useAppStore';
+import { getStorageSpotifyAccessToken } from '@/spotifyApi/spotifyToken';
 
 const SingleArtistLayout = () => {
+
+  /* State */
+  const spotifyToken = getStorageSpotifyAccessToken();
+  const setSpotifyToken = useStateStore(state => state.setSpotifyToken);
 
   /* Hooks */
   const router = useRouter();
@@ -26,7 +32,12 @@ const SingleArtistLayout = () => {
     data: singleArtist, 
     error : isErrorSingleArtist, 
     isLoading: isLoadingSingleArtist,
-  } = useSWR(artistId ? 'singleArtist' : null, ()=> getSingleArtist(String(artistId)));
+  } = useSWR(artistId ? 'singleArtist' : null, ()=> getSingleArtist(String(artistId),spotifyToken));
+
+  useEffect(()=>{
+      setSpotifyToken(getStorageSpotifyAccessToken());
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[]);
 
   return (
     <div>

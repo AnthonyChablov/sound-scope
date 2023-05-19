@@ -9,22 +9,15 @@ import { ITrack } from '@/models/track';
 import TrackCard from '../Cards/TrackCard';
 import { ITrackLongTerm } from '@/models/tracks';
 import useLoading from '@/hooks/useLoading';
-import OutlinedButton from '@/components/Common/OutlinedButton'; 
-import ContainedButton from '@/components/Common/ContainedButton';
-import { createPlaylist, addTracksToPlaylist } from '@/spotifyApi/spotifyApi';
+import { getStorageSpotifyAccessToken } from '@/spotifyApi/spotifyToken';
 import { useStateStore } from '@/store/useAppStore';
 
 const RecommendationsLayout = () => {
 
-    /* State  */
-    const [trackUris, setTrackUris] = useState<string|undefined>(undefined);
-    const [displayOutlinedButton, setDisplayOutlinedButton] = useState<boolean>(false);
-    const setToggleHeader = useStateStore(state => state.setToggleHeader);// [0,1,2]
-    const setCreatedPlaylist = useStateStore(state => state.setCreatedPlaylist);
-    const createdPlaylist = useStateStore(state => state.createdPlaylist);
-    const [recommendedPlaylistId , setRecommendedPlaylistId] = useState<string|null>(null);
-    const [playlistLink, setPlaylistLink] = useState<string>('');
-    
+    /*  State */
+    const spotifyToken = getStorageSpotifyAccessToken();
+    const setSpotifyToken = useStateStore(state => state.setSpotifyToken);
+   
     /* Hooks */
     const router = useRouter();
     const playlistId = router.query.playlistId;
@@ -41,7 +34,7 @@ const RecommendationsLayout = () => {
         data: playlist,
         error : isErrorPlaylist,
         isLoading : isLoadingPlaylist
-    } = useSWR(playlistId ? 'singlePlaylist' : null , () => getPlaylist(String(playlistId)));
+    } = useSWR(playlistId ? 'singlePlaylist' : null , () => getPlaylist(String(playlistId), spotifyToken));
 
     /* Extract Seeds from Data */
     const seeds = ( playlist?.tracks?.items.length === 0 )
@@ -52,7 +45,7 @@ const RecommendationsLayout = () => {
         data: recommendations,
         error : isErrorRecommendations,
         isLoading : isLoadingRecommendations
-    } = useSWR(seeds ? 'recommendations' : null , () => getRecomendations(seeds),{
+    } = useSWR(seeds ? 'recommendations' : null , () => getRecomendations(seeds, spotifyToken),{
         revalidateOnFocus:false
     });
 
@@ -60,6 +53,11 @@ const RecommendationsLayout = () => {
     const recommendedTrackUris = recommendations?.tracks
         .map((track:ITrackLongTerm)=>{return track.uri})
         .join(',');
+
+    useEffect(()=>{
+        setSpotifyToken(getStorageSpotifyAccessToken());
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[]);
 
     return (
         <div className='w-10/12  md:w-8/12 lg:w-full mx-auto mb-32 

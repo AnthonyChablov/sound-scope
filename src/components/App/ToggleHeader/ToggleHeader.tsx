@@ -28,8 +28,6 @@ const ToggleHeader = ({header, mode, userId, playlistName, recommendedTrackUris 
     const [displayOutlinedButton, setDisplayOutlinedButton] = useState<boolean>(false);
     const [playlistLink, setPlaylistLink] = useState<string>(''); /* upon playlist creation save link here */
 
-    const [i, setI] = useState(0);
-
     /* Token */
     const token = getStorageSpotifyAccessToken() ?? '';
 
@@ -50,11 +48,6 @@ const ToggleHeader = ({header, mode, userId, playlistName, recommendedTrackUris 
     const debouncedCreatePlaylistOnSave = debounce(async () => {
         await createPlaylistOnSave()
     }, 500);
-
-    function onClickHandeller(index:number){
-        setToggleHeader(index);
-        setI(index);
-    }
 
     useEffect(()=>{
         () => setDisplayOutlinedButton(false);
@@ -81,27 +74,19 @@ const ToggleHeader = ({header, mode, userId, playlistName, recommendedTrackUris 
                             flex-col space-y-3 xs:space-y-0 xs:space-x-5 xs:flex-row
                         `}
                         >
-                            
-                                
-                                <div  className={` cursor-pointer capitalize text-[1rem]
-                                    ${toggleHeader === i && 'underline text-white'}` }
-                                    onClick={ ()=> onClickHandeller(0) }
-                                >
-                                    {'all time'}
-                                </div>
-                                <div  className={` cursor-pointer capitalize text-[1rem]
-                                    ${toggleHeader === i && 'underline text-white'}` }
-                                    onClick={ ()=> onClickHandeller(1) }
-                                >
-                                    {'last 6 months'}
-                                </div>
-                                <div  className={` cursor-pointer capitalize text-[1rem]
-                                    ${toggleHeader === i && 'underline text-white'}` }
-                                    onClick={ ()=> onClickHandeller(2) }
-                                >
-                                    {'last 4 weeks'}
-                                </div>
-                            
+                            {
+                                ['all time', 'last 6 months', 'last 4 weeks'].map((elem, i)=>{
+                                    return (
+                                        <div key={i} className={` cursor-pointer capitalize text-[1rem]
+                                            ${toggleHeader === i && 'underline text-white'}` }
+                                            onClick={ ()=> setToggleHeader(i) }
+                                            
+                                        >
+                                            {elem}
+                                        </div>
+                                    )
+                                })
+                            }
                         </div>
                     )
                 )

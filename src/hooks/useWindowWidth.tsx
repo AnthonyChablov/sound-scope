@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 export default function useWindowWidth() {
 
-  const [width, setWidth] = useState(1000);
+  const [width, setWidth] = useState<number | null>(null);
   
   useEffect(() => {
 
@@ -10,7 +10,7 @@ export default function useWindowWidth() {
         setWidth(window.innerWidth);
       };
 
-      handleResize();
+      handleResize(); // Initial width
 
       window.addEventListener('resize', handleResize);
 

@@ -16,7 +16,13 @@ const Sidebar = () => {
   const windowWidth = useWindowWidth();
   
   const drawerWidth = 'fit';
+  const isLoading = windowWidth === null;
   const tabletDisplay = windowWidth >= 768;
+  
+  if (isLoading) {
+    // Render a fallback layout or a loading indicator
+    return <div>Loading...</div>;
+  }
 
   return (
     <Drawer

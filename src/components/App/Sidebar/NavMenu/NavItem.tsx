@@ -28,11 +28,11 @@ const NavItem = ({icon, title, isActive , route}:INavItem) => {
             ${!isActive 
                 ? responsiveDisplay 
                     ? 'pl-1' 
-                    : 'pt-0' 
+                    : 'pt-1' 
                 : ''
             }
         `}>
-            <Button className='flex flex-col items-center py-4 px-4 w-full h-full cursor-pointer ' 
+            <Button className={`flex flex-col items-center py-4 px-4 w-full h-full cursor-pointer `}
                 sx={{
                     "& .MuiTouchRipple-child" : {
                         'background-color': '#ffffff'

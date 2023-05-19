@@ -28,18 +28,20 @@ const ToggleHeader = ({header, mode, userId, playlistName, recommendedTrackUris 
     const [displayOutlinedButton, setDisplayOutlinedButton] = useState<boolean>(false);
     const [playlistLink, setPlaylistLink] = useState<string>(''); /* upon playlist creation save link here */
 
-    const spotifyToken = getStorageSpotifyAccessToken();
+    /* Token */
+    const token = getStorageSpotifyAccessToken() ?? '';
+
     /* Hooks */
-    const windowWidth = useWindowWidth();
+    const windowWidth = useWindowWidth() ;
 
     async function createPlaylistOnSave(){
-        const res = await createPlaylist(userId, header, spotifyToken);
+        const res = await createPlaylist(userId, header, token );
         if(res){
             setDisplayOutlinedButton(true);
             setPlaylistLink(res?.external_urls?.spotify);
         }
         if(res){
-            await addTracksToPlaylist(res?.id, recommendedTrackUris, spotifyToken);
+            await addTracksToPlaylist(res?.id, recommendedTrackUris, token ?? '');
         }
     }
 

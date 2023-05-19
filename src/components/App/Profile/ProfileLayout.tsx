@@ -38,7 +38,7 @@ const ProfileLayout = ({
 }: IProfile) => {
 
   /* State */
-  const spotifyToken = getStorageSpotifyAccessToken();
+  const spotifyToken = getStorageSpotifyAccessToken() ?? '';
   const setSpotifyToken = useStateStore(state => state.setSpotifyToken);
   const artistData = useArtistStore(state => state.artistData);
   const setArtistData = useArtistStore(state => state.setArtistData);

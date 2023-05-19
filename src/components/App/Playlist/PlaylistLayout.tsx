@@ -13,7 +13,8 @@ import { getStorageSpotifyAccessToken } from '@/spotifyApi/spotifyToken';
 
 const PlaylistLayout = () => {
 
-  const spotifyToken = getStorageSpotifyAccessToken();
+  /* Token from local storage */
+  const spotifyToken = getStorageSpotifyAccessToken() ?? '';
 
   /* Fetch Data */
   const {

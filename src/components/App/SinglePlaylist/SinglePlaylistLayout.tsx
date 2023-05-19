@@ -17,8 +17,7 @@ import { getStorageSpotifyAccessToken } from '@/spotifyApi/spotifyToken';
 const SinglePlaylistLayout = () => {
 
     /* State */
-    const spotifyToken = getStorageSpotifyAccessToken();
-    const setSpotifyToken = useStateStore(state => state.setSpotifyToken);
+    const spotifyToken = getStorageSpotifyAccessToken() ?? '';
 
     /* Hooks */
     const {loading} = useLoading();
@@ -32,11 +31,6 @@ const SinglePlaylistLayout = () => {
         error : isErrorPlaylist,
         isLoading : isLoadingPlaylist
     } = useSWR(playlistId ? 'singlePlaylist' : null,  () => getPlaylist(String(playlistId),spotifyToken));
-
-    useEffect(()=>{
-        setSpotifyToken(getStorageSpotifyAccessToken());
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[]);
 
     return (
         <>

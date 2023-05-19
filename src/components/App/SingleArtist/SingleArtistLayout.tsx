@@ -18,8 +18,7 @@ import { getStorageSpotifyAccessToken } from '@/spotifyApi/spotifyToken';
 const SingleArtistLayout = () => {
 
   /* State */
-  const spotifyToken = getStorageSpotifyAccessToken();
-  const setSpotifyToken = useStateStore(state => state.setSpotifyToken);
+  const spotifyToken = getStorageSpotifyAccessToken() ?? '';
 
   /* Hooks */
   const router = useRouter();
@@ -33,11 +32,6 @@ const SingleArtistLayout = () => {
     error : isErrorSingleArtist, 
     isLoading: isLoadingSingleArtist,
   } = useSWR(artistId ? 'singleArtist' : null, ()=> getSingleArtist(String(artistId),spotifyToken));
-
-  useEffect(()=>{
-      setSpotifyToken(getStorageSpotifyAccessToken());
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[]);
 
   return (
     <div>

@@ -32,20 +32,19 @@ const NavItem = ({icon, title, isActive , route}:INavItem) => {
                 : ''
             }
         `}>
-            <a href={route}>
-                <Button className='flex flex-col items-center  py-4 w-full h-full' 
-                   sx={{
-                        '.MuiTouchRipple-child' : {
-                            'background-color': '#a1a1aa'
-                        }
-                   }}
-                >
-                    <Icons type={icon} size={iconSize} />
-                    <p className='text-xs font-bold pt-2 capitalize text-white'>
-                        {title}
-                    </p>
-                </Button>
-            </a>
+            <Button className='flex flex-col items-center  py-4 w-full h-full' 
+                sx={{
+                    '.MuiTouchRipple-child' : {
+                        'background-color': '#a1a1aa'
+                    }
+                }}
+                href={route}
+            >
+                <Icons type={icon} size={iconSize} />
+                <p className='text-xs font-bold pt-2 capitalize text-white'>
+                    {title}
+                </p>
+            </Button>
         </li>
     )
 }

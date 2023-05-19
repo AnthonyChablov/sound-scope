@@ -16,11 +16,11 @@ const TopTrack = () => {
 
   /* state */
   const toggleHeader = useStateStore(state => state.toggleHeader); // [0,1,2]
-  const setToggleHeader = useStateStore(state => state.setToggleHeader);
-  
-  const setSpotifyToken = useStateStore(state => state.setSpotifyToken);
 
-  const spotifyToken = getStorageSpotifyAccessToken()
+  /* Token */
+  const setSpotifyToken = useStateStore(state => state.setSpotifyToken) ;
+
+  const spotifyToken = getStorageSpotifyAccessToken() ?? '';
 
   /* router */
   const router = useRouter();
@@ -31,27 +31,22 @@ const TopTrack = () => {
     data: tracksLongTerm, 
     error : isErrortracksLongTerm, 
     isLoading : isLoadingTracksLongTerm
-  } = useSWR('tracksLongTerm',  () => getTopTracksLongTerm(30, spotifyToken) );
+  } = useSWR('tracksLongTerm',  () => getTopTracksLongTerm(30, spotifyToken ) );
 
   const {
     data: tracksMediumTerm, 
     error : isErrorTracksMediumTerm, 
-    isLoading : isLoadingTracksMediumTerm
-  } = useSWR('tracksMediumTerm',  () => getTopTracksMediumTerm(30, spotifyToken) );
+    isLoading : isLoadingTracksMediumTerm 
+  } = useSWR('tracksMediumTerm',  () => getTopTracksMediumTerm(30, spotifyToken ) );
 
   const {
     data: tracksShortTerm, 
     error : isErrorTracksShortTerm, 
     isLoading : isLoadingTracksShortTerm
-  } = useSWR('tracksShortTerm',  () => getTopTracksShortTerm(30, spotifyToken) );
-
-  useEffect(() => {
-    setSpotifyToken(getStorageSpotifyAccessToken());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  } = useSWR('tracksShortTerm',  () => getTopTracksShortTerm(30, spotifyToken ) );
 
   return (
-    <div className="w-10/12  md:w-8/12 lg:w-full mx-auto mb-32 
+    <div className="w-10/12  md:w-8/12 lg:w-9/12 xl:w-9/12 mx-auto mb-32 
       md:max-w-xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl">
       <div className="space-y-3 mt-11 ">
         {/* Error */}

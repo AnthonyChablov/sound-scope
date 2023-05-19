@@ -13,7 +13,7 @@ import { getStorageSpotifyAccessToken } from '@/spotifyApi/spotifyToken';
 const RecentLayout = () => {
 
   /*  State */
-  const spotifyToken = getStorageSpotifyAccessToken();
+  const spotifyToken = getStorageSpotifyAccessToken() ?? '';
   const setSpotifyToken = useStateStore(state => state.setSpotifyToken);
 
   /* Hooks */

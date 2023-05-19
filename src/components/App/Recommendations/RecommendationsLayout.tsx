@@ -15,7 +15,7 @@ import { useStateStore } from '@/store/useAppStore';
 const RecommendationsLayout = () => {
 
     /*  State */
-    const spotifyToken = getStorageSpotifyAccessToken();
+    const spotifyToken = getStorageSpotifyAccessToken() ?? '';
     const setSpotifyToken = useStateStore(state => state.setSpotifyToken);
    
     /* Hooks */
@@ -28,7 +28,7 @@ const RecommendationsLayout = () => {
         data : user, 
         error : isErrorUser, 
         isLoading : isLoadingUser 
-    } = useSWR('/api/user', ()=>getUser(spotifyToken));
+    } = useSWR('/api/user', ()=>getUser(spotifyToken ));
 
     const {
         data: playlist,

@@ -20,38 +20,27 @@ interface IAppLayout{
 
 const AppLayout = ({mode}:IAppLayout) => {
 
-  /* State */
-  const setSpotifyToken = useStateStore(state => state.setSpotifyToken);
-  const artistData = useArtistStore(state => state.artistData);
-  
-  const spotifyToken = getStorageSpotifyAccessToken()
+  /* Token from local storage */
+  const spotifyToken = getStorageSpotifyAccessToken() ?? '';
 
-  /* Route */
-  const router = useRouter();
-  
-  useEffect(() => {
-    setSpotifyToken(getStorageSpotifyAccessToken());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
- 
   /* Fetch Data */
   const { 
     data : user, 
     error : isErrorUser, 
     isLoading : isLoadingUser 
-  } = useSWR('/api/user', ()=>getUser(spotifyToken));
+  } = useSWR('/api/user', ()=>getUser(spotifyToken ));
 
   const {
     data: playlists, 
     error : isErrorPlaylists, 
     isLoading : isLoadingPlaylists
-  } = useSWR('/api/playlists', ()=>getPlaylists(spotifyToken));
+  } = useSWR('/api/playlists', ()=>getPlaylists(spotifyToken ));
 
   const {
     data: following, 
     error : isErrorFollowing, 
     isLoading : isLoadingFollowing
-  } = useSWR('/api/playlists', () => getFollowing(spotifyToken));
+  } = useSWR('/api/playlists', () => getFollowing(spotifyToken ));
 
   return (
     <div className=" bg-zinc-900 h-full">

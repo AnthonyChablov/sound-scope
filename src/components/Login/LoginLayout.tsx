@@ -23,17 +23,34 @@ const LoginLayout = () => {
   /* Set Access Token and redirect */
   useEffect(() => {
     
-    const hash = window.location.hash;
-    let token = getStorageSpotifyAccessToken();
+    const hash = window.location.hash;  // get token from hash params of url
+    let token = getStorageSpotifyAccessToken(); // get token from local storage
 
-    if(!token && hash){
-      token = hash?.substring(1)?.split("&")?.find(elem => elem.startsWith('access_token'))?.split('=')[1] ?? null;
+    if (token && token?.length <= 2) { 
+      // Remove the token
+      removeStorageSpotifyAccessToken();
+      token = null;
+    } 
+    else if(!token && hash) {
+      token = hash
+        ?.substring(1)
+        ?.split("&")
+        ?.find(elem => elem
+          .startsWith('access_token'))
+        ?.split('=')[1] 
+          ?? null;
       setSpotifyToken(token);
       setStorageSpotifyAccessToken(spotifyToken);
-      router.push('/app')
+      router.push('/app'); 
     }
 
-    console.log(spotifyToken);
+    return () => {
+      // Cleanup: Remove the token from storage if it exists on unmount
+      if (token && token?.length <= 2) {
+        removeStorageSpotifyAccessToken();
+      }
+    };
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [spotifyToken]);
 

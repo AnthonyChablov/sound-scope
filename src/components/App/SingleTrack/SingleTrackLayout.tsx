@@ -21,12 +21,9 @@ import { useStateStore } from '@/store/useAppStore';
 import { getStorageSpotifyAccessToken } from '@/spotifyApi/spotifyToken';
 
 const SingleTrackLayout = () => {
-
-  /* State */
   
-  const setSpotifyToken = useStateStore(state => state.setSpotifyToken);
-
-  const spotifyToken = getStorageSpotifyAccessToken();
+  /* Token */
+  const spotifyToken = getStorageSpotifyAccessToken() ?? '';
   
   /* Hooks */
   const router = useRouter();
@@ -53,10 +50,6 @@ const SingleTrackLayout = () => {
     isLoading: isLoadingTrackAnalysis,
   } = useSWR( trackId ? 'trackAnalysis' : null, ()=> getTrackAnalysis(String(trackId), spotifyToken));
 
-  useEffect(() => {
-      setSpotifyToken(getStorageSpotifyAccessToken());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <>

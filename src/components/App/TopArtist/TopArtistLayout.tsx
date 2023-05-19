@@ -14,8 +14,9 @@ const TopArtistLayout = () => {
     
     /* State */
     const toggleHeader = useStateStore(state => state.toggleHeader); // [0,1,2]
-    const spotifyToken = useStateStore(state => state.spotifyToken);
-    const setSpotifyToken = useStateStore(state => state.setSpotifyToken);
+    
+    /* Token from local storage */
+    const spotifyToken = getStorageSpotifyAccessToken() ?? '';
 
     /* Hooks */
     const windowWidth = useWindowWidth();
@@ -26,19 +27,19 @@ const TopArtistLayout = () => {
         data: artistsLongTerm, 
         error : isErrorArtistsLongTerm, 
         isLoading : isLoadingArtistsLongTerm
-    } = useSWR('artistsLongTerm',  () => getTopArtistsLongTerm(32, getStorageSpotifyAccessToken()) );
+    } = useSWR('artistsLongTerm',  () => getTopArtistsLongTerm(32, spotifyToken) );
 
     const {
         data: artistsMediumTerm, 
         error : isErrorArtistsMediumTerm, 
         isLoading : isLoadingArtistsMediumTerm
-    } = useSWR('artistsMediumTerm',  () => getTopArtistsMediumTerm(32, getStorageSpotifyAccessToken()) );
+    } = useSWR('artistsMediumTerm',  () => getTopArtistsMediumTerm(32, spotifyToken) );
 
     const {
         data: artistsShortTerm, 
         error : isErrorArtistsShortTerm, 
         isLoading : isLoadingArtistsShortTerm
-    } = useSWR('artistsShortTerm',  () => getTopArtistsShortTerm(32, getStorageSpotifyAccessToken()) );
+    } = useSWR('artistsShortTerm',  () => getTopArtistsShortTerm(32, spotifyToken) );
 
 
     return (

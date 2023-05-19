@@ -40,7 +40,7 @@ const LoginLayout = () => {
     } 
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [spotifyToken]);
 
   return (
     <div className=' h-screen opacity-100 bg-fuchsia-700'>

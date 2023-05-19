@@ -28,7 +28,7 @@ const RecommendationsLayout = () => {
         data : user, 
         error : isErrorUser, 
         isLoading : isLoadingUser 
-    } = useSWR('/api/user', getUser);
+    } = useSWR('/api/user', ()=>getUser(spotifyToken));
 
     const {
         data: playlist,

@@ -46,7 +46,7 @@ const Sidebar = () => {
             { tabletDisplay && (
                 <Link href={'/app'}>
                   <IconButton>
-                    <Icons type="spotify" size={iconSize}/>
+                    <Icons type="music" size={iconSize}/>
                   </IconButton> 
                 </Link>
               ) 

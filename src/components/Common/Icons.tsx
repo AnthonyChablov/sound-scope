@@ -12,9 +12,9 @@ import {
     AiOutlineHistory
 } 
 from 'react-icons/ai';
-import { GiMicrophone,} from 'react-icons/gi';
+import { GiMicrophone, GiConcentricCrescents} from 'react-icons/gi';
 import {GrCircleInformation } from 'react-icons/gr';
-import { BsMusicNoteBeamed} from "react-icons/bs";
+import { BsMusicNoteBeamed, BsMusicPlayerFill} from "react-icons/bs";
 import {RiPlayListFill} from "react-icons/ri";
 import {MdError} from "react-icons/md";
 
@@ -39,6 +39,7 @@ const Icons = ({type, size}:IIcons) => {
           recent: <AiOutlineHistory size={size}/>,
           playlists: <RiPlayListFill size={size}/>,
           info: <GrCircleInformation size={size}/>,
+          music: <GiConcentricCrescents size={size} color='#1db954'/>
         }[type]
     }</div>
   )

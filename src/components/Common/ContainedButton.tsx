@@ -12,6 +12,7 @@ const ContainedButton = ({ text}:IContainedButton) => {
         className='rounded-full font-bold 
           px-7 py-3 text-slate-200 bg-green-600 hover:bg-green-500 text-xs'
         variant='contained'
+        disableTouchRipple
     > 
         {text}
     </Button>

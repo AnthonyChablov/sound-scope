@@ -17,8 +17,8 @@ const Navbar = () => {
                 <div className="w-fit">
                     <Link href={'/'}>
                         <div className="flex items-center ">
-                            <Icons type='spotify' size={40}></Icons>
-                            <p className='text-xl ml-3 font-semibold'>Spotify Viewer</p>
+                            <Icons type='music' size={40}></Icons>
+                            <p className='text-xl ml-4 font-semibold'>Sound Scope</p>
                         </div>
                     </Link>
                 </div>

@@ -23,10 +23,10 @@ const RedirectLayout = () => {
         <div className="flex flex-col items-center justify-center">
             <div className="flex justify-center items-center mb-14">
                 <Icons 
-                    type="spotify" 
+                    type="music" 
                     size={50} 
                 />
-                <h1 className='text-slate-100 text-bold text-2xl ml-6'>Spotify Profile Viewer</h1>
+                <h1 className='text-slate-100 text-bold text-2xl ml-6'>Sound Scope</h1>
             </div>
             <ScaleLoader color="#1db954" />
             <p className='text-slate-100 text-semibold text-lg mt-14'>Please wait while we redirect you.</p>

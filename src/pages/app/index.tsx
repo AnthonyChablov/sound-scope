@@ -3,10 +3,7 @@ import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import AppLayout from '@/components/App/AppLayout';
 
-const Sidebar = dynamic(
-  () => import('@/components/App/Sidebar/Sidebar'),
-  { ssr: false }
-)
+
 
 const app = () => {
 

@@ -79,7 +79,7 @@ const ToggleHeader = ({header, mode, userId, playlistName, recommendedTrackUris 
                                     return (
                                         <div key={i} className={` cursor-pointer capitalize text-[1rem]
                                             ${toggleHeader === i && 'underline text-white'}` }
-                                            onClick={ ()=> setToggleHeader(i) }
+                                            onMouseDown={ ()=> setToggleHeader(i) }
                                             
                                         >
                                             {elem}

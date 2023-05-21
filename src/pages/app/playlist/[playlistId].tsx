@@ -1,5 +1,6 @@
-import React from 'react';
+import {ReactNode} from 'react';
 import SinglePlaylistLayout from '@/components/App/SinglePlaylist/SinglePlaylistLayout';
+import Sidebar from '@/components/App/Sidebar/Sidebar';
 
 const playlist = () => {
   return (
@@ -10,3 +11,11 @@ const playlist = () => {
 }
 
 export default playlist;
+
+playlist.getLayout = function ApplicationLayout(page:ReactNode){
+  return (
+    <>
+      {page}
+    </>
+  )
+}

@@ -45,4 +45,4 @@ const Icons = ({type, size}:IIcons) => {
   )
 }
 
-export default Icons
+export default Icons;

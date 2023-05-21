@@ -1,8 +1,12 @@
-import React from 'react';
+import React ,{ReactNode} from 'react';
+import dynamic from 'next/dynamic';
 import Head from 'next/head';
-import Sidebar from '@/components/App/Sidebar/Sidebar';
 import AppLayout from '@/components/App/AppLayout';
 
+const Sidebar = dynamic(
+  () => import('@/components/App/Sidebar/Sidebar'),
+  { ssr: false }
+)
 
 const app = () => {
 
@@ -11,13 +15,19 @@ const app = () => {
       <Head>
         <title key={'title'}>App</title>
       </Head>
-      
       <AppLayout mode={'app'}/>
       <p></p>
     </section>
   )
 }
 
-
-
 export default app;
+
+app.getLayout = function ApplicationLayout(page:ReactNode){
+  return (
+    <>
+      {page}
+      
+    </>
+  )
+}

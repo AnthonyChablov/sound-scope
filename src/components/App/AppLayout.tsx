@@ -40,11 +40,10 @@ const AppLayout = ({mode}:IAppLayout) => {
     data: following, 
     error : isErrorFollowing, 
     isLoading : isLoadingFollowing
-  } = useSWR('/api/playlists', () => getFollowing(spotifyToken ));
+  } = useSWR('/api/playlists', () => getFollowing(spotifyToken));
 
   return (
     <div className=" bg-zinc-900 h-full">
-      <Sidebar/>
       {
         mode ==='app' && (
           <div className="flex items-center justify-center flex-col" >

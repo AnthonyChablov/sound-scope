@@ -1,6 +1,7 @@
-import React from 'react';
+import {ReactNode} from 'react';
 import SingleTrackLayout from '@/components/App/SingleTrack/SingleTrackLayout';
 import Script from 'next/script';
+import Sidebar from '@/components/App/Sidebar/Sidebar';
 
 const track = () => {
   return (
@@ -11,4 +12,13 @@ const track = () => {
   )
 }
 
-export default track
+export default track;
+
+track.getLayout = function ApplicationLayout(page:ReactNode){
+  return (
+    <>
+      {page}
+      
+    </>
+  )
+}

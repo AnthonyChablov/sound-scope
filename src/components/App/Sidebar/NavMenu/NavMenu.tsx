@@ -37,7 +37,7 @@ const NavMenu = () => {
     const router = useRouter();
 
     return (
-        <ul className={`h-fit w-full flex max-w-lg justify-between ${windowWidth > 768 ? 'flex-col items-center w-full' :'flex-row '} 
+        <ul className={`h-fit w-full flex max-w-lg justify-between ${windowWidth && windowWidth > 768 ? 'flex-col items-center w-full' :'flex-row '} 
         `}>
             {
                 data.map((item, i)=>{

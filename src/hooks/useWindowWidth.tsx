@@ -2,24 +2,28 @@ import { useState, useEffect } from "react";
 
 export default function useWindowWidth() {
 
-  const [width, setWidth] = useState<number | null>(null);
-  
+  const [width, setWidth] = useState<number>(0);
+
   useEffect(() => {
+    let isMounted = true;
 
-      function handleResize(){
+    const handleResize = () => {
+      if (isMounted) {
         setWidth(window.innerWidth);
-      };
+      }
+    };
 
+    if (typeof window !== "undefined") {
       handleResize(); // Initial width
 
-      window.addEventListener('resize', handleResize);
+      window.addEventListener("resize", handleResize);
 
-      return () => window.removeEventListener('resize', handleResize);
-      // eslint-disable-next-line react-hooks/exhaustive-deps
+      return () => {
+        isMounted = false;
+        window.removeEventListener("resize", handleResize);
+      };
+    }
   }, []);
 
-  
   return width;
- 
-  
 }

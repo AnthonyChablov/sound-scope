@@ -1,25 +1,23 @@
 import useWindowWidth from "@/hooks/useWindowWidth";
 import Icons from "@/components/Common/Icons";
-import { motion } from "framer-motion";
 import Drawer from '@mui/material/Drawer';
 import { useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import NavMenu from "./NavMenu/NavMenu";
 import Link from "next/link";
-import { sideBarVariants } from "@/variant";
 
 const iconSize = 37.5;
 
 const Sidebar = () => {
 
-  const [toggleSideBar, setToggleSideBar] = useState(true);
+  const [toggleSideBar, setToggleSideBar] = useState<boolean>(true);
   const windowWidth = useWindowWidth();
   
   const drawerWidth = 'fit';
   const isLoading = windowWidth === null;
   const tabletDisplay = windowWidth >= 768;
   
- if (isLoading) {
+  if (isLoading) {
     // Render a fallback layout or a loading indicator
     return <div>Loading...</div>;
   }

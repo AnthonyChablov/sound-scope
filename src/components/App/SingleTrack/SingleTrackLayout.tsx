@@ -28,7 +28,8 @@ const SingleTrackLayout = () => {
   /* Hooks */
   const router = useRouter();
   const trackId = router.query.trackId;
-  const width = useWindowWidth();
+  const windowWidth = useWindowWidth() ;
+  const width = windowWidth && windowWidth;
   const {loading} = useLoading();
 
   /* Fetch Data */
@@ -65,7 +66,7 @@ const SingleTrackLayout = () => {
                 >
                   <div className={`mt-10`}>
                     <div className={`flex 
-                      ${ width >= 650 ? 'flex-row items-start ' : 'flex-col'}`
+                      ${  width && width >= 650 ? 'flex-row items-start ' : 'flex-col'}`
                     }>
                       {/* Album Art */}
                       <motion.div className={`flex flex-row justify-center `}
@@ -76,7 +77,7 @@ const SingleTrackLayout = () => {
                         <Image 
                           src={singleTrack?.album.images[0].url} 
                           height={50} 
-                          width={width >= 800 ? 450 : 250} 
+                          width={width && width >= 800 ? 450 : 250} 
                           loading="lazy"
                           unoptimized={true}
                           alt='album-cover'
@@ -84,13 +85,13 @@ const SingleTrackLayout = () => {
                       </motion.div>
                       {/* album info display */}
                       <motion.div className={`w-9/12 
-                        ${ width >= 650 ? 'text-left ml-12' : 'text-center mx-auto mt-8'}`}
+                        ${ width && width >= 650 ? 'text-left ml-12' : 'text-center mx-auto mt-8'}`}
                         variants={subHeaderVariants}
                         initial={'hidden'}
                         animate={'visible'}
                       >
                         <h1 className={`text-slate-100 font-bold text-3xl 
-                          ${width > 500 ? 'mt-0' : ''}`
+                          ${width && width > 500 ? 'mt-0' : ''}`
                         }>
                           {singleTrack?.name}
                         </h1>

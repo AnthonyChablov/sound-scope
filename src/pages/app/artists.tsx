@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ReactNode} from 'react';
 import Sidebar from '@/components/App/Sidebar/Sidebar';
 import Head from 'next/head';
 import AppLayout from '@/components/App/AppLayout';
@@ -15,4 +15,13 @@ const artists = () => {
   )
 }
 
-export default artists
+export default artists;
+
+artists.getLayout = function ApplicationLayout(page:ReactNode){
+  return (
+    <>
+      {page}
+      
+    </>
+  )
+}

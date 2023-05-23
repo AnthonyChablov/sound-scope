@@ -115,7 +115,7 @@ const ProfileLayout = ({
                     >
                       {/* Profile Image */}
                       <div className="flex justify-center">
-                        <div className="rounded-full overflow-hidden mb-10">
+                        <div className=" mb-10">
                           <Image 
                             className="w-full h-auto" 
                             height={150} 

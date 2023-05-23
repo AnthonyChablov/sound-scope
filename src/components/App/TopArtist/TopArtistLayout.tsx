@@ -3,12 +3,14 @@ import { getTopArtistsLongTerm, getTopArtistsShortTerm, getTopArtistsMediumTerm 
 import { useStateStore } from '@/store/useAppStore';
 import { IArtistLongTerm } from '@/models/artists';
 import ArtistCard from "../Cards/ArtistCard";
+import { motion } from 'framer-motion';
 import useWindowWidth from '@/hooks/useWindowWidth';
 import LoadingLayout from '@/components/Loading/LoadingLayout';
 import ToggleHeader from '../ToggleHeader/ToggleHeader';
 import ErrorLayout from '@/components/Error/ErrorLayout';
 import useLoading from '@/hooks/useLoading';
 import { getStorageSpotifyAccessToken } from '@/spotifyApi/spotifyToken';
+import { headerVariants } from '@/variant';
 
 const TopArtistLayout = () => {
     
@@ -56,12 +58,16 @@ const TopArtistLayout = () => {
                         ? (<LoadingLayout />)
                         : <>
                             <ToggleHeader header='Top Artists' mode='toggle'/>
-                            <div className={`text-white mt-20 flex flex-col items-center justify-items-center
+                            <motion.div className={`text-white mt-20 flex flex-col items-center justify-items-center
                                 ${windowWidth >= 525 && 'grid grid-cols-2 gap-1'}
                                 ${windowWidth >= 600 && 'grid grid-cols-2 gap-3'}    
                                 ${windowWidth >= 1000 && 'grid grid-cols-3 gap-2'}
                                 ${windowWidth >= 1280 && 'grid grid-cols-4 gap-2'}
-                            `}>
+                            `}
+                                variants={headerVariants}
+                                initial={'hidden'}
+                                whileInView={'visible'}
+                            >
                                 {(toggleHeader === 0
                                     && (artistsLongTerm?.items.map((artist:IArtistLongTerm, i:number)=>{
                                             return (
@@ -107,7 +113,7 @@ const TopArtistLayout = () => {
                                     }))
                                     )
                                 }
-                            </div>
+                            </motion.div>
                         </>
                 }
         </div>

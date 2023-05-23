@@ -58,7 +58,6 @@ const TrackCard = ({ id, icon, title, subtitle,album, route, duration, mode }:IT
                         onMouseEnter={() => setIsShown(true)}
                         onMouseLeave={() => setIsShown(false)}
                     >
-                        
                         <Image 
                             height={50} 
                             width={50} 

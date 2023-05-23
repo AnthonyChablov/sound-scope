@@ -4,6 +4,7 @@ import useSWR from 'swr';
 import { useRouter } from 'next/router';
 import ToggleHeader from '../ToggleHeader/ToggleHeader';
 import ErrorLayout from '@/components/Error/ErrorLayout';
+import { motion } from 'framer-motion';
 import LoadingLayout from '@/components/Loading/LoadingLayout';
 import { ITrack } from '@/models/track';
 import TrackCard from '../Cards/TrackCard';
@@ -11,6 +12,7 @@ import { ITrackLongTerm } from '@/models/tracks';
 import useLoading from '@/hooks/useLoading';
 import { getStorageSpotifyAccessToken } from '@/spotifyApi/spotifyToken';
 import { useStateStore } from '@/store/useAppStore';
+import { headerVariants } from '@/variant';
 
 const RecommendationsLayout = () => {
 
@@ -80,6 +82,11 @@ const RecommendationsLayout = () => {
                                         playlistName={`Recommendations base on ${playlist?.name}`}
                                         recommendedTrackUris={recommendedTrackUris}
                                     /> )}
+                                    <motion.div
+                                        variants={headerVariants}
+                                        initial={'hidden'}
+                                        whileInView={'visible'}
+                                    >
                                     {
                                         recommendations?.tracks?.map((track:ITrackLongTerm, i:number)=>{
                                             return (
@@ -95,6 +102,7 @@ const RecommendationsLayout = () => {
                                                 />
                                             )
                                     })}
+                                    </motion.div>
                                 </>
                             )
                 }

@@ -45,14 +45,7 @@ const PlaylistCard = ({id, icon, title, subtitle, route }:IPlaylistCard) => {
         >
             <Link href={route}>
                 <div className="flex flex-col items-center mb-12 ">
-                    <div className="hover:opacity-40 transition duration-300 ease-in-out relative"
-                        onMouseEnter={() => setIsShown(true)}
-                        onMouseLeave={() => setIsShown(false)}
-                    >
-                        <InfoIcon 
-                            isShown={isShown} 
-                            mode='top-artists'
-                        />
+                    <div>
                         { /* info icon */
                             icon 
                                 ? (

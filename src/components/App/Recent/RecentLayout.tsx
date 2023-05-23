@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import useSWR from 'swr';
+import { motion } from 'framer-motion';
 import ToggleHeader from '../ToggleHeader/ToggleHeader';
 import { getRecentlyPlayed } from '@/spotifyApi/spotifyApi';
 import TrackCard from '../Cards/TrackCard';
@@ -9,6 +10,7 @@ import ErrorLayout from '@/components/Error/ErrorLayout';
 import useLoading from '@/hooks/useLoading';
 import { useStateStore } from '@/store/useAppStore';
 import { getStorageSpotifyAccessToken } from '@/spotifyApi/spotifyToken';
+import { headerVariants } from '@/variant';
 
 const RecentLayout = () => {
 
@@ -45,23 +47,31 @@ const RecentLayout = () => {
               (isLoadingRecentlyPlayed || loading
                 ? (<LoadingLayout />)
                 : (
-                    <>
+                    <div
+                      
+                    >
                       <ToggleHeader header='Recently Played Tracks' mode='hidden'/>
-                      {recentlyPlayed?.items?.map((track:IRecent, i:number)=>{
-                          return (
-                            <TrackCard
-                              key={i}
-                              id={i}
-                              icon={track.track.album.images[2].url}
-                              title={track.track.name}
-                              subtitle={track.track.artists[0].name}
-                              album={track.track.album.name}
-                              route={`/app/track/${track.track.id}`}
-                              duration={track.track.duration_ms}
-                            />
-                          )
-                      })}
-                    </>
+                      <motion.div
+                        variants={headerVariants}
+                        initial={'hidden'}
+                        whileInView={'visible'}
+                      >
+                        {recentlyPlayed?.items?.map((track:IRecent, i:number)=>{
+                            return (
+                              <TrackCard
+                                key={i}
+                                id={i}
+                                icon={track.track.album.images[2].url}
+                                title={track.track.name}
+                                subtitle={track.track.artists[0].name}
+                                album={track.track.album.name}
+                                route={`/app/track/${track.track.id}`}
+                                duration={track.track.duration_ms}
+                              />
+                            )
+                        })}
+                      </motion.div>
+                    </div>
                   )
               )
         }

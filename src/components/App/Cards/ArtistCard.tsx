@@ -54,10 +54,7 @@ const ArtistCard = ({id, icon, title, route, mode}: IArtistCard) => {
             {/* Artist display */}
             <div className=" my-2 relative">
               {/* Info icon popup */}
-              <InfoIcon 
-                isShown={isShown} 
-                mode={mode}
-              />
+              
               {/* content */}
               <div className={`flex items-center overflow-hidden  
                 ${mode === 'top-artists' 
@@ -67,8 +64,7 @@ const ArtistCard = ({id, icon, title, route, mode}: IArtistCard) => {
                   ? "h-[200px]" 
                   : 'h-[50px]'} 
               `}
-                onMouseEnter={() => setIsShown(true)}
-                onMouseLeave={() => setIsShown(false)}
+                
               >  
                 <Image
                     className="w-full h-auto shadow-lg" 

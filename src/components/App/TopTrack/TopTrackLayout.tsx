@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
+import { motion } from 'framer-motion';
 import ToggleHeader from '../ToggleHeader/ToggleHeader';
 import { useArtistStore } from "@/store/useArtistStore";
 import { useStateStore } from '@/store/useAppStore';
@@ -11,6 +12,7 @@ import LoadingLayout from '@/components/Loading/LoadingLayout';
 import ErrorLayout from '@/components/Error/ErrorLayout';
 import useLoading from '@/hooks/useLoading';
 import { getStorageSpotifyAccessToken } from '@/spotifyApi/spotifyToken';
+import { headerVariants } from '@/variant';
 
 const TopTrack = () => {
 
@@ -56,63 +58,69 @@ const TopTrack = () => {
             : (isLoadingTracksShortTerm || isLoadingTracksMediumTerm || isLoadingTracksLongTerm || loading)
               ? (<LoadingLayout/>)
               : 
-                <>
+                <div>
                   <ToggleHeader header='Top Tracks' mode='toggle'/>
-                  {(toggleHeader === 0
-                      && (tracksLongTerm?.items.map((track:ITrackLongTerm, i:number)=>{
-                            return (
-                              <TrackCard 
-                                key={i} 
-                                id={i}
-                                icon={track?.album?.images[2]?.url}
-                                title={track?.name}
-                                subtitle={track?.artists[0]?.name}
-                                album={track?.album?.name}
-                                duration={track?.duration_ms}
-                                route={`/app/track/${track?.id}`}
-                                mode='top-tracks'
-                              />
-                            )
-                    }))
-                    )
-                  }
-                  {(toggleHeader === 1
-                      && (tracksMediumTerm?.items.map((track:ITrackLongTerm, i:number)=>{
-                            return (
-                              <TrackCard 
-                                key={i} 
-                                id={i}
-                                icon={track?.album?.images[2]?.url}
-                                title={track?.name}
-                                subtitle={track?.artists[0]?.name}
-                                album={track?.album?.name}
-                                duration={track?.duration_ms}
-                                route={`/app/track/${track?.id}`}
-                                mode='top-tracks'
-                              />
-                            )
-                    }))
-                    )
-                  }
-                  {(toggleHeader == 2
-                      && (tracksShortTerm?.items.map((track:ITrackLongTerm, i:number)=>{
-                            return (
-                              <TrackCard 
-                                key={i} 
-                                id={i}
-                                icon={track?.album?.images[2]?.url}
-                                title={track?.name}
-                                subtitle={track?.artists[0]?.name}
-                                album={track?.album?.name}
-                                duration={track?.duration_ms}
-                                route={`/app/track/${track?.id}`}
-                                mode='top-tracks'
-                              />
-                            )
-                    }))
-                    )
-                  }
-                </>
+                  <motion.div className=""
+                    variants={headerVariants}
+                    initial={'hidden'}
+                    whileInView={'visible'}
+                  >
+                    {(toggleHeader === 0
+                        && (tracksLongTerm?.items.map((track:ITrackLongTerm, i:number)=>{
+                              return (
+                                <TrackCard 
+                                  key={i} 
+                                  id={i}
+                                  icon={track?.album?.images[2]?.url}
+                                  title={track?.name}
+                                  subtitle={track?.artists[0]?.name}
+                                  album={track?.album?.name}
+                                  duration={track?.duration_ms}
+                                  route={`/app/track/${track?.id}`}
+                                  mode='top-tracks'
+                                />
+                              )
+                      }))
+                      )
+                    }
+                    {(toggleHeader === 1
+                        && (tracksMediumTerm?.items.map((track:ITrackLongTerm, i:number)=>{
+                              return (
+                                <TrackCard 
+                                  key={i} 
+                                  id={i}
+                                  icon={track?.album?.images[2]?.url}
+                                  title={track?.name}
+                                  subtitle={track?.artists[0]?.name}
+                                  album={track?.album?.name}
+                                  duration={track?.duration_ms}
+                                  route={`/app/track/${track?.id}`}
+                                  mode='top-tracks'
+                                />
+                              )
+                      }))
+                      )
+                    }
+                    {(toggleHeader == 2
+                        && (tracksShortTerm?.items.map((track:ITrackLongTerm, i:number)=>{
+                              return (
+                                <TrackCard 
+                                  key={i} 
+                                  id={i}
+                                  icon={track?.album?.images[2]?.url}
+                                  title={track?.name}
+                                  subtitle={track?.artists[0]?.name}
+                                  album={track?.album?.name}
+                                  duration={track?.duration_ms}
+                                  route={`/app/track/${track?.id}`}
+                                  mode='top-tracks'
+                                />
+                              )
+                      }))
+                      )
+                    }
+                  </motion.div>
+                </div>
           }     
       </div>
     </div>

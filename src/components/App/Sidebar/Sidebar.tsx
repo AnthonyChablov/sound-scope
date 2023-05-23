@@ -5,14 +5,24 @@ import { useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import NavMenu from "./NavMenu/NavMenu";
 import Link from "next/link";
+import { useStateStore } from "@/store/useAppStore";
 
 const iconSize = 37.5;
 
-const Sidebar = () => {
+interface ISidebar{
+  anchor:"left" | "bottom" | "right" | "top" | undefined
+}
 
+const Sidebar = ({anchor}:ISidebar) => {
+
+  /* State */
   const [toggleSideBar, setToggleSideBar] = useState<boolean>(true);
+  const sideBarAnchor = useStateStore(state => state.sideBarAnchor) ;
+  const setSideBarAnchor = useStateStore(state => state.setSideBarAnchor) ;
+ 
+
+  /* Hooks */
   const windowWidth = useWindowWidth();
-  
   const drawerWidth = 'fit';
   const isLoading = windowWidth === null;
   const tabletDisplay = windowWidth >= 768;
@@ -33,15 +43,16 @@ const Sidebar = () => {
           },
       }}
       variant="persistent"
-      anchor={ tabletDisplay ? 'left' : 'bottom'}
+      anchor={ anchor }
       open={toggleSideBar}
     >
       <div className="flex flex-row justify-between text-white shadow-lg">
-        <div className={`w-full flex justify-between
-          ${tabletDisplay ? 'py-4 h-screen flex-col ' :  'flex-row justify-between content-between'}`}
+        <div className={`w-full flex justify-between flex-row content-between
+          md:py-4 md:h-screen md:flex-col`}
+          /* ${tabletDisplay ? 'md:py-4 md:h-screen md:flex-col ' :  'flex-row justify-between content-between'}`} */
         >
           <div className=" flex justify-center">
-            { tabletDisplay && (
+            { anchor === 'left' && (
                 <Link href={'/app'}>
                   <IconButton>
                     <Icons type="music" size={iconSize}/>
@@ -50,9 +61,9 @@ const Sidebar = () => {
               ) 
             }
           </div>
-          <NavMenu />
+          <NavMenu anchor={anchor}/>
           <div className=" flex justify-center">
-            { tabletDisplay && (
+            { anchor === 'left' && (
               <Link href={'https://github.com/AnthonyChablov'}
                 rel="noopener noreferrer" target="_blank"
               >

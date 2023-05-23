@@ -14,8 +14,19 @@ export default function App({ Component, pageProps }: AppProps) {
   if(Component.getLayout){
     return Component.getLayout(
       <>
+
         <Component {...pageProps} />
-        <Sidebar/>
+
+        {/* Desktop */}
+        <div className=" collapse md:visible">
+          <Sidebar anchor='left'/>
+        </div>  
+
+        {/* Tablet */}
+        <div className=" visible md:collapse">
+          <Sidebar anchor='bottom'/>
+        </div>  
+        
       </>
     )
   }

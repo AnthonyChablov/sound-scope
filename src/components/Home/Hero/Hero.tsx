@@ -20,7 +20,7 @@ const Hero = () => {
                 animate={'visible'}
             >
                 {/* Header */}
-                <h1 className='text-slate-300 text-6xl font-bold mb-5'>
+                <h1 className='text-slate-300 text-6xl font-bold mb-6'>
                     View
                 </h1>
                 {/* Text */}

@@ -50,7 +50,7 @@ const TopTrack = () => {
   return (
     <div className="w-10/12  md:w-8/12 lg:w-9/12 xl:w-9/12 mx-auto mb-32 
       md:max-w-xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl">
-      <div className="space-y-3 mt-11 ">
+      <div className="mt-11 ">
         {/* Error */}
           {(isErrortracksLongTerm || isErrorTracksMediumTerm || isErrorTracksShortTerm)
             ? (<ErrorLayout error={isErrortracksLongTerm || isErrorTracksMediumTerm || isErrorTracksShortTerm}/>)
@@ -60,7 +60,7 @@ const TopTrack = () => {
               : 
                 <div>
                   <ToggleHeader header='Top Tracks' mode='toggle'/>
-                  <motion.div className=""
+                  <motion.div className="space-y-3"
                     variants={headerVariants}
                     initial={'hidden'}
                     whileInView={'visible'}

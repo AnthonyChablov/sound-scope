@@ -40,7 +40,7 @@ const RecentLayout = () => {
     <div className='w-10/12 md:w-8/12 lg:w-full mx-auto mb-32
       md:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl'
     >
-      <div className="space-y-3  md:mt-11">
+      <div className="md:mt-11">
         {
           /* Error */
           (isErrorRecentlyPlayed)
@@ -55,6 +55,7 @@ const RecentLayout = () => {
                     >
                       <ToggleHeader header='Recently Played Tracks' mode='hidden'/>
                       <motion.div
+                        className='space-y-3'
                         variants={headerVariants}
                         initial={'hidden'}
                         whileInView={'visible'}

@@ -10,8 +10,6 @@ import LoadingLayout from '../Loading/LoadingLayout';
 import RecentLayout from './Recent/RecentLayout';
 import PlaylistLayout from './Playlist/PlaylistLayout';
 import ErrorLayout from '../Error/ErrorLayout';
-import { useArtistStore } from '@/store/useArtistStore';
-import Sidebar from './Sidebar/Sidebar';
 import { getStorageSpotifyAccessToken } from '@/spotifyApi/spotifyToken';
 
 interface IAppLayout{
@@ -28,7 +26,7 @@ const AppLayout = ({mode}:IAppLayout) => {
     data : user, 
     error : isErrorUser, 
     isLoading : isLoadingUser 
-  } = useSWR('/api/user', ()=>getUser(spotifyToken ),
+  } = useSWR('/api/user', ()=>getUser(spotifyToken),
   {
     revalidateOnFocus: false,
   });

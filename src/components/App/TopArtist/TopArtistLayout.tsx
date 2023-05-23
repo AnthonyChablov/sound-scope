@@ -45,7 +45,9 @@ const TopArtistLayout = () => {
         data: artistsShortTerm, 
         error : isErrorArtistsShortTerm, 
         isLoading : isLoadingArtistsShortTerm
-    } = useSWR('artistsShortTerm',  () => getTopArtistsShortTerm(32, spotifyToken) );
+    } = useSWR('artistsShortTerm',  () => getTopArtistsShortTerm(32, spotifyToken), {
+        revalidateOnFocus: false,
+    } );
 
 
     return (

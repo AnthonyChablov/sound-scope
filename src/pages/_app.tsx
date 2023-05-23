@@ -5,8 +5,6 @@ import type { AppProps } from 'next/app';
 import { Inter } from 'next/font/google';
 const inter = Inter({ subsets: ['latin'] });
 import Head from 'next/head';
-import NoSSRWrapper from '@/components/NoSSR/NoSSRWrapper';
-
 import Sidebar from '@/components/App/Sidebar/Sidebar';
 
 export default function App({ Component, pageProps }: AppProps) {

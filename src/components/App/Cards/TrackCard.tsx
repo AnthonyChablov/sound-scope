@@ -46,15 +46,13 @@ const TrackCard = ({ id, icon, title, subtitle,album, route, duration, mode }:IT
     },[duration])
 
   return (
-    <div
-        
-    >
+    <div>
         <Link href={route}>
             <div className="flex justify-between w-full ">    
                 <div className="flex space-x-8 items-center truncate ">
                     {/* info icon */}
                     {/* image */}
-                    <div className=" my-2 w-[50]  shadow-lg"
+                    <div className=" my-2 w-[50] shadow-lg"
                         onMouseEnter={() => setIsShown(true)}
                         onMouseLeave={() => setIsShown(false)}
                     >
@@ -67,7 +65,7 @@ const TrackCard = ({ id, icon, title, subtitle,album, route, duration, mode }:IT
                             unoptimized={true}
                         ></Image> 
                     </div>
-                    <div className="truncate w-52 "> {/* sm:w-80 md:w-96 lg:w-full */}
+                    <div className="truncate w-fit "> {/* sm:w-80 md:w-96 lg:w-full */}
                         <p className='text-white hover:underline truncate'>{title}</p>
                         <div className=" text-zinc-400 truncate">
                             {subtitle}

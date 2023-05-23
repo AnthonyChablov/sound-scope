@@ -59,8 +59,7 @@ const ArtistCard = ({id, icon, title, route, mode}: IArtistCard) => {
                 mode={mode}
               />
               {/* content */}
-              <div className={`flex items-center overflow-hidden rounded-full 
-                hover:opacity-30 transition duration-300 ease-in-out  
+              <div className={`flex items-center overflow-hidden  
                 ${mode === 'top-artists' 
                   ? "w-[200px]" 
                   : 'w-[50px]'} 

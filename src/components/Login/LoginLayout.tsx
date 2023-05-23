@@ -81,7 +81,7 @@ const LoginLayout = () => {
             >
               <div className="rounded-full overflow-hidden h-fit mb-10 shadow-lg bg-gradient-to-r from-slate-500 to-zinc-900" >
                   <Image
-                      className='opacity-30'
+                      className='opacity-50'
                       src={girlSpotify}
                       width={450}
                       height={100}

@@ -46,25 +46,19 @@ const TrackCard = ({ id, icon, title, subtitle,album, route, duration, mode }:IT
     },[duration])
 
   return (
-    <motion.div
-        variants={cardVariants}
-        initial={'hidden'}
-        animate ={'visible'}
-        viewport={{ once: true }}
+    <div
+        
     >
         <Link href={route}>
             <div className="flex justify-between w-full ">    
                 <div className="flex space-x-8 items-center truncate ">
                     {/* info icon */}
                     {/* image */}
-                    <div className=" my-2 w-[50] hover:opacity-30 transition duration-300 ease-in-out relative shadow-lg"
+                    <div className=" my-2 w-[50]  shadow-lg"
                         onMouseEnter={() => setIsShown(true)}
                         onMouseLeave={() => setIsShown(false)}
                     >
-                        <InfoIcon 
-                            isShown={isShown} 
-                            mode={mode}
-                        />
+                        
                         <Image 
                             height={50} 
                             width={50} 
@@ -86,7 +80,7 @@ const TrackCard = ({ id, icon, title, subtitle,album, route, duration, mode }:IT
                 <div className="text-zinc-400 my-2 ml-4">{trackDuration}</div>
             </div>
         </Link>
-    </motion.div>
+    </div>
   )
 }
 

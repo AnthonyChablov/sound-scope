@@ -34,7 +34,6 @@ const SinglePlaylistLayout = () => {
 
     return (
         <>
-            <Sidebar />
             {
                 (isErrorPlaylist) 
                     ? <ErrorLayout error={isErrorPlaylist}/> 

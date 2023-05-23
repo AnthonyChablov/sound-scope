@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useStateStore } from "@/store/useAppStore";
 
 const iconSize = 37.5;
+const drawerWidth = 'fit';
 
 interface ISidebar{
   anchor:"left" | "bottom" | "right" | "top" | undefined
@@ -17,20 +18,6 @@ const Sidebar = ({anchor}:ISidebar) => {
 
   /* State */
   const [toggleSideBar, setToggleSideBar] = useState<boolean>(true);
-  const sideBarAnchor = useStateStore(state => state.sideBarAnchor) ;
-  const setSideBarAnchor = useStateStore(state => state.setSideBarAnchor) ;
- 
-
-  /* Hooks */
-  const windowWidth = useWindowWidth();
-  const drawerWidth = 'fit';
-  const isLoading = windowWidth === null;
-  const tabletDisplay = windowWidth >= 768;
-  
-  if (isLoading) {
-    // Render a fallback layout or a loading indicator
-    return <div>Loading...</div>;
-  }
 
   return (
     <Drawer

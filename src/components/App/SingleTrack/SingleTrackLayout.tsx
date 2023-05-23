@@ -54,7 +54,7 @@ const SingleTrackLayout = () => {
 
   return (
     <>
-      <Sidebar />
+
       {
         (isErrorSingleTrack || isErrorTrackFeatures || isErrorTrackAnalysis) 
           ? <ErrorLayout error={isErrorSingleTrack || isErrorTrackFeatures || isErrorTrackAnalysis}/> 

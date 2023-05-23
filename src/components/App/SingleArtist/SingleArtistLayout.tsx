@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import useWindowWidth from '@/hooks/useWindowWidth';
 import Link from 'next/link';
-import Sidebar from '@/components/App/Sidebar/Sidebar';
 import Image from 'next/image';
 import { getSingleArtist } from '@/spotifyApi/spotifyApi';
 import SubHeader from './SubHeader/SubHeader';
@@ -12,7 +11,6 @@ import ErrorLayout from '@/components/Error/ErrorLayout';
 import LoadingLayout from '@/components/Loading/LoadingLayout';
 import { headerVariants, subHeaderVariants } from '@/variant';
 import useLoading from '@/hooks/useLoading';
-import { useStateStore } from '@/store/useAppStore';
 import { getStorageSpotifyAccessToken } from '@/spotifyApi/spotifyToken';
 
 const SingleArtistLayout = () => {
@@ -35,7 +33,6 @@ const SingleArtistLayout = () => {
 
   return (
     <div>
-      <Sidebar />
       {
         (isErrorSingleArtist) 
           ? <ErrorLayout error={isErrorSingleArtist}/> 
@@ -64,7 +61,7 @@ const SingleArtistLayout = () => {
                     rel="noopener noreferrer" 
                     target="_blank"
                   >
-                    <motion.h1 className="font-bold text-3xl md:text-5xl hover:text-[#1db954]
+                    <motion.h1 className="font-bold text-3xl md:text-5xl hover:text-[#64748b]
                       text-slate-200 mt-10 mb-5 text-center "
                       variants={headerVariants}
                       initial={'hidden'}

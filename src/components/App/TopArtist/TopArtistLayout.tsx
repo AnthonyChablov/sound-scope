@@ -54,59 +54,28 @@ const TopArtistLayout = () => {
         <div className="w-10/12 md:w-8/12 lg:w-full mx-auto mb-32 
             md:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl"
         >
-            
-                {(isErrorArtistsLongTerm 
-                    || isErrorArtistsMediumTerm 
-                    || isErrorArtistsShortTerm
-                )
-                    ? (<ErrorLayout error={isErrorArtistsLongTerm || isErrorArtistsMediumTerm || isErrorArtistsShortTerm}/>)
-                    : (isLoadingArtistsLongTerm || isLoadingArtistsMediumTerm || isLoadingArtistsShortTerm || loading ) 
-                        ? (<LoadingLayout />)
-                        : <>
-                            <ToggleHeader header='Top Artists' mode='toggle'/>
-                            <motion.div className={`text-white mt-20 flex flex-col items-center justify-items-center
-                                ${windowWidth >= 525 && 'grid grid-cols-2 gap-1'}
-                                ${windowWidth >= 600 && 'grid grid-cols-2 gap-3'}    
-                                ${windowWidth >= 1000 && 'grid grid-cols-3 gap-2'}
-                                ${windowWidth >= 1280 && 'grid grid-cols-4 gap-2'}
-                            `}
-                                variants={headerVariants}
-                                initial={'hidden'}
-                                whileInView={'visible'}
-                            >
-                                {(toggleHeader === 0
-                                    && (artistsLongTerm?.items.map((artist:IArtistLongTerm, i:number)=>{
-                                            return (
-                                                <ArtistCard 
-                                                    key={i} 
-                                                    id={i}
-                                                    icon={artist?.images[1]?.url } 
-                                                    title={artist?.name} 
-                                                    route={`/app/artist/${artist?.id}`}
-                                                    mode='top-artists'
-                                                />
-                                            )
-                                    }))
-                                    )
-                                }
-                                {(toggleHeader === 1
-                                    && (artistsMediumTerm?.items.map((artist:IArtistLongTerm, i:number)=>{
-                                            return (
-                                                <ArtistCard 
-                                                    key={i} 
-                                                    id={i}
-                                                    icon={artist?.images[1]?.url } 
-                                                    title={artist?.name} 
-                                                    route={`/app/artist/${artist?.id}`}
-                                                    mode='top-artists'
-                                                />
-                                            )
-                                    }))
-                                    )
-                                }
-                                {(toggleHeader === 2
-                                    && (artistsShortTerm?.items.map((artist:IArtistLongTerm, i:number)=>{
-                                            return (
+            {(isErrorArtistsLongTerm 
+                || isErrorArtistsMediumTerm 
+                || isErrorArtistsShortTerm
+            )
+                ? (<ErrorLayout error={isErrorArtistsLongTerm || isErrorArtistsMediumTerm || isErrorArtistsShortTerm}/>)
+                : (isLoadingArtistsLongTerm || isLoadingArtistsMediumTerm || isLoadingArtistsShortTerm || loading ) 
+                    ? (<LoadingLayout />)
+                    : <>
+                        <ToggleHeader header='Top Artists' mode='toggle'/>
+                        <motion.div className={`text-white mt-20 flex flex-col items-center justify-items-center
+                            ${windowWidth >= 525 && 'grid grid-cols-2 gap-1'}
+                            ${windowWidth >= 600 && 'grid grid-cols-2 gap-3'}    
+                            ${windowWidth >= 1000 && 'grid grid-cols-3 gap-2'}
+                            ${windowWidth >= 1280 && 'grid grid-cols-4 gap-2'}
+                        `}
+                            variants={headerVariants}
+                            initial={'hidden'}
+                            whileInView={'visible'}
+                        >
+                            {(toggleHeader === 0
+                                && (artistsLongTerm?.items.map((artist:IArtistLongTerm, i:number)=>{
+                                        return (
                                             <ArtistCard 
                                                 key={i} 
                                                 id={i}
@@ -115,13 +84,43 @@ const TopArtistLayout = () => {
                                                 route={`/app/artist/${artist?.id}`}
                                                 mode='top-artists'
                                             />
-                                            )
-                                    }))
-                                    )
-                                }
-                            </motion.div>
-                        </>
-                }
+                                        )
+                                }))
+                                )
+                            }
+                            {(toggleHeader === 1
+                                && (artistsMediumTerm?.items.map((artist:IArtistLongTerm, i:number)=>{
+                                        return (
+                                            <ArtistCard 
+                                                key={i} 
+                                                id={i}
+                                                icon={artist?.images[1]?.url } 
+                                                title={artist?.name} 
+                                                route={`/app/artist/${artist?.id}`}
+                                                mode='top-artists'
+                                            />
+                                        )
+                                }))
+                                )
+                            }
+                            {(toggleHeader === 2
+                                && (artistsShortTerm?.items.map((artist:IArtistLongTerm, i:number)=>{
+                                        return (
+                                        <ArtistCard 
+                                            key={i} 
+                                            id={i}
+                                            icon={artist?.images[1]?.url } 
+                                            title={artist?.name} 
+                                            route={`/app/artist/${artist?.id}`}
+                                            mode='top-artists'
+                                        />
+                                        )
+                                }))
+                                )
+                            }
+                        </motion.div>
+                    </>
+            }
         </div>
     )
 }

@@ -3,7 +3,6 @@ import { IPlaylist } from '@/models/playlist';
 
 type State={
   toggleSideBar: boolean,
-  sideBarAnchor: "left" | "bottom" | "right" | "top" | undefined,
   windowWidth: number,
   isSelected: boolean,
   spotifyToken: string ,
@@ -16,7 +15,6 @@ type State={
  
 type Action={
    setToggleSideBar: Function,
-   setSideBarAnchor : Function,
    setWindowWidth: Function,
    setSpotifyToken: Function,
    setSPotifyRefreshToken: Function,
@@ -36,7 +34,6 @@ export const useStateStore = create<State & Action>((set)=>({
   userId:'',
   createdPlaylist: null,
   playlistId: '',
-  sideBarAnchor: undefined,
   setUserId: ( newUserId : string ) => set({ userId : newUserId }),
   setToggleHeader: ( newToggleHeader : number ) => set({ toggleHeader : newToggleHeader }),
   setSPotifyRefreshToken: ( newRefreshToken : string ) => set({ spotifyRefreshToken : newRefreshToken }),
@@ -45,5 +42,5 @@ export const useStateStore = create<State & Action>((set)=>({
   setWindowWidth: ( newWindowWidth : number ) => set({ windowWidth : newWindowWidth}),
   setCreatedPlaylist: ( newCreatedPlaylist : IPlaylist | null ) => set({ createdPlaylist : newCreatedPlaylist}),
   setPlaylistId: ( newPlaylistId :string ) => set({ playlistId : newPlaylistId}),
-  setSideBarAnchor: ( newSideBarAnchor : "left" | "bottom" | "right" | "top" | undefined ) => set({ sideBarAnchor : newSideBarAnchor}),
+  
 }))

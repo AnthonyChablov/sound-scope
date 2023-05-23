@@ -28,19 +28,28 @@ const AppLayout = ({mode}:IAppLayout) => {
     data : user, 
     error : isErrorUser, 
     isLoading : isLoadingUser 
-  } = useSWR('/api/user', ()=>getUser(spotifyToken ));
+  } = useSWR('/api/user', ()=>getUser(spotifyToken ),
+  {
+    revalidateOnFocus: false,
+  });
 
   const {
     data: playlists, 
     error : isErrorPlaylists, 
     isLoading : isLoadingPlaylists
-  } = useSWR('/api/playlists', ()=>getPlaylists(spotifyToken ));
+  } = useSWR('/api/playlists', ()=>getPlaylists(spotifyToken ),
+  {
+    revalidateOnFocus: false,
+  });
 
   const {
     data: following, 
     error : isErrorFollowing, 
     isLoading : isLoadingFollowing
-  } = useSWR('/api/playlists', () => getFollowing(spotifyToken));
+  } = useSWR('/api/playlists', () => getFollowing(spotifyToken),
+  {
+    revalidateOnFocus: false,
+  });
 
   return (
     <div className=" bg-zinc-900 h-full">

@@ -29,13 +29,17 @@ const TopArtistLayout = () => {
         data: artistsLongTerm, 
         error : isErrorArtistsLongTerm, 
         isLoading : isLoadingArtistsLongTerm
-    } = useSWR('artistsLongTerm',  () => getTopArtistsLongTerm(32, spotifyToken) );
+    } = useSWR('artistsLongTerm',  () => getTopArtistsLongTerm(32, spotifyToken),{
+        revalidateOnFocus: false,
+    } );
 
     const {
         data: artistsMediumTerm, 
         error : isErrorArtistsMediumTerm, 
         isLoading : isLoadingArtistsMediumTerm
-    } = useSWR('artistsMediumTerm',  () => getTopArtistsMediumTerm(32, spotifyToken) );
+    } = useSWR('artistsMediumTerm',  () => getTopArtistsMediumTerm(32, spotifyToken), {
+        revalidateOnFocus: false,
+    });
 
     const {
         data: artistsShortTerm, 

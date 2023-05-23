@@ -36,7 +36,10 @@ const RecommendationsLayout = () => {
         data: playlist,
         error : isErrorPlaylist,
         isLoading : isLoadingPlaylist
-    } = useSWR(playlistId ? 'singlePlaylist' : null , () => getPlaylist(String(playlistId), spotifyToken));
+    } = useSWR(playlistId ? 'singlePlaylist' : null , () => getPlaylist(String(playlistId), spotifyToken),
+    {
+        revalidateOnFocus: false,
+    });
 
     /* Extract Seeds from Data */
     const seeds = ( playlist?.tracks?.items.length === 0 )

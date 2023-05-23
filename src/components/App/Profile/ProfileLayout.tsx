@@ -68,14 +68,20 @@ const ProfileLayout = ({
     data: topArtistsAllTime, 
     error : isErrorTopArtistsAllTime, 
     isLoading : isLoadingTopArtistsAllTime
-  } = useSWR('topArtistsAllTime', ()=>getTopArtistsLongTerm(10, spotifyToken));
+  } = useSWR('topArtistsAllTime', ()=>getTopArtistsLongTerm(10, spotifyToken),
+  {
+    revalidateOnFocus: false,
+  });
   
   /* Fetch Data topTracksAllTime*/
   const {
     data: topTracksAllTime, 
     error : isErrorTopTracksAllTime, 
     isLoading: isLoadingTopTracksAllTime,
-  } = useSWR('topTracksLong', ()=> getTopTracksLongTerm(10, spotifyToken));
+  } = useSWR('topTracksLong', ()=> getTopTracksLongTerm(10, spotifyToken),
+  {
+    revalidateOnFocus: false,
+  });
 
   /* Log Out Handeller*/
   function onClickLogOutHandeller(){

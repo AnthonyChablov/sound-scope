@@ -26,7 +26,10 @@ const RecentLayout = () => {
     data: recentlyPlayed, 
     error : isErrorRecentlyPlayed, 
     isLoading : isLoadingRecentlyPlayed
-  } = useSWR('recentlyPlayed',  () => getRecentlyPlayed(30, spotifyToken) );
+  } = useSWR('recentlyPlayed',  () => getRecentlyPlayed(30, spotifyToken),
+  {
+    revalidateOnFocus: false,
+  });
 
   useEffect(()=>{
     setSpotifyToken(getStorageSpotifyAccessToken());

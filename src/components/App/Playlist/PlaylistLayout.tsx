@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import { motion } from 'framer-motion';
 import ToggleHeader from '../ToggleHeader/ToggleHeader';
 import useSWR from 'swr';
 import { getPlaylists } from '@/spotifyApi/spotifyApi';
@@ -10,6 +11,7 @@ import ErrorLayout from '@/components/Error/ErrorLayout';
 import useLoading from '@/hooks/useLoading';
 import { useStateStore } from '@/store/useAppStore';
 import { getStorageSpotifyAccessToken } from '@/spotifyApi/spotifyToken';
+import { headerVariants } from '@/variant';
 
 const PlaylistLayout = () => {
 
@@ -21,7 +23,10 @@ const PlaylistLayout = () => {
     data: playlists, 
     error : isErrorPlaylist, 
     isLoading : isLoadingPlaylist
-  } = useSWR('playlists',  () => getPlaylists(spotifyToken) );
+  } = useSWR('playlists',  () => getPlaylists(spotifyToken) ,
+  {
+    revalidateOnFocus: false,
+  });
 
   /* Hooks */
   const windowWidth = useWindowWidth();
@@ -42,12 +47,16 @@ const PlaylistLayout = () => {
                 : 
                 <>
                   <ToggleHeader header='Your Recent Playlists' mode='hidden'/>
-                  <div className={
+                  <motion.div className={
                     `text-white  flex flex-col items-center 
                       ${windowWidth >= 600 && 'grid grid-cols-2 gap-3'}    
                       ${windowWidth >= 900 && 'grid grid-cols-3 gap-10'}
                       ${windowWidth >= 1280 && 'grid grid-cols-4 gap-1'}
-                  `}>
+                  `}
+                    variants={headerVariants}
+                    initial={'hidden'}
+                    animate={'visible'}
+                  >
                     {(playlists?.items.map((playlist:IPlaylist, i:number)=>{
                       return (
                         <PlaylistCard 
@@ -60,7 +69,7 @@ const PlaylistLayout = () => {
                         />
                       )
                     }))}
-                  </div>
+                  </motion.div>
                 </>
               )
           }

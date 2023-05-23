@@ -97,7 +97,8 @@ const ProfileLayout = ({
   }, []);
   
   return (
-    <div className={` w-10/12 md:w-7/12 lg:w-full mx-auto mb-32 `}>
+    <div className={` w-10/12 md:w-7/12  mx-auto mb-32 
+      `}>
         { 
         /* Error */
         (isErrorTopArtistsAllTime || isErrorTopTracksAllTime ) 
@@ -165,7 +166,7 @@ const ProfileLayout = ({
                       animate={'visible'}
                     >
                         {/* Top Artists */}
-                        <section className="mb-12">
+                        <section className="mb-12 w-full lg:w-5/12 max-w-4xl">
                           <Header
                             title='Top Artists of All Time'
                             buttonText='See More'
@@ -189,7 +190,7 @@ const ProfileLayout = ({
                           </div>
                         </section>  
                         {/* Top Tracks */}
-                        <section className="">
+                        <section className="w-full lg:w-5/12 max-w-4xl">
                           <Header
                             title='Top Tracks of All Time'
                             buttonText='See More'

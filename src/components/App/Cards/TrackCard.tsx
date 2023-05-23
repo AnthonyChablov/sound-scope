@@ -19,12 +19,11 @@ const TrackCard = ({ id, icon, title, subtitle,album, route, duration, }:ITrackC
     const [trackDuration, setTrackDuration] = useState<string>('');
     const [isShown, setIsShown] = useState<boolean>(false);
 
-
     useEffect(()=>{
         const time = msToTime(duration);
         setTrackDuration(time);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[duration])
+    },[duration]);
 
   return (
     <div>
@@ -33,7 +32,7 @@ const TrackCard = ({ id, icon, title, subtitle,album, route, duration, }:ITrackC
                 <div className="flex space-x-8 items-center truncate ">
                     {/* info icon */}
                     {/* image */}
-                    <div className=" my-2 w-[50] shadow-lg"
+                    <div className=" my-2 min-w-[50px] shadow-lg"
                         onMouseEnter={() => setIsShown(true)}
                         onMouseLeave={() => setIsShown(false)}
                     >
@@ -59,7 +58,7 @@ const TrackCard = ({ id, icon, title, subtitle,album, route, duration, }:ITrackC
             </div>
         </Link>
     </div>
-  )
+  );
 }
 
-export default TrackCard
+export default TrackCard;

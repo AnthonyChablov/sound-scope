@@ -12,7 +12,7 @@ const Navbar = () => {
     const [show, setShow] = useState(true); /* Setting Nav Bar disappear onScrollDown */
     
     return (
-        <div className='mx-auto bg-black fixed top-0 left-0 w-screen '>
+        <div className='mx-auto bg-black fixed top-0 left-0 w-screen z-10 '>
             <div className="text-white w-screen max-w-6xl mx-auto py-5 px-6  flex justify-between">
                 {/* logo */}
                 <div className="w-fit">

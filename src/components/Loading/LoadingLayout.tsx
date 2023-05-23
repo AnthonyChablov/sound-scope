@@ -5,7 +5,7 @@ interface ILoadingLayout{
   color?:string
 }
 
-const LoadingLayout = ({color = "#1db954"} : ILoadingLayout) => {
+const LoadingLayout = ({color = "#64748b"} : ILoadingLayout) => {
 
   return (
     <div className="flex items-center justify-center h-screen" >

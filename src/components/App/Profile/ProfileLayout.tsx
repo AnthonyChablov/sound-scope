@@ -124,7 +124,7 @@ const ProfileLayout = ({
                       <div className="w-fit mx-auto"
                       >
                         <Link href={userLink ?? ''} rel="noopener noreferrer" target="_blank">
-                          <div className="text-white hover:text-[#1db954] text-3xl 
+                          <div className="text-white hover:text-[#64748b] text-3xl 
                             lg:text-5xl font-semibold text-center "
                           >
                             <h1>{userName}</h1>

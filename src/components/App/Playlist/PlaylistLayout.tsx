@@ -45,7 +45,7 @@ const PlaylistLayout = () => {
                   <div className={
                     `text-white  flex flex-col items-center 
                       ${windowWidth >= 600 && 'grid grid-cols-2 gap-3'}    
-                      ${windowWidth >= 850 && 'grid grid-cols-3 gap-10'}
+                      ${windowWidth >= 900 && 'grid grid-cols-3 gap-10'}
                       ${windowWidth >= 1280 && 'grid grid-cols-4 gap-1'}
                   `}>
                     {(playlists?.items.map((playlist:IPlaylist, i:number)=>{

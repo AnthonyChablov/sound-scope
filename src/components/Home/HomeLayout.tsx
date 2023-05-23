@@ -10,8 +10,9 @@ const HomeLayout = () => {
     removeStorageSpotifyAccessToken()
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   return (
-    <div className="overflow-hidden">
+    <div className="">
         <Navbar/>
         <Hero/>
     </div>

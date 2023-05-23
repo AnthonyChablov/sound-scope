@@ -39,7 +39,7 @@ const Icons = ({type, size}:IIcons) => {
           recent: <AiOutlineHistory size={size}/>,
           playlists: <RiPlayListFill size={size}/>,
           info: <GrCircleInformation size={size}/>,
-          music: <GiConcentricCrescents size={size} color='#1db954'/>
+          music: <GiConcentricCrescents size={size} color='#94a3b8'/>
         }[type]
     }</div>
   )

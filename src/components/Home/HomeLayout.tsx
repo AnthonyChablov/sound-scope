@@ -7,7 +7,7 @@ import { removeStorageSpotifyAccessToken } from "@/spotifyApi/spotifyToken";
 const HomeLayout = () => {
 
   useEffect(() => {
-    removeStorageSpotifyAccessToken()
+    removeStorageSpotifyAccessToken();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

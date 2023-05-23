@@ -37,8 +37,8 @@ const LoginLayout = () => {
       setSpotifyToken(token);
       setStorageSpotifyAccessToken(spotifyToken);
       router.push('/app'); 
+      setLoading(true);
     } 
-
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [spotifyToken]);
 

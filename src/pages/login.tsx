@@ -6,9 +6,7 @@ import LoginLayout from '@/components/Login/LoginLayout';
 const login = () => {
   return (
     <section>
-      <Head>
-        <title key={'title'}>Login</title>
-      </Head>
+      <Head><title key={'title'}>Login</title></Head>
       <Navbar/>
       <LoginLayout/>
     </section>

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 export default function useWindowWidth() {
 
-  const [width, setWidth] = useState<number>( 0);
+  const [width, setWidth] = useState( 0 );
 
   useEffect(() => {
     let isMounted = true;

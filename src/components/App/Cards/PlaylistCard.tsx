@@ -37,11 +37,11 @@ const PlaylistCard = ({id, icon, title, subtitle, route }:IPlaylistCard) => {
     }
 
     return (
-        <motion.div 
-            variants={cardVariants}
+        <div 
+            /* variants={cardVariants}
             initial={'hidden'}
             animate ={'visible'}
-            viewport={{ once: true }}
+            viewport={{ once: true }} */
         >
             <Link href={route}>
                 <div className="flex flex-col items-center mb-12 ">
@@ -67,7 +67,7 @@ const PlaylistCard = ({id, icon, title, subtitle, route }:IPlaylistCard) => {
                     <p className='text-slate-500 text-sm font-semibold'>{subtitle}</p>
                 </div>
             </Link>
-        </motion.div>
+        </div>
     )
 }
 

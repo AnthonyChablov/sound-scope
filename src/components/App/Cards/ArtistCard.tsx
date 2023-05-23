@@ -38,11 +38,11 @@ const ArtistCard = ({id, icon, title, route, mode}: IArtistCard) => {
   }
 
   return (  
-    <motion.div  className='w-fit'
-      variants={cardVariants}
+    <div  className='w-fit'
+      /* variants={cardVariants}
       initial={'hidden'}
       animate ={'visible'}
-      viewport={{ once: true }}
+      viewport={{ once: true }} */
     >
       <Link href={ route } >
           <div className={`flex items-center 
@@ -86,7 +86,7 @@ const ArtistCard = ({id, icon, title, route, mode}: IArtistCard) => {
             }>{title}</p>
           </div>
       </Link>
-    </motion.div>
+    </div>
   )
 }
 

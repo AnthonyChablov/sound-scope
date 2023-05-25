@@ -21,15 +21,16 @@ import {MdError} from "react-icons/md";
 interface IIcons {
     type : string,
     size: number,
+    color?: string
 }
 
-const Icons = ({type, size}:IIcons) => {
+const Icons = ({type, size, color}:IIcons) => {
   return (
     <div className='text-white'>{
         {
           infoCircle: <AiFillInfoCircle size={size} color='white'/>, 
           error : <MdError size={size}/>,
-          spotify:<BsSpotify size={size} color='#1db954'/>,
+          spotify:<BsSpotify size={size} color={color}/>,
           menu: <AiOutlineMenu size={size}/>,
           close: <AiOutlineClose size={size}/>,
           github: <AiFillGithub size={size}/>,

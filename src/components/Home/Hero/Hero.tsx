@@ -32,8 +32,8 @@ const Hero = () => {
                 <div className="w-fit">
                     <Link href={'/login'}>
                     <Button 
-                        className='bg-slate-300 rounded-full text-black
-                        font-semibold text-md hover:bg-slate-600 hover:text-slate-200 '
+                        className='bg-slate-400 rounded-full text-black
+                        font-semibold text-md hover:bg-slate-500 hover:text-slate-200 '
                         variant="contained"
                     >
                         Get Started

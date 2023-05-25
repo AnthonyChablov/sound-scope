@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import useSWR from 'swr';
+import SpotifyButton from '@/components/Common/SpotifyButton';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import useWindowWidth from '@/hooks/useWindowWidth';
@@ -12,6 +13,7 @@ import LoadingLayout from '@/components/Loading/LoadingLayout';
 import { headerVariants, subHeaderVariants } from '@/variant';
 import useLoading from '@/hooks/useLoading';
 import { getStorageSpotifyAccessToken } from '@/spotifyApi/spotifyToken';
+import Icons from '@/components/Common/Icons';
 
 const SingleArtistLayout = () => {
 
@@ -57,21 +59,41 @@ const SingleArtistLayout = () => {
                     </Image> 
                   </motion.div>
                   <Link 
+                    className='mt-10 mb-8 '
                     href={singleArtist?.external_urls.spotify}  
                     rel="noopener noreferrer" 
                     target="_blank"
                   >
-                    <motion.h1 className="font-bold text-3xl md:text-5xl hover:text-[#64748b]
-                      text-slate-200 mt-10 mb-5 text-center "
+                    <motion.div className="flex items-center justify-center space-x-3"
                       variants={headerVariants}
                       initial={'hidden'}
                       animate={'visible'}
                     >
-                      {singleArtist?.name}
-                    </motion.h1>
+                      <h1 className="font-bold text-3xl md:text-5xl hover:text-green-500
+                        text-slate-200 text-center flex items-center justify-center"
+                      >
+                        {singleArtist?.name}
+                      </h1>
+                    </motion.div>
                   </Link>
+                  {/* Spotify link btn */}
+                  <motion.div className=""
+                    variants={headerVariants}
+                    initial={'hidden'}
+                    animate={'visible'}
+                  >
+                    <SpotifyButton 
+                      text='Listen on Spotify' 
+                      size={30} 
+                      color={'black'} 
+                      link={singleArtist?.external_urls.spotify}
+                    />
+                  </motion.div>
+                  {/* <motion.div className="">
+                    <SpotifyButton text='Listen on' size={20} link={singleArtist?.external_urls.spotify} />
+                  </motion.div> */}
                   <motion.div className="flex flex-col space-y-6 items-center justify-center
-                    md:flex-row md:space-x-10 md:space-y-0 md:items-start mt-2 md:mt-6"
+                    md:flex-row md:space-x-10 md:space-y-0 md:items-start mt-12"
                     variants={subHeaderVariants}
                     initial={'hidden'}
                     animate={'visible'}

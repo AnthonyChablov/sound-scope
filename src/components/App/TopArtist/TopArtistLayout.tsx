@@ -12,6 +12,7 @@ import useLoading from '@/hooks/useLoading';
 import { getStorageSpotifyAccessToken } from '@/spotifyApi/spotifyToken';
 import { headerVariants } from '@/variant';
 
+
 const TopArtistLayout = () => {
     
     /* State */
@@ -63,7 +64,8 @@ const TopArtistLayout = () => {
                     ? (<LoadingLayout />)
                     : <>
                         <ToggleHeader header='Top Artists' mode='toggle'/>
-                        <motion.div className={`text-white mt-20 flex flex-col items-center justify-items-center
+                        
+                        <motion.div className={`text-white mt-10 flex flex-col items-center justify-items-center
                             ${windowWidth >= 525 && 'grid grid-cols-2 gap-1'}
                             ${windowWidth >= 600 && 'grid grid-cols-2 gap-3'}    
                             ${windowWidth >= 1000 && 'grid grid-cols-3 gap-2'}
@@ -73,6 +75,7 @@ const TopArtistLayout = () => {
                             initial={'hidden'}
                             whileInView={'visible'}
                         >
+                            
                             {(toggleHeader === 0
                                 && (artistsLongTerm?.items.map((artist:IArtistLongTerm, i:number)=>{
                                         return (

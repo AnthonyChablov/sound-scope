@@ -9,6 +9,7 @@ import { createPlaylist, addTracksToPlaylist } from '@/spotifyApi/spotifyApi';
 import Link from 'next/link';
 import { debounce } from "lodash"
 import { getStorageSpotifyAccessToken } from '@/spotifyApi/spotifyToken';
+import SpotifyLogoDisplay from '@/components/Common/SpotifyLogoDisplay';
 
 interface IToggleHeader{
     header ?: string,
@@ -55,23 +56,28 @@ const ToggleHeader = ({header, mode, userId, playlistName, recommendedTrackUris 
     },[createdPlaylist]);
 
     return (
-        <motion.div className={`mt-20 flex  justify-between items-center ${mode==='hidden' ? `mb-10` : 'mb-16'}
-            ${windowWidth <= 1024 ? ' flex-col ': ' flex-row '}
+        <motion.div className={`mt-20 flex justify-between items-center lg:items-start 
+            ${mode==='hidden' ? `mb-10` : 'mb-12'}
+            ${windowWidth < 1024 ? ' flex-col ': ' flex-row '}
         `}
             variants={toggleHeaderVariants}
             initial={'hidden'}
             animate={'visible'}
         >
             {/* Header Text */}
-            <h1 className={` text-2xl font-bold text-white ${mode=== 'recommendations' && 'w-9/12 '}
-                ${ windowWidth >= 1024 ? 'mb-0 truncate' : 'mb-10 text-center'}`
-            } 
-            >{header}</h1>
+            <div className="flex flex-col items-center justify-center lg:items-center">
+                <h1 className={` text-2xl font-bold text-white ${mode=== 'recommendations' && 'w-9/12 '}
+                    ${ windowWidth >= 1024 ? 'mb-0 truncate' : 'mb-8 text-center'}`
+                } 
+                >{header}</h1>
+                
+            </div>
+            
             {/* button navigation */}
             {
                 ((mode === 'toggle') && (
                         <div className = {` flex text-center text-lg text-zinc-400 font-semibold 
-                            flex-col space-y-3 xs:space-y-0 xs:space-x-5 xs:flex-row
+                            flex-col space-y-3 xs:space-y-0 xs:space-x-5 xs:flex-row mb-3
                         `}
                         >
                             {

@@ -19,7 +19,11 @@ const Navbar = () => {
                     <Link href={'/'}>
                         <div className="flex items-center ">
                             <Icons type='music' size={40}></Icons>
-                            <p className='text-xl ml-4 font-semibold'>Sound Scope</p>
+                            <div className="ml-4">
+                                <p className='text-xl font-semibold'>Sound Scope</p>
+                               
+                            </div>
+                            
                         </div>
                     </Link>
                 </div>

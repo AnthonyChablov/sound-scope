@@ -19,6 +19,7 @@ import ContainedButton from '@/components/Common/ContainedButton';
 import useLoading from '@/hooks/useLoading';
 import { useStateStore } from '@/store/useAppStore';
 import { getStorageSpotifyAccessToken } from '@/spotifyApi/spotifyToken';
+import SpotifyButton from '@/components/Common/SpotifyButton';
 
 const SingleTrackLayout = () => {
   
@@ -51,10 +52,8 @@ const SingleTrackLayout = () => {
     isLoading: isLoadingTrackAnalysis,
   } = useSWR( trackId ? 'trackAnalysis' : null, ()=> getTrackAnalysis(String(trackId), spotifyToken));
 
-
   return (
     <>
-
       {
         (isErrorSingleTrack || isErrorTrackFeatures || isErrorTrackAnalysis) 
           ? <ErrorLayout error={isErrorSingleTrack || isErrorTrackFeatures || isErrorTrackAnalysis}/> 
@@ -99,17 +98,13 @@ const SingleTrackLayout = () => {
                         <p className='font-regular text-slate-500 mt-2 mb-4'>
                           {singleTrack?.album.name + ' · ' + singleTrack?.album.release_date.substring(0,4)}
                         </p>
-                        <Link 
-                          href={singleTrack?.external_urls.spotify} 
-                          rel="noopener noreferrer" 
-                          target="_blank"
-                        >
-                          <ContainedButton 
-                            text={`Play On Spotify`}
-                          />
-                        </Link>
+                        <SpotifyButton 
+                            text='Play on Spotify' 
+                            size={30} 
+                            color={'black'} 
+                            link={singleTrack?.external_urls.spotify}
+                        />
                       </motion.div>
-                      
                     </div>
                     {/* Grid display */}
                     <motion.div className={`grid grid-cols-2 mt-14 mb-10 

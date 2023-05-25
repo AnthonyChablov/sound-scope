@@ -2,7 +2,7 @@ import React ,{useState} from 'react';
 import {motion} from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import InfoIcon from './InfoIcon/InfoIcon';
+import SpotifyLogoDisplay from '@/components/Common/SpotifyLogoDisplay';
 
 interface IPlaylistCard {
     id: number,
@@ -45,15 +45,30 @@ const PlaylistCard = ({id, icon, title, subtitle, route }:IPlaylistCard) => {
         >
             <Link href={route}>
                 <div className="flex flex-col items-center mb-12 ">
+                    
                     <div>
                         { /* info icon */
                             icon 
                                 ? (
-                                    <div className="h-[200px] w-[200px] overflow-hidden flex items-center shadow-lg">
-                                        <Image src={icon} height={50} width={200} alt='playlist' unoptimized={true}></Image>
-                                    </div>
+                                    <>
+                                        <div className="mb-4 w-full ">
+                                            <SpotifyLogoDisplay width={76}/>
+                                        </div>
+                                        <div className="h-[200px] w-[200px] overflow-hidden flex items-center shadow-lg">
+                                            
+                                            <Image src={icon} height={50} width={200} alt='playlist' unoptimized={true}></Image>
+                                        </div>
+                                    </>
                                 )
-                                : <div className='h-[200px] w-[200px] bg-slate-700 shadow-lg'></div>
+                                : 
+                                (
+                                    <>
+                                        <div className="mb-3 w-full ">
+                                            <SpotifyLogoDisplay width={76}/>
+                                        </div>
+                                        <div className='h-[200px] w-[200px] bg-slate-700 shadow-lg'></div>
+                                    </>
+                                )
                         }
                     </div>
                     <p className='text-white font-normal mt-5 mb-2 text-center w-28 truncate hover:underline'>{title}</p>

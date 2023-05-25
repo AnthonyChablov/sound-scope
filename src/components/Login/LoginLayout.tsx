@@ -9,6 +9,7 @@ import girlSpotify from '../../assets/girl-spotify-img.jpg';
 import {setStorageSpotifyAccessToken, getStorageSpotifyAccessToken, } from '@/spotifyApi/spotifyToken';
 import { spotifyEndPoint } from '@/spotifyApi/spotifyEndPoint';
 import { headerVariants, subHeaderVariants} from '@/variant';
+import Icons from '../Common/Icons';
 
 const LoginLayout = () => {
 
@@ -65,11 +66,12 @@ const LoginLayout = () => {
                 <div className="w-fit" >
                   <Link href={spotifyEndPoint}>
                     <Button 
-                        className='bg-slate-400 rounded-full text-black
-                        font-semibold text-md hover:bg-slate-600 hover:text-slate-200 w-fit'
+                        className='bg-slate-400 rounded-3xl text-black
+                        font-semibold text-md hover:bg-slate-500 hover:text-slate-200 w-fit px-3'
                         variant="contained"
                     >
-                      Login To Spotify
+                      <Icons type={'spotify'} size={27} color='black'/>
+                      <p className='ml-3'>Login To Spotify</p>
                     </Button>
                   </Link>
                 </div>

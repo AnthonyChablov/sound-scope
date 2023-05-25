@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { msToTime } from '@/utils/utils';
+import SpotifyLogoDisplay from '@/components/Common/SpotifyLogoDisplay';
 
 interface ITrackCard {
     id: number,

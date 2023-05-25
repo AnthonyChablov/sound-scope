@@ -3,6 +3,7 @@ import {motion} from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import InfoIcon from './InfoIcon/InfoIcon';
+import SpotifyLogoDisplay from '@/components/Common/SpotifyLogoDisplay';
 
 interface IArtistCard{
     id: number,
@@ -38,7 +39,7 @@ const ArtistCard = ({id, icon, title, route, mode}: IArtistCard) => {
   }
 
   return (  
-    <div  className='w-fit'
+    <div  className='w-fit '
       /* variants={cardVariants}
       initial={'hidden'}
       animate ={'visible'}
@@ -51,6 +52,10 @@ const ArtistCard = ({id, icon, title, route, mode}: IArtistCard) => {
               : 'flex-row space-x-8' 
             }`}
           >
+            <div className="mb-2 w-full text-left">
+              <SpotifyLogoDisplay width={76}/>
+            </div>
+            
             {/* Artist display */}
             <div className=" my-2 relative">
               {/* Info icon popup */}
@@ -77,7 +82,7 @@ const ArtistCard = ({id, icon, title, route, mode}: IArtistCard) => {
               </div>
             </div>
             {/* Artists Name */}
-            <p className={`text-white hover:underline cursor-pointer text-center truncate
+            <p className={`text-white hover:underline cursor-pointer text-center truncate text-md
               ${mode === 'top-artists' ? 'font-semibold mt-5 mb-10' : 'font-bold'}`
             }>{title}</p>
           </div>

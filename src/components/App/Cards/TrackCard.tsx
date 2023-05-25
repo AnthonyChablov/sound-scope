@@ -30,17 +30,17 @@ const TrackCard = ({ id, icon, title, subtitle,album, route, duration, }:ITrackC
     <div>
         <Link href={route}>
             <div className="flex justify-between w-full ">    
-                <div className="flex space-x-2 items-center truncate ">
+                <div className="flex space-x-6 items-center truncate ">
                     {/* info icon */}
                     {/* image */}
                     <div className="">
-                        <div className="mb-2 w-full text-left ">
-                            <SpotifyLogoDisplay width={76}/>
-                        </div>
-                        <div className=" my-2 min-w-[50px] shadow-lg"
+                        <div className=" my-2 min-w-[50px] shadow-lg flex flex-col items-center w-4"
                             onMouseEnter={() => setIsShown(true)}
                             onMouseLeave={() => setIsShown(false)}
                         >
+                            <div className="mb-2 w-full text-left">
+                                <SpotifyLogoDisplay width={76}/>
+                            </div>
                             <Image 
                                 height={50} 
                                 width={50} 
@@ -51,7 +51,7 @@ const TrackCard = ({ id, icon, title, subtitle,album, route, duration, }:ITrackC
                             ></Image> 
                         </div>
                     </div>
-                    <div className="truncate w-fit "> {/* sm:w-80 md:w-96 lg:w-full */}
+                    <div className="truncate w-fit mt-[20px]"> {/* sm:w-80 md:w-96 lg:w-full */}
                         <p className='text-white hover:underline truncate'>{title}</p>
                         <div className=" text-zinc-400 truncate">
                             {subtitle}
@@ -60,7 +60,7 @@ const TrackCard = ({ id, icon, title, subtitle,album, route, duration, }:ITrackC
                         </div>
                     </div>
                 </div>
-                <div className="text-zinc-400 my-2 ml-4">{trackDuration}</div>
+                <div className="text-zinc-400 mt-1 ml-4">{trackDuration}</div>
             </div>
         </Link>
     </div>

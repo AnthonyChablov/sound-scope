@@ -68,7 +68,7 @@ const ToggleHeader = ({header, mode, userId, playlistName, recommendedTrackUris 
         >
             {/* Header Text */}
             <div className="flex flex-col items-center justify-center lg:items-start">
-                <h1 className={` text-2xl font-bold text-white ${mode=== 'recommendations' && ' w-[40rem] '}
+                <h1 className={` text-2xl font-bold text-white  ${mode=== 'recommendations' && 'lg:w-[30rem] xl:w-[40rem]'}
                     ${ windowWidth >= 1024 ? 'mb-0 truncate ' : 'mb-8 text-center'}`
                 } 
                 >{header}</h1>
@@ -115,8 +115,8 @@ const ToggleHeader = ({header, mode, userId, playlistName, recommendedTrackUris 
                                     target="_blank"
                                 >
                                     <Button 
-                                        className='bg-black rounded-3xl text-slate-200
-                                        font-semibold text-md hover:bg-gray-900 hover:text-slate-200 w-fit px-3'
+                                        className='bg-black rounded-3xl text-slate-300
+                                        font-semibold text-md hover:bg-neutral-900 hover:text-slate-300 w-fit px-3'
                                         variant="contained"
                                     >
                                         { <Icons type={'spotify'} size={30} color={`green`}/>}

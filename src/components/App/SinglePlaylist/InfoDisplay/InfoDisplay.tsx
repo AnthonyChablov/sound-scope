@@ -2,10 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import useWindowWidth from "@/hooks/useWindowWidth";
 import SpotifyButton from "@/components/Common/SpotifyButton";
-import ContainedButton from "@/components/Common/ContainedButton";
-import Button from "@mui/material/Button";
-import Icons from "@/components/Common/Icons";
 import RecommendButton from "@/components/Common/RecommendButton";
+import SpotifyLogoDisplay from "@/components/Common/SpotifyLogoDisplay";
 
 interface IInfoDisplay{
     img:string,
@@ -22,7 +20,9 @@ const InfoDisplay = ({img, title, subTitle, caption, buttonText, route}: IInfoDi
 
     return (
         <div className={`text-center mt-2 w-fit `}>
-
+            <div className={`flex justify-center mb-3 w-fit`}>
+                <SpotifyLogoDisplay width={90}/>
+            </div>
             {
                 img 
                     ? 

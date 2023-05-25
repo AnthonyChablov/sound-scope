@@ -52,39 +52,43 @@ const ArtistCard = ({id, icon, title, route, mode}: IArtistCard) => {
               : 'flex-row space-x-8' 
             }`}
           >
-            <div className="mb-2 w-full text-left">
-              <SpotifyLogoDisplay width={76}/>
-            </div>
-            
-            {/* Artist display */}
-            <div className=" my-2 relative">
-              {/* Info icon popup */}
+            <div className="">
+              <div className="mb-2 w-full text-left">
+                <SpotifyLogoDisplay width={76}/>
+              </div>
               
-              {/* content */}
-              <div className={`flex items-center overflow-hidden  
-                ${mode === 'top-artists' 
-                  ? "w-[200px]" 
-                  : 'w-[50px]'} 
-                ${mode === 'top-artists' 
-                  ? "h-[200px]" 
-                  : 'h-[50px]'} 
-              `}
+              {/* Artist display */}
+              <div className=" mt-2 relative">
+                {/* Info icon popup */}
                 
-              >  
-                <Image
-                    className="w-full h-auto shadow-lg" 
-                    height= {mode === 'top-artists' ? 200 : 50 } 
-                    width={mode === 'top-artists' ? 200 : 50} 
-                    src={icon } 
-                    alt='artist-icon'
-                    unoptimized={true}
-                ></Image> 
+                {/* content */}
+                <div className={`flex items-center overflow-hidden  
+                  ${mode === 'top-artists' 
+                    ? "w-[200px]" 
+                    : 'w-[50px]'} 
+                  ${mode === 'top-artists' 
+                    ? "h-[200px]" 
+                    : 'h-[50px]'} 
+                `}
+                >  
+                  <Image
+                      className="w-full h-auto shadow-lg" 
+                      height= {mode === 'top-artists' ? 200 : 50 } 
+                      width={mode === 'top-artists' ? 200 : 50} 
+                      src={icon } 
+                      alt='artist-icon'
+                      unoptimized={true}
+                  ></Image> 
+                </div>
               </div>
             </div>
             {/* Artists Name */}
-            <p className={`text-white hover:underline cursor-pointer text-center truncate text-md
+            
+            <div className={`text-white hover:underline cursor-pointer text-left w-full truncate text-lg
               ${mode === 'top-artists' ? 'font-semibold mt-5 mb-10' : 'font-bold'}`
-            }>{title}</p>
+            }>
+              <p>{title}</p>
+            </div>
           </div>
       </Link>
     </div>

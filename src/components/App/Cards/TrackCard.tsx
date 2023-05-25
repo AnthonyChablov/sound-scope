@@ -30,21 +30,26 @@ const TrackCard = ({ id, icon, title, subtitle,album, route, duration, }:ITrackC
     <div>
         <Link href={route}>
             <div className="flex justify-between w-full ">    
-                <div className="flex space-x-8 items-center truncate ">
+                <div className="flex space-x-2 items-center truncate ">
                     {/* info icon */}
                     {/* image */}
-                    <div className=" my-2 min-w-[50px] shadow-lg"
-                        onMouseEnter={() => setIsShown(true)}
-                        onMouseLeave={() => setIsShown(false)}
-                    >
-                        <Image 
-                            height={50} 
-                            width={50} 
-                            src={icon} 
-                            alt="artist"
-                            loading="lazy"
-                            unoptimized={true}
-                        ></Image> 
+                    <div className="">
+                        <div className="mb-2 w-full text-left ">
+                            <SpotifyLogoDisplay width={76}/>
+                        </div>
+                        <div className=" my-2 min-w-[50px] shadow-lg"
+                            onMouseEnter={() => setIsShown(true)}
+                            onMouseLeave={() => setIsShown(false)}
+                        >
+                            <Image 
+                                height={50} 
+                                width={50} 
+                                src={icon} 
+                                alt="artist"
+                                loading="lazy"
+                                unoptimized={true}
+                            ></Image> 
+                        </div>
                     </div>
                     <div className="truncate w-fit "> {/* sm:w-80 md:w-96 lg:w-full */}
                         <p className='text-white hover:underline truncate'>{title}</p>

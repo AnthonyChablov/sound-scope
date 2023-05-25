@@ -1,6 +1,11 @@
 import Image from "next/image";
+import Link from "next/link";
 import useWindowWidth from "@/hooks/useWindowWidth";
 import SpotifyButton from "@/components/Common/SpotifyButton";
+import ContainedButton from "@/components/Common/ContainedButton";
+import Button from "@mui/material/Button";
+import Icons from "@/components/Common/Icons";
+import RecommendButton from "@/components/Common/RecommendButton";
 
 interface IInfoDisplay{
     img:string,
@@ -40,12 +45,22 @@ const InfoDisplay = ({img, title, subTitle, caption, buttonText, route}: IInfoDi
             <h1 className="text-3xl text-slate-100 font-bold mt-10 mb-6">{title}</h1>
             <h2 className="text-lg text-slate-400 font-normal mb-2">{subTitle}</h2>
             <p className="text-md text-slate-200 font-normal mb-7 capitalize">{caption}</p>
-            <SpotifyButton 
-                text='Play on Spotify' 
-                size={30} 
-                color={'black'} 
-                link={route}
-            />
+            <div className="flex flex-col space-y-5 ">
+                <div className="w-fit mx-auto">
+                    <SpotifyButton 
+                        text='View in Spotify' 
+                        size={30} 
+                        color={'black'} 
+                        link={route}
+                        displayIcon={true}
+                    />
+                </div>
+                <div className="w-fit mx-auto">
+                    <Link href={route} >
+                        <RecommendButton buttonText={'Get Recommendations'}/>
+                    </Link>
+                </div>
+            </div>
         </div>
     )
 }

@@ -16,7 +16,8 @@ import { GiMicrophone, GiConcentricCrescents} from 'react-icons/gi';
 import {GrCircleInformation } from 'react-icons/gr';
 import { BsMusicNoteBeamed, BsMusicPlayerFill} from "react-icons/bs";
 import {RiPlayListFill} from "react-icons/ri";
-import {MdError} from "react-icons/md";
+import {MdError, MdRecommend} from "react-icons/md";
+
 
 interface IIcons {
     type : string,
@@ -28,6 +29,7 @@ const Icons = ({type, size, color}:IIcons) => {
   return (
     <div className='text-white'>{
         {
+          recommend: <MdRecommend size={size} color={color}/>, 
           infoCircle: <AiFillInfoCircle size={size} color='white'/>, 
           error : <MdError size={size}/>,
           spotify:<BsSpotify size={size} color={color}/>,

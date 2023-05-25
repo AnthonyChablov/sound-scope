@@ -78,33 +78,37 @@ const RecommendationsLayout = () => {
                             ? (<LoadingLayout/>)
                             : ( 
                                 <>
-                                    {(<ToggleHeader 
-                                        header={`Recommended Tracks Based On: ${playlist?.name}`} 
-                                        mode={`recommendations`}
-                                        userId={user?.id}
-                                        playlistName={`Recommendations base on ${playlist?.name}`}
-                                        recommendedTrackUris={recommendedTrackUris}
-                                    /> )}
+                                    {
+                                        (
+                                            <ToggleHeader 
+                                                header={`Recommended Tracks Based On: ${playlist?.name}`} 
+                                                mode={`recommendations`}
+                                                userId={user?.id}
+                                                playlistName={`Recommendations base on ${playlist?.name}`}
+                                                recommendedTrackUris={recommendedTrackUris}
+                                            /> 
+                                        )
+                                    }
                                     <motion.div
                                         variants={headerVariants}
                                         initial={'hidden'}
                                         whileInView={'visible'}
                                     >
-                                    {
-                                        recommendations?.tracks?.map((track:ITrackLongTerm, i:number)=>{
-                                            return (
-                                                <TrackCard
-                                                    key={i}
-                                                    id={i}
-                                                    icon={track.album.images[2].url}
-                                                    title={track.name}
-                                                    subtitle={track.artists[0].name}
-                                                    album={track.album.name}
-                                                    route={`/app/track/${track.id}`}
-                                                    duration={track.duration_ms}
-                                                />
-                                            )
-                                    })}
+                                        {
+                                            recommendations?.tracks?.map((track:ITrackLongTerm, i:number)=>{
+                                                return (
+                                                    <TrackCard
+                                                        key={i}
+                                                        id={i}
+                                                        icon={track.album.images[2].url}
+                                                        title={track.name}
+                                                        subtitle={track.artists[0].name}
+                                                        album={track.album.name}
+                                                        route={`/app/track/${track.id}`}
+                                                        duration={track.duration_ms}
+                                                    />
+                                                )
+                                        })}
                                     </motion.div>
                                 </>
                             )

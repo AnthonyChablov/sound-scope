@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import {motion} from 'framer-motion';
 import { useStateStore } from '@/store/useAppStore';
 import useWindowWidth from '@/hooks/useWindowWidth';
+import Button from '@mui/material/Button';
 import { toggleHeaderVariants } from '@/variant';
 import OutlinedButton from '@/components/Common/OutlinedButton';
 import ContainedButton from '@/components/Common/ContainedButton';
@@ -9,7 +10,8 @@ import { createPlaylist, addTracksToPlaylist } from '@/spotifyApi/spotifyApi';
 import Link from 'next/link';
 import { debounce } from "lodash"
 import { getStorageSpotifyAccessToken } from '@/spotifyApi/spotifyToken';
-import SpotifyLogoDisplay from '@/components/Common/SpotifyLogoDisplay';
+import SpotifyButton from '@/components/Common/SpotifyButton';
+import Icons from '@/components/Common/Icons';
 
 interface IToggleHeader{
     header ?: string,
@@ -65,9 +67,9 @@ const ToggleHeader = ({header, mode, userId, playlistName, recommendedTrackUris 
             animate={'visible'}
         >
             {/* Header Text */}
-            <div className="flex flex-col items-center justify-center lg:items-center">
-                <h1 className={` text-2xl font-bold text-white ${mode=== 'recommendations' && 'w-9/12 '}
-                    ${ windowWidth >= 1024 ? 'mb-0 truncate' : 'mb-8 text-center'}`
+            <div className="flex flex-col items-center justify-center lg:items-start">
+                <h1 className={` text-2xl font-bold text-white ${mode=== 'recommendations' && ' w-[40rem] '}
+                    ${ windowWidth >= 1024 ? 'mb-0 truncate ' : 'mb-8 text-center'}`
                 } 
                 >{header}</h1>
                 
@@ -112,19 +114,34 @@ const ToggleHeader = ({header, mode, userId, playlistName, recommendedTrackUris 
                                     rel="noopener noreferrer" 
                                     target="_blank"
                                 >
-                                    
-                                    <OutlinedButton title='View In Spotify'/>
+                                    <Button 
+                                        className='bg-black rounded-3xl text-slate-200
+                                        font-semibold text-md hover:bg-gray-900 hover:text-slate-200 w-fit px-3'
+                                        variant="contained"
+                                    >
+                                        { <Icons type={'spotify'} size={30} color={`green`}/>}
+                                        <p className='ml-3 '>{'View In Spotify'}</p>
+                                    </Button>
                                     
                                 </Link>
                             </motion.div> 
                             )
                             :(
                                 <motion.div
+                                    
                                     onClick={()=> debouncedCreatePlaylistOnSave()}
                                     initial={'hidden'}
                                     whileInView={'visible'}
                                 >
-                                    <ContainedButton text='Save to Spotify' />
+                                    <Button 
+                                        className='bg-slate-400 rounded-3xl text-black
+                                        font-semibold text-md hover:bg-slate-500 hover:text-slate-200 w-fit px-3'
+                                        variant="contained"
+                                    >
+                                        { <Icons type={'spotify'} size={30} color={`black`}/>}
+                                        <p className='ml-3'>{'Save To Spotify'}</p>
+                                    </Button>
+                                    
                                 </motion.div>
                             )
                         }

@@ -37,7 +37,7 @@ const PlaylistCard = ({id, icon, title, subtitle, route }:IPlaylistCard) => {
     }
 
     return (
-        <div 
+        <div className=''
             /* variants={cardVariants}
             initial={'hidden'}
             animate ={'visible'}
@@ -46,7 +46,7 @@ const PlaylistCard = ({id, icon, title, subtitle, route }:IPlaylistCard) => {
             <Link href={route}>
                 <div className="flex flex-col items-center mb-12 ">
                     
-                    <div>
+                    <div className=' '>
                         { /* info icon */
                             icon 
                                 ? (
@@ -70,9 +70,12 @@ const PlaylistCard = ({id, icon, title, subtitle, route }:IPlaylistCard) => {
                                     </>
                                 )
                         }
+                        <div className="text-left w-full">
+                            <p className='text-white font-normal mt-5 mb-2 text-left w-44 truncate hover:underline'>{title}</p>
+                            <p className='text-slate-500 text-sm font-semibold'>{subtitle}</p>
+                        </div>
                     </div>
-                    <p className='text-white font-normal mt-5 mb-2 text-center w-28 truncate hover:underline'>{title}</p>
-                    <p className='text-slate-500 text-sm font-semibold'>{subtitle}</p>
+                    
                 </div>
             </Link>
         </div>

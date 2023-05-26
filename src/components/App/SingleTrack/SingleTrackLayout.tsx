@@ -1,4 +1,3 @@
-import {useEffect} from 'react';
 import useSWR from "swr";
 import {motion} from 'framer-motion';
 import { useRouter } from "next/router";
@@ -6,20 +5,16 @@ import Link from 'next/link';
 import Image from 'next/image';
 import useWindowWidth from '@/hooks/useWindowWidth';
 import { getSingleTrack, getTrackFeatures, getTrackAnalysis } from "@/spotifyApi/spotifyApi";
-import Button from "@mui/material/Button";
 import LoadingLayout from "@/components/Loading/LoadingLayout";
 import ErrorLayout from "@/components/Error/ErrorLayout";
-import Sidebar from "../Sidebar/Sidebar";
-import GridLayout from './Grid/GridLayout';
 import Box from './Grid/Box';
 import { msToTime, parsePitchClass } from '@/utils/utils';
 import ChartDisplay from './Chart/ChartDisplay';
 import { headerVariants, subHeaderVariants, contentVariants } from '@/variant';
-import ContainedButton from '@/components/Common/ContainedButton';
 import useLoading from '@/hooks/useLoading';
-import { useStateStore } from '@/store/useAppStore';
 import { getStorageSpotifyAccessToken } from '@/spotifyApi/spotifyToken';
 import SpotifyButton from '@/components/Common/SpotifyButton';
+import SpotifyLogoDisplay from "@/components/Common/SpotifyLogoDisplay";
 
 const SingleTrackLayout = () => {
   
@@ -61,29 +56,36 @@ const SingleTrackLayout = () => {
             ? (<LoadingLayout /> )
             : (
                 <div className="h-full flex justify-center w-9/12 mx-auto 
-                  md:w-8/12 lg:w-8/12 xl:w-10/12 mb-96"
+                  md:w-8/12 lg:w-8/12 xl:w-10/12 mb-96 mt-10"
                 >
                   <div className={`mt-10`}>
                     <div className={`flex 
-                      ${  width && width >= 650 ? 'flex-row items-start ' : 'flex-col'}`
+                      ${ width && width >= 650 ? 'flex-row items-start ' : 'flex-col' }`
                     }>
-                      {/* Album Art */}
-                      <motion.div className={`flex flex-row justify-center `}
-                        variants={headerVariants}
-                        initial={'hidden'}
-                        animate={'visible'}
-                      >
-                        <Image 
-                          src={singleTrack?.album.images[0].url} 
-                          height={50} 
-                          width={width && width >= 800 ? 450 : 250} 
-                          loading="lazy"
-                          unoptimized={true}
-                          alt='album-cover'
-                        ></Image>
-                      </motion.div>
+                      <div>
+                        {/* Album Art */}
+                        <motion.div className={`flex flex-col items-center justify-center `}
+                          variants={headerVariants}
+                          initial={'hidden'}
+                          animate={'visible'}
+                        >
+                          <div>
+                            <div className="mb-3">
+                              <SpotifyLogoDisplay width={70}/>
+                            </div>
+                            <Image 
+                              src={singleTrack?.album.images[0].url} 
+                              height={50} 
+                              width={width && width >= 800 ? 450 : 250} 
+                              loading="lazy"
+                              unoptimized={true}
+                              alt='album-cover'
+                            ></Image>
+                          </div>
+                        </motion.div>
+                      </div>
                       {/* album info display */}
-                      <motion.div className={`w-9/12 
+                      <motion.div className={`w-9/12 mt-7
                         ${ width && width >= 650 ? 'text-left ml-12' : 'text-center mx-auto mt-8'}`}
                         variants={subHeaderVariants}
                         initial={'hidden'}

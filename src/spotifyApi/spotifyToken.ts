@@ -1,5 +1,3 @@
-import { getHashParams } from "@/utils/utils";
-
 /* Token */
 export const token = (typeof window !== 'undefined') ? getStorageSpotifyAccessToken() : '';
 

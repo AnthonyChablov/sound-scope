@@ -52,9 +52,9 @@ const ArtistCard = ({id, icon, title, route, mode}: IArtistCard) => {
               : 'flex-row space-x-8' 
             }`}
           >
-            <div className="mt-2 mb-0">
-              <div className="mb-3 w-full text-left">
-                <SpotifyLogoDisplay width={76}/>
+            <div className="mt-1 mb-2">
+              <div className="mb-2 w-full text-left">
+                <SpotifyLogoDisplay width={70}/>
               </div>
               
               {/* Artist display */}

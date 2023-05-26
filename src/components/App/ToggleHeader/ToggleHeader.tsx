@@ -115,11 +115,11 @@ const ToggleHeader = ({header, mode, userId, playlistName, recommendedTrackUris 
                                     target="_blank"
                                 >
                                     <Button 
-                                        className='bg-black rounded-3xl text-slate-300
+                                        className='bg-black rounded-3xl text-slate-100
                                         font-semibold text-md hover:bg-neutral-900 hover:text-slate-300 w-fit px-3'
                                         variant="contained"
                                     >
-                                        { <Icons type={'spotify'} size={30} color={`green`}/>}
+                                        { <Icons type={'spotify'} size={30} color={`#1DB954`}/>}
                                         <p className='ml-3 '>{'View In Spotify'}</p>
                                     </Button>
                                     
@@ -134,8 +134,8 @@ const ToggleHeader = ({header, mode, userId, playlistName, recommendedTrackUris 
                                     whileInView={'visible'}
                                 >
                                     <Button 
-                                        className='bg-slate-400 rounded-3xl text-black
-                                        font-semibold text-md hover:bg-slate-500 hover:text-slate-200 w-fit px-3'
+                                        className='bg-slate-100 rounded-3xl text-black
+                                        font-semibold text-md hover:bg-slate-300  w-fit px-3'
                                         variant="contained"
                                     >
                                         { <Icons type={'spotify'} size={30} color={`black`}/>}

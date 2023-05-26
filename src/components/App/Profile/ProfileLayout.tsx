@@ -18,6 +18,7 @@ import {ITrackLongTerm} from '../../../models/tracks';
 import LoadingLayout from '@/components/Loading/LoadingLayout';
 import ErrorLayout from '@/components/Error/ErrorLayout';
 import { headerVariants,  profileInfoDisplayVariants } from '@/variant';
+import SpotifyLogoDisplay from '@/components/Common/SpotifyLogoDisplay';
 
 interface IProfile{
     img:string,
@@ -117,10 +118,14 @@ const ProfileLayout = ({
                       {/* Profile Image */}
                       <div className="flex justify-center">
                         <div className=" mb-10">
+                          <div className="mb-4">
+                            <SpotifyLogoDisplay width={70}/>
+                          </div>
+                          
                           <Image 
                             className="w-full h-auto" 
                             height={150} 
-                            width={150} 
+                            width={300} 
                             src={img} 
                             alt="user-profile"
                             loading="lazy"

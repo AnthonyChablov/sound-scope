@@ -14,6 +14,7 @@ import { headerVariants, subHeaderVariants } from '@/variant';
 import useLoading from '@/hooks/useLoading';
 import { getStorageSpotifyAccessToken } from '@/spotifyApi/spotifyToken';
 import Icons from '@/components/Common/Icons';
+import SpotifyLogoDisplay from '@/components/Common/SpotifyLogoDisplay';
 
 const SingleArtistLayout = () => {
 
@@ -43,20 +44,24 @@ const SingleArtistLayout = () => {
             : (<div className="h-screen flex items-center justify-center w-7/12 
                 md:w-7/12 lg:w-6/12 xl:w-5/12 mx-auto mb-28">
                 <div className="flex flex-col items-center ">
-                  <motion.div className={` overflow-hidden flex items-center ${width >= 800 ? 'w-[350px] h-[350px]' : 'w-[250px] h-[250px]'} `}
+                  <motion.div className=""
                     variants={headerVariants}
                     initial={'hidden'}
                     animate={'visible'}
                   >
-                    <Image 
-                      src={singleArtist?.images[0].url}
-                      height={width >= 800 ? 350 : 250} 
-                      width={width >= 800 ? 350 : 250} 
-                      alt='artist'
-                      loading="lazy"
-                      unoptimized={true}
-                    >
-                    </Image> 
+                    <SpotifyLogoDisplay width={80}/>
+                    <div className={`mt-4 overflow-hidden flex items-center 
+                    ${width >= 800 ? 'w-[350px] h-[350px]' : 'w-[250px] h-[250px]'} `}>
+                      <Image 
+                        src={singleArtist?.images[0].url}
+                        height={width >= 800 ? 350 : 250} 
+                        width={width >= 800 ? 350 : 250} 
+                        alt='artist'
+                        loading="lazy"
+                        unoptimized={true}
+                      >
+                      </Image> 
+                    </div>
                   </motion.div>
                   <Link 
                     className='mt-10 mb-8 '

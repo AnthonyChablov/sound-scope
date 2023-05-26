@@ -52,7 +52,7 @@ const PlaylistCard = ({id, icon, title, subtitle, route }:IPlaylistCard) => {
                                 ? (
                                     <>
                                         <div className="mb-4 w-full ">
-                                            <SpotifyLogoDisplay width={76}/>
+                                            <SpotifyLogoDisplay width={70}/>
                                         </div>
                                         <div className="h-[200px] w-[200px] overflow-hidden flex items-center shadow-lg">
                                             

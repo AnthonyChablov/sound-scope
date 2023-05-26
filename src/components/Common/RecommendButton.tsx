@@ -9,8 +9,8 @@ interface IRecommendButton{
 const RecommendButton = ({buttonText}:IRecommendButton) => {
   return (
     <Button 
-        className ='bg-slate-400 rounded-3xl text-black w-fit py-1 px-2
-            font-semibold text-md hover:bg-slate-500 hover:text-slate-200 '
+        className ='bg-slate-100 rounded-3xl text-black w-fit py-1 px-3
+            font-semibold text-md hover:bg-slate-300 '
         variant = "contained"
     >
         <Icons type={'recommend'} size={38} color={'black'}/>

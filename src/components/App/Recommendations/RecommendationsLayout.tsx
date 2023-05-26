@@ -89,7 +89,8 @@ const RecommendationsLayout = () => {
                                             /> 
                                         )
                                     }
-                                    <motion.div
+                                    <motion.div 
+                                        className='space-y-5'
                                         variants={headerVariants}
                                         initial={'hidden'}
                                         whileInView={'visible'}

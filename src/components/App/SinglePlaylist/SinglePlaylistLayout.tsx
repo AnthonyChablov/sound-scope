@@ -32,6 +32,10 @@ const SinglePlaylistLayout = () => {
         isLoading : isLoadingPlaylist
     } = useSWR(playlistId ? 'singlePlaylist' : null,  () => getPlaylist(String(playlistId),spotifyToken));
 
+    useEffect(()=>{
+        console.log(playlist);
+    },[])
+
     return (
         <>
             {
@@ -43,14 +47,14 @@ const SinglePlaylistLayout = () => {
                             <div className={`h-fit flex justify-center w-10/12 
                                 md:w-8/12 lg:w-9/12 xl:w-9/12 max-w-7xl mx-auto mb-44 
                                 ${
-                                    width > 1000
+                                    width > 1250
                                         ? 'flex-row items-start' 
                                         : 'flex-col items-center'
                                 } 
                             `}> 
                                 <div className={`mt-14 w-full flex 
                                     ${
-                                        width > 1000
+                                        width > 1250
                                             ? 'flex-row items-start ' 
                                             :'flex-col items-center '
                                     } 
@@ -67,9 +71,10 @@ const SinglePlaylistLayout = () => {
                                             caption={`${playlist?.tracks.total} songs`} 
                                             buttonText='Get Recommendations'
                                             route={`/app/recommendations/${playlist?.id}`}
+                                            link={playlist?.external_urls.spotify}
                                         />
                                     </motion.div>
-                                    <div className={`space-y-3 w-full 
+                                    <div className={`space-y-3 w-full mt-10
                                         ${
                                             width > 1000
                                                 ? 'mt-0 ml-24' 

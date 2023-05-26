@@ -30,15 +30,16 @@ const TrackCard = ({ id, icon, title, subtitle,album, route, duration, }:ITrackC
     <div>
         <Link href={route}>
             <div className="flex justify-between w-full ">    
-                <div className="flex space-x-6 items-center truncate ">
+                {/* Content */}
+                <div className="flex space-x-6 items-center truncate mb-1">
                     {/* info icon */}
                     {/* image */}
                     <div className="">
-                        <div className=" my-2 min-w-[50px] shadow-lg flex flex-col items-center w-4"
+                        <div className=" mt-1 mb-1 min-w-[50px] shadow-lg flex flex-col items-center w-4"
                             onMouseEnter={() => setIsShown(true)}
                             onMouseLeave={() => setIsShown(false)}
                         >
-                            <div className="mb-[0.46em] w-full text-left">
+                            <div className="mb-2 w-full text-left">
                                 <SpotifyLogoDisplay width={72}/>
                             </div>
                             <Image 

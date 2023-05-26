@@ -24,7 +24,7 @@ const InfoDisplay = ({img, title, subTitle, caption, buttonText, route, link}: I
             {
                 img 
                     ? 
-                        (<div className={`mx-auto mb-4 overflow-hidden flex items-center shadow-lg flex-col  
+                        (<div className={`mx-auto mb-4 overflow-hidden flex items-center flex-col  
                             `
                         }>  
                         <div className="">
@@ -44,7 +44,7 @@ const InfoDisplay = ({img, title, subTitle, caption, buttonText, route, link}: I
                         </div>
                         </div> )
                     :
-                        <div className={`mx-auto mb-4 overflow-hidden flex items-center shadow-lg bg-slate-600 w-[300px] h-[300px]
+                        <div className={`mx-auto mb-4 overflow-hidden flex items-center bg-slate-600 w-[300px] h-[300px]
                         `}>
                         </div>
             }

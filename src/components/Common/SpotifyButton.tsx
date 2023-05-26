@@ -20,7 +20,7 @@ const SpotifyButton = ({text, size, link , color} : ISpotifyButton) => {
     >
         <Button 
             className='bg-slate-100 rounded-3xl text-black
-            font-semibold text-md hover:bg-slate-200  w-fit px-4'
+            font-semibold text-md hover:bg-slate-200 w-fit px-4'
             variant="contained"
         >
             { <Icons type={'spotify'} size={size} color={color}/>}

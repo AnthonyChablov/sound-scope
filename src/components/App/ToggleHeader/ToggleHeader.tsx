@@ -120,7 +120,7 @@ const ToggleHeader = ({header, mode, userId, playlistName, recommendedTrackUris 
                                         variant="contained"
                                     >
                                         { <Icons type={'spotify'} size={30} color={`#1DB954`}/>}
-                                        <p className='ml-3 '>{'View In Spotify'}</p>
+                                        <p className='ml-4 '>{'View In Spotify'}</p>
                                     </Button>
                                 </Link>
                             </motion.div> 
@@ -134,11 +134,11 @@ const ToggleHeader = ({header, mode, userId, playlistName, recommendedTrackUris 
                                 >
                                     <Button 
                                         className='bg-slate-100 rounded-3xl text-black
-                                        font-semibold text-md hover:bg-slate-300  w-fit px-3'
+                                        font-semibold text-md hover:bg-slate-300  w-fit px-4'
                                         variant="contained"
                                     >
                                         { <Icons type={'spotify'} size={30} color={`black`}/>}
-                                        <p className='ml-3'>{'Save To Spotify'}</p>
+                                        <p className='ml-4'>{'Save To Spotify'}</p>
                                     </Button>
                                     
                                 </motion.div>

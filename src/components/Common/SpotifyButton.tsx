@@ -19,12 +19,12 @@ const SpotifyButton = ({text, size, link , color} : ISpotifyButton) => {
         target="_blank"
     >
         <Button 
-            className='bg-slate-100 rounded-3xl text-black
-            font-semibold text-md hover:bg-slate-200 w-fit px-4'
+            className='bg-slate-100 rounded-3xl text-black flex items-center justify-center
+            font-semibold text-md hover:bg-slate-200 w-fit px-4 py-2'
             variant="contained"
         >
             { <Icons type={'spotify'} size={size} color={color}/>}
-            <p className='ml-3'>{text}</p>
+            <p className='ml-3 text-sm'>{text}</p>
         </Button>
     </Link>
   )

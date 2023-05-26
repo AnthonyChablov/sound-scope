@@ -32,10 +32,6 @@ const SinglePlaylistLayout = () => {
         isLoading : isLoadingPlaylist
     } = useSWR(playlistId ? 'singlePlaylist' : null,  () => getPlaylist(String(playlistId),spotifyToken));
 
-    useEffect(()=>{
-        console.log(playlist);
-    },[])
-
     return (
         <>
             {

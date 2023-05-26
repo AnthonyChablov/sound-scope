@@ -41,8 +41,8 @@ const SingleArtistLayout = () => {
           ? <ErrorLayout error={isErrorSingleArtist}/> 
           : (isLoadingSingleArtist || loading)
             ? (<LoadingLayout /> )
-            : (<div className="h-screen flex items-center justify-center w-7/12 
-                md:w-7/12 lg:w-6/12 xl:w-5/12 mx-auto mb-28">
+            : (<div className="h-screen mt-20 w-7/12 
+                md:w-7/12 lg:w-6/12 xl:w-5/12 mx-auto mb-60">
                 <div className="flex flex-col items-center ">
                   <motion.div className=""
                     variants={headerVariants}

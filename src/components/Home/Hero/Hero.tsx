@@ -20,11 +20,11 @@ const Hero = () => {
                 animate={'visible'}
             >
                 {/* Header */}
-                <h1 className='text-slate-300 text-6xl font-bold mb-6'>
+                <h1 className='text-slate-200 text-6xl font-bold mb-6'>
                     View
                 </h1>
                 {/* Text */}
-                <p className='text-bold text-slate-300 text-lg font-semibold mb-7'>
+                <p className='text-bold text-slate-200 text-lg font-semibold mb-7'>
                     View your Spotify profile and listening history. 
                     Keep up with your listening habits and stay up-to-date with your favorite artists. 
                 </p>
@@ -32,8 +32,8 @@ const Hero = () => {
                 <div className="w-fit">
                     <Link href={'/login'}>
                     <Button 
-                        className='bg-slate-400 rounded-full text-black
-                        font-semibold text-md hover:bg-slate-500 hover:text-slate-200 '
+                        className='bg-slate-100 rounded-full text-black
+                        font-semibold text-md hover:bg-slate-300 '
                         variant="contained"
                     >
                         Get Started

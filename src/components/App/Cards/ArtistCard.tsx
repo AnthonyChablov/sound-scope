@@ -52,8 +52,8 @@ const ArtistCard = ({id, icon, title, route, mode}: IArtistCard) => {
               : 'flex-row space-x-8' 
             }`}
           >
-            <div className="my-2">
-              <div className="mb-2 w-full text-left">
+            <div className="mt-2 mb-0">
+              <div className="mb-3 w-full text-left">
                 <SpotifyLogoDisplay width={76}/>
               </div>
               
@@ -85,7 +85,7 @@ const ArtistCard = ({id, icon, title, route, mode}: IArtistCard) => {
             {/* Artists Name */}
             
             <div className={`text-white hover:underline cursor-pointer text-left w-full truncate text-lg mt-1
-              ${mode === 'top-artists' ? 'font-semibold mt-5 mb-10' : 'font-bold'}`
+              ${mode === 'top-artists' ? 'font-semibold mt-3 mb-10' : 'font-bold'}`
             }>
               <p>{title}</p>
             </div>
@@ -95,4 +95,4 @@ const ArtistCard = ({id, icon, title, route, mode}: IArtistCard) => {
   )
 }
 
-export default ArtistCard
+export default ArtistCard;

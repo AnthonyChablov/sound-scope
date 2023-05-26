@@ -20,27 +20,33 @@ const InfoDisplay = ({img, title, subTitle, caption, buttonText, route}: IInfoDi
 
     return (
         <div className={`text-center mt-2 w-fit `}>
-            <div className={`flex justify-center mb-3 w-fit`}>
-                <SpotifyLogoDisplay width={90}/>
-            </div>
+            
             {
                 img 
                     ? 
-                        (<div className={`mx-auto mb-4 overflow-hidden flex items-center shadow-lg 
-                            ${width > 900 ? 'w-[300px] h-[300px]' : 'w-fit h-[300px]'}`
-                        }> 
-                            <Image 
-                                src={img} 
-                                alt="playlist-cover" 
-                                width={300}
-                                height={300}
-                                loading="lazy"
-                                unoptimized={true}
-                            />
+                        (<div className={`mx-auto mb-4 overflow-hidden flex items-center shadow-lg flex-col  
+                            `
+                        }>  
+                        <div className="">
+                            <div className={`flex  mb-4 w-fit `}>
+                                <SpotifyLogoDisplay width={90}/>
+                            </div>
+                            <div className={` overflow-hidden ${width > 900 ? 'w-[300px] h-[300px]' : 'w-fit h-[300px]'}`}>
+                                <Image 
+                                    src={img} 
+                                    alt="playlist-cover" 
+                                    width={300}
+                                    height={300}
+                                    loading="lazy"
+                                    unoptimized={true}
+                                />
+                            </div>
+                        </div>
                         </div> )
                     :
                         <div className={`mx-auto mb-4 overflow-hidden flex items-center shadow-lg bg-slate-600 w-[300px] h-[300px]
-                        `}></div>
+                        `}>
+                        </div>
             }
             <h1 className="text-3xl text-slate-100 font-bold mt-10 mb-6">{title}</h1>
             <h2 className="text-lg text-slate-400 font-normal mb-2">{subTitle}</h2>
@@ -52,7 +58,6 @@ const InfoDisplay = ({img, title, subTitle, caption, buttonText, route}: IInfoDi
                         size={30} 
                         color={'black'} 
                         link={route}
-                        displayIcon={true}
                     />
                 </div>
                 <div className="w-fit mx-auto">

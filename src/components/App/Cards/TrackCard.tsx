@@ -38,8 +38,8 @@ const TrackCard = ({ id, icon, title, subtitle,album, route, duration, }:ITrackC
                             onMouseEnter={() => setIsShown(true)}
                             onMouseLeave={() => setIsShown(false)}
                         >
-                            <div className="mb-2 w-full text-left">
-                                <SpotifyLogoDisplay width={76}/>
+                            <div className="mb-[0.46em] w-full text-left">
+                                <SpotifyLogoDisplay width={72}/>
                             </div>
                             <Image 
                                 height={50} 

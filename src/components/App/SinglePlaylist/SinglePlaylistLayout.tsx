@@ -47,14 +47,14 @@ const SinglePlaylistLayout = () => {
                             <div className={`h-fit flex justify-center w-10/12 
                                 md:w-8/12 lg:w-9/12 xl:w-9/12 max-w-7xl mx-auto mb-44 
                                 ${
-                                    width > 1250
+                                    width > 1374
                                         ? 'flex-row items-start' 
                                         : 'flex-col items-center'
                                 } 
                             `}> 
                                 <div className={`mt-14 w-full flex 
                                     ${
-                                        width > 1250
+                                        width > 1374
                                             ? 'flex-row items-start ' 
                                             :'flex-col items-center '
                                     } 

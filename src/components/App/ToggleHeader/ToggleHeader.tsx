@@ -122,7 +122,6 @@ const ToggleHeader = ({header, mode, userId, playlistName, recommendedTrackUris 
                                         { <Icons type={'spotify'} size={30} color={`#1DB954`}/>}
                                         <p className='ml-3 '>{'View In Spotify'}</p>
                                     </Button>
-                                    
                                 </Link>
                             </motion.div> 
                             )

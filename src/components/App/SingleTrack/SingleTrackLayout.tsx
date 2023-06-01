@@ -69,7 +69,7 @@ const SingleTrackLayout = () => {
                           initial={'hidden'}
                           animate={'visible'}
                         >
-                          <div>
+                          <div className="">
                             <div className="mb-3">
                               <SpotifyLogoDisplay width={70}/>
                             </div>
@@ -100,12 +100,14 @@ const SingleTrackLayout = () => {
                         <p className='font-regular text-slate-500 mt-2 mb-4'>
                           {singleTrack?.album.name + ' · ' + singleTrack?.album.release_date.substring(0,4)}
                         </p>
-                        <SpotifyButton 
+                        <div className="w-full flex items-center justify-center">
+                          <SpotifyButton 
                             text='Play on Spotify' 
                             size={30} 
                             color={'black'} 
                             link={singleTrack?.external_urls.spotify}
-                        />
+                          />
+                        </div>
                       </motion.div>
                     </div>
                     {/* Grid display */}

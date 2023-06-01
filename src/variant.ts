@@ -16,8 +16,6 @@ export const ArtistCardVariants: Variants = {
     }
 };
 
-
-
 export const PlaylistCardVariants: Variants = {
     hidden:{
         opacity: 0,

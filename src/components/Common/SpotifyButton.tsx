@@ -8,7 +8,6 @@ interface ISpotifyButton {
     size:number,
     link: string,
     color: string,
-
 }
 
 const SpotifyButton = ({text, size, link , color} : ISpotifyButton) => {

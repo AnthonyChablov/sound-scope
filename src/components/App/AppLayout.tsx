@@ -140,3 +140,4 @@ const AppLayout = ({mode}:IAppLayout) => {
 }
 
 export default AppLayout;
+

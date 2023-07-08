@@ -64,5 +64,6 @@ This project is licensed under the MIT License - see the LICENSE.md file for det
 ## Acknowledgments
 
 Inspiration, code snippets, etc.
-* [Design Inspiration](https://dribbble.com/shots/17259558-Todoist-Material-Design-Award-Winner-2021)
+The design of this application was inspired by Brittany Chiang
+* [Design Inspiration](https://brittanychiang.com/#about)
 

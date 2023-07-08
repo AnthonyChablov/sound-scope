@@ -1,38 +1,68 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# To Do List Application
+
+A fully responsive and mobile-friendly Spotify Profile Viewer that allows users to view their top tracks, artists, recently played songs, and playlists. The app can suggest songs based on existing playlists and create new playlists within the user's account.
+
+## Mobile View
+<img src="https://github.com/AnthonyChablov/sound-scope/assets/86855033/3c606250-b66f-4840-826b-f934c7b87ba3" width="300">
+<img src="https://github.com/AnthonyChablov/sound-scope/assets/86855033/84d8668f-97c4-4d40-8ca5-8c84dfd99b53" width="300">
+
+## Desktop View
+<img src="https://github.com/AnthonyChablov/sound-scope/assets/86855033/afdd74b0-a619-4a91-b23a-b07e49d6984f" width="800">
+<img src="https://github.com/AnthonyChablov/sound-scope/assets/86855033/22e9e8f7-f3eb-480c-a2dd-6401be0e39a7" width="800">
+<img src="https://github.com/AnthonyChablov/sound-scope/assets/86855033/6190609f-a8b9-4cd0-90c0-d8b7eb6a4d60" width="800">
+
+## Description
+
+This application is made with:  
+   - Spotify Web API
+   - Next.js
+   - Tailwind CSS
+   - TypeScript
+   - Material UI
+   - Framer-Motion
+   - Zustand
+     
+- The features of this application include:
+   -  User Authentication ( User Login, Sign-Out) via Spotify's O-Auth Control Flow,
+   -  Fully-Responsive Layout
+   -  Mobile-Friendly Design
 
 ## Getting Started
 
-First, run the development server:
+### Dependencies
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+Node.js v16.13.0
+
+### Installing
+
+1. Clone the repo 
+2. Run ```npm install``` for both the server and client
+
+### Executing program
+```
+npm run dev // run dev environment
+
+Or
+
+npm run build // run build environment
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Authors
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Created by:
+[Anthony Chablov](https://www.linkedin.com/in/anthonychablov/)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Version History
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+* 0.1
+    * Initial Release
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## License
 
-## Learn More
+This project is licensed under the MIT License - see the LICENSE.md file for details
 
-To learn more about Next.js, take a look at the following resources:
+## Acknowledgments
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Inspiration, code snippets, etc.
+* [Design Inspiration](https://dribbble.com/shots/17259558-Todoist-Material-Design-Award-Winner-2021)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

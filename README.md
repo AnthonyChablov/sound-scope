@@ -9,7 +9,6 @@ A fully responsive and mobile-friendly Spotify Profile Viewer that allows users 
 ## Desktop View
 <img src="https://github.com/AnthonyChablov/sound-scope/assets/86855033/afdd74b0-a619-4a91-b23a-b07e49d6984f" width="800">
 <img src="https://github.com/AnthonyChablov/sound-scope/assets/86855033/22e9e8f7-f3eb-480c-a2dd-6401be0e39a7" width="800">
-<img src="https://github.com/AnthonyChablov/sound-scope/assets/86855033/6190609f-a8b9-4cd0-90c0-d8b7eb6a4d60" width="800">
 
 ## Description
 
